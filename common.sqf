@@ -75,12 +75,12 @@ RED_UNIT_SIZE = 6;
 // find the marker 
 // spawn points 
 
-WEST_SPAWN = markerPos ["westSpawn", true];
-EAST_SPAWN = markerPos ["eastSpawn", true];
-AMMO_ZONE = markerPos [ 'ammoTruckZone', true];
-TRANSPORT_ZONE = markerPos ['rtz', true];
-WEST_VEHICLE_SPAWN = markerPos ['westVehicleSpawn', true];
-CHOPPA_SPAWN = markerPos ['CHOPPA_SPAWN', true];
+WEST_SPAWN = markerPos ["westSpawn", false];
+EAST_SPAWN = markerPos ["eastSpawn", false];
+AMMO_ZONE = markerPos [ 'ammoTruckZone', false];
+TRANSPORT_ZONE = markerPos ['rtz', false];
+WEST_VEHICLE_SPAWN = markerPos ['westVehicleSpawn', false];
+CHOPPA_SPAWN = markerPos ['CHOPPA_SPAWN', false];
 
 if (isNil 'ALL_TRIGGERS') then {
 	diag_log 'ALL_TRIGGERS is null, rescanning triggers';
