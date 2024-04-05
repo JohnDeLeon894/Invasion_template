@@ -80,6 +80,7 @@ EAST_SPAWN = markerPos ["eastSpawn", false];
 AMMO_ZONE = markerPos [ 'ammoTruckZone', false];
 TRANSPORT_ZONE = markerPos ['rtz', false];
 WEST_VEHICLE_SPAWN = markerPos ['westVehicleSpawn', false];
+EAST_VEHICLE_SPAWN = markerPos ['eastVehicleSpawn', false];
 CHOPPA_SPAWN = markerPos ['CHOPPA_SPAWN', false];
 
 if (isNil 'ALL_TRIGGERS') then {
