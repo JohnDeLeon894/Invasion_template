@@ -55,8 +55,14 @@ playMusic _song;
 	4: Center Position, if no position or Empty Array is given it uses the Group as Center and updates the position every Cycle, default [] <ARRAY>
 	5: Only Players, default true <BOOL>
 	*/
-	[_x, 1000, 60] spawn lambs_wp_fnc_taskHunt;
+	// [_x, 1000, 60] spawn lambs_wp_fnc_taskHunt;
 	// [_x, _spawnPoint, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_x, _spawnPoint, 200] call BIS_fnc_taskPatrol;
+	} else {
+		[_x, _spawnPoint, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+	};
 } forEach ENEMY_GROUPS;
 
 {
@@ -92,7 +98,12 @@ _veh = [ EAST_VEHICLE_SPAWN, 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
 _bluVehicleType = BLU_VEHICLE_ARRAY call BIS_fnc_selectRandom;
 _bluVeh = [ WEST_VEHICLE_SPAWN, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
 _bluVehGroup = _bluVeh select 2;
-[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
+
+if( isNil 'lambs_wp_fnc_taskGarrison') then {
+	[_bluVehGroup, WEST_SPAWN, 500] call BIS_fnc_taskPatrol;
+} else {
+	[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
+};
 
 // hint format['Created vehicle %1', _veh select 0];
 _veh params ["_vehicle", "_crew", "_vehGroup"];
@@ -138,7 +149,12 @@ if ((SPAWN_LOOP_COUNT mod 5) == 0) then {
 	_bluVehicleType = BLU_TANK_ARRAY call BIS_fnc_selectRandom;
 	_bluVeh = [ WEST_VEHICLE_SPAWN, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
 	_bluVehGroup = _bluVeh select 2;
-	[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
+	
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_bluVehGroup, WEST_SPAWN, 500] call BIS_fnc_taskPatrol;
+	} else {
+		[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
+	};
 };
 
 diag_log 'deleting the dead';

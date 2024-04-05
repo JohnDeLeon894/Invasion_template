@@ -76,19 +76,31 @@ if (unitReady _transport) then {
 			_transport sideChat "We're at the destination, exiting vehicle.";
 			doGetOut units backup_alpha;
 			backup_alpha leaveVehicle _transport;
-			[backup_alpha, _pos, 200] call lambs_wp_fnc_taskPatrol;
+			if( isNil 'lambs_wp_fnc_taskGarrison') then {
+				[backup_alpha, _position, 200] call BIS_fnc_taskPatrol;
+			} else {
+				[backup_alpha, _position, 200] call lambs_wp_fnc_taskPatrol;
+			};
 		};
 		case 'bravoInfil': {
 			_transport sideChat "We're at the destination, exiting vehicle.";
 			doGetOut units backup_bravo;
 			backup_bravo leaveVehicle _transport;
-			[backup_bravo, _pos, 200] call lambs_wp_fnc_taskPatrol;
+			if( isNil 'lambs_wp_fnc_taskGarrison') then {
+				[backup_bravo, _position, 200] call BIS_fnc_taskPatrol;
+			} else {
+				[backup_bravo, _position, 200] call lambs_wp_fnc_taskPatrol;
+			};
 		};
 		case 'charlieInfil': {
 			_transport sideChat "We're at the destination, exiting vehicle.";
 			doGetOut units backup_charlie;
 			backup_charlie leaveVehicle _transport;
-			[backup_charlie, _pos, 200] call lambs_wp_fnc_taskPatrol;
+			if( isNil 'lambs_wp_fnc_taskGarrison') then {
+				[backup_charlie, _position, 200] call BIS_fnc_taskPatrol;
+			} else {
+				[backup_charlie, _position, 200] call lambs_wp_fnc_taskPatrol;
+			};
 		};
 		default {
 			_transport sideChat format['%1 at LZ, lets get the hello out of here!', _transport];

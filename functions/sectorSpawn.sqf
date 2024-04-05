@@ -86,7 +86,11 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	6: exit Conditions that breaks a Unit free (-2 random, -1 All, 0 None, 1 Hit, 2 fired, 3 firedNear, 4 Suppressed), default -2 <NUMBER>
 	7: Sub-group patrols the area <BOOL>
 	*/
-	[_eastgroup, _position, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_eastgroup, _position, 200] call BIS_fnc_taskDefend;
+	} else {
+		[_eastgroup, _position, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+	};
 	// creating diary record and task
 	private ['_childTasIdk', '_description', '_completedChildren', '_activation', '_statement'];
 	_childTasIdk = _missionName;
@@ -103,8 +107,13 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	[bob, bob, 500] call lambs_wp_fnc_taskPatrol;
 	*/
 	if (! (isnil '_westgroup')) then {
-			hint format['found group %1', _westgroup];
+			// hint format['found group %1', _westgroup];
+		if( isNil 'lambs_wp_fnc_taskGarrison') then {
+			[_westgroup, _position, 300] call BIS_fnc_taskPatrol;
+		} else {
 			[_westgroup, _position, 300] call lambs_wp_fnc_taskPatrol;
+		};
+			
 	};
 	diag_log [_childTasIdk, _parentTaskId];
 	[_owner, [_childTasIdk, _parentTaskId], _description, _position, _state, _priority, _shownotification, _type, _visiblein3D] call BIS_fnc_taskCreate;

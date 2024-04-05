@@ -97,7 +97,12 @@ private _artyProcessor = {
 		if (_mrkText == 'alpha') then {
 			if ({alive _x}count(units backup_alpha) > 4) then {
 				private _missionName = [_mrkText] call _taskMarkerName;
-				[backup_alpha, _position, 200] call lambs_wp_fnc_taskPatrol;
+				
+				if( isNil 'lambs_wp_fnc_taskGarrison') then {
+					[backup_alpha, _position, 200] call BIS_fnc_taskPatrol;
+				} else {
+					[backup_alpha, _position, 200] call lambs_wp_fnc_taskPatrol;
+				};
 				[_marker, _missionName] call _replaceMarker;
 			} else {
 				[_position, 'alpha'] execVM 'functions\transport\callTransport.sqf';
@@ -110,7 +115,11 @@ private _artyProcessor = {
 		if (_mrkText == 'bravo') then {
 			if ({alive _x}count(units backup_bravo) > 4) then {
 				private _missionName = [_mrkText] call _taskMarkerName;
-				[backup_bravo, _position, 200] call lambs_wp_fnc_taskPatrol;
+				if( isNil 'lambs_wp_fnc_taskGarrison') then {
+					[backup_bravo, _position, 200] call BIS_fnc_taskPatrol;
+				} else {
+					[backup_bravo, _position, 200] call lambs_wp_fnc_taskPatrol;
+				};
 				[_marker, _missionName] call _replaceMarker;
 			} else {
 				[_position, 'bravo'] execVM 'functions\transport\callTransport.sqf';
@@ -123,7 +132,11 @@ private _artyProcessor = {
 		if (_mrkText == 'charlie') then {
 			if ({alive _x}count(units backup_charlie) > 4) then {
 				private _missionName = [_mrkText] call _taskMarkerName;
-				[backup_charlie, _position, 200] call lambs_wp_fnc_taskPatrol;
+				if( isNil 'lambs_wp_fnc_taskGarrison') then {
+					[backup_charlie, _position, 200] call BIS_fnc_taskPatrol;
+				} else {
+					[backup_charlie, _position, 200] call lambs_wp_fnc_taskPatrol;
+				};
 				[_marker, _missionName] call _replaceMarker;
 			} else {
 				[_position, 'charlie'] execVM 'functions\transport\callTransport.sqf';
