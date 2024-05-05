@@ -1,9 +1,10 @@
 hint 'activated!';
 private ['_player', '_closestTrigger', '_nextClosest', '_selectedTrigger'];
 _player = player;
-_closestTrigger = call compile (ALL_TRIGGERS select 0);
-_nextClosest = _closestTrigger;
-_lastClosest = _closestTrigger;
+// _closestTrigger = call compile (ALL_TRIGGERS select 0);
+_closestTrigger = call compile (RED_TRIGGERS select 0);
+_nextClosest = call compile (RED_TRIGGERS select 1);;
+_lastClosest = call compile (RED_TRIGGERS select 2);
 
 {
 	private _currentTrigger = call compile _x;
@@ -26,8 +27,8 @@ _lastClosest = _closestTrigger;
 } forEach ALL_TRIGGERS;
 // _closestTrigger = ALL_TRIGGERS call BIS_fnc_selectRandom;
 private _triggerList = [_closestTrigger, _nextClosest, _lastClosest];
-// _selectedTrigger = _triggerList call BIS_fnc_selectRandom;
-_selectedTrigger = _triggerList select 0;
+_selectedTrigger = _triggerList call BIS_fnc_selectRandom;
+// _selectedTrigger = _triggerList select 0;
 private _subject = player createDiarySubject ['triggerPicker', 'trigger picker'];
 private _triggerListText = format['%1', _triggerList];
 player createDiaryRecord ['triggerPicker', ['the trigger array', _triggerListText]];
@@ -40,6 +41,6 @@ player createDiaryRecord ['triggerPicker', ['the trigger statements', format['%1
 
 _selectedTrigger setTriggerStatements ['true', _copyActivation, _copyDeactivation];
 
-ALL_TRIGGERS deleteAt (ALL_TRIGGERS find _selectedTrigger);
+RED_TRIGGERS deleteAt (RED_TRIGGERS find _selectedTrigger);
 sector = _selectedTrigger;
 _selectedTrigger

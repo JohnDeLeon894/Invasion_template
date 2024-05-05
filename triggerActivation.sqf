@@ -83,11 +83,12 @@ if ((count waypoints group player) > 1) then {
 // } forEach _activePositions;
 
 
-private _aoMarker = createMarker[format['%1', _trigger], position _trigger];
-_aoMarker setMarkerBrush 'CROSS';
-_aoMarker setMarkerShape 'RECTANGLE';
-_aoMarker setMarkerSize _triggerArea;
-_aoMarker setMarkerColor 'ColorOrange';
+// private _aoMarker = createMarker[format['%1', _trigger], position _trigger];
+// _aoMarker setMarkerBrush 'CROSS';
+// _aoMarker setMarkerShape 'RECTANGLE';
+// _aoMarker setMarkerSize _triggerArea;
+// _aoMarker setMarkerColor 'ColorOrange';
+_aoMarker = str _trigger;
 
 sectorTrigger = createTrigger['EmptyDetector', position _trigger];
 private _sectorTriggerActivation = format['"%1" setMarkerColor "ColorRed"; ON_MISSION = TRUE;', _aoMarker];
