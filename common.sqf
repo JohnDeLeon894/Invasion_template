@@ -71,6 +71,7 @@ SPAWN_LOOP_COUNT = 0;
 ONE_LOOP = false;
 BLU_UNIT_SIZE = 4;
 RED_UNIT_SIZE = 6;
+CONTINUOUS = true; // activate new trigger? true = new trigger will be activated, false = mission will end.
 
 // find the marker 
 // spawn points 
@@ -97,7 +98,7 @@ if (isNil 'ALL_TRIGGERS') then {
 			private _title = _triggerName;
 			private _entry = format ['Found trigger %1. Distance from player %2', _trigger, player distance _x];
 			player createDiaryRecord ['TriggersFound', [_title, _entry]];
-			private _triggerMark = createMarker[str _triggerName, position _trigger];
+			private _triggerMark = createMarker[_triggerName, position _trigger];
 			private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
 			_triggerMark setMarkerBrush 'CROSS';
 			_triggerMark setMarkerShape 'RECTANGLE';
@@ -128,7 +129,7 @@ if (isNil 'ALL_TRIGGERS') then {
 		_triggerMark setMarkerShape 'RECTANGLE';
 		_triggerMark setMarkerSize _triggerArea;
 		_triggerMark setMarkerColor _triggerColor;
-		diag_log format ['Trigger %1 set to %2', _troggerName, _triggerColor];
+		diag_log format ['Trigger %1 set to %2', _trigger, _triggerColor];
 	} forEach RED_TRIGGERS;
 };
 
