@@ -24,7 +24,7 @@ _lastClosest = call compile (RED_TRIGGERS select 2);
 		};
 	};
 	diag_log [_closestTrigger, _nextClosest, _lastClosest];
-} forEach ALL_TRIGGERS;
+} forEach RED_TRIGGERS;
 // _closestTrigger = ALL_TRIGGERS call BIS_fnc_selectRandom;
 private _triggerList = [_closestTrigger, _nextClosest, _lastClosest];
 _selectedTrigger = _triggerList call BIS_fnc_selectRandom;

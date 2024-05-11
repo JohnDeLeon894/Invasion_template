@@ -117,19 +117,20 @@ if (isNil 'ALL_TRIGGERS') then {
 	// for all triggers if its not in red triggers, make green.
 	{
 		private _trigger = _x;
+		private _triggerObject = call compile _x;
 		private _triggerColor = 'ColorGreen';
-		private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
+		private _triggerArea = [triggerArea _triggerObject select 0, triggerArea _triggerObject select 1];
 
-		if (_trigger in ALL_TRIGGERS) then {
-			_triggerColor setMarkerColor 'ColorRed';
+		if (_trigger in  RED_TRIGGERS) then {
+			_triggerColor = 'ColorRed';
 		};
 		private _triggerMark = createMarker[str _trigger, position _trigger];
 		_triggerMark setMarkerBrush 'CROSS';
 		_triggerMark setMarkerShape 'RECTANGLE';
 		_triggerMark setMarkerSize _triggerArea;
 		_triggerMark setMarkerColor _triggerColor;
-		diag_log format ['Trigger %1 set to %2', _troggerName, _triggerColor];
-	} forEach RED_TRIGGERS;
+		diag_log format ['Trigger %1 set to %2', _trigger, _triggerColor];
+	} forEach ALL_TRIGGERS;
 };
 
 ALL_BASES = [];
@@ -449,20 +450,6 @@ BocoHaran_units = [
 	'LOP_BH_Infantry_SL'
 ];
 
-// new vietnam troups
-NVA_Unit_Configs = "getText (_x >> 'faction') == 'O_PAVN' && getText (_x >> 'simulation') == 'soldier'" configClasses (configFile >> "CfgVehicles");
-NVAUnits = NVA_Unit_Configs apply {configName _x};
-NVA_Vehicle_Configs = "getText (_x >> 'faction') == 'O_VC' && getText (_x >> 'simulation') == 'carX'" configClasses (configFile >> "CfgVehicles");
-NVAVehicles = NVA_Vehicle_Configs apply {configName _x};
-
-// friendly soldiers array 
-bluforUnitsConfig= "getText (_x >> 'faction') == 'rhs_faction_usmc_wd' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-bluforUnits = bluforUnitsConfig apply {configName _x};
-
-// new macv units
-MACVUnitsConfig= "getText (_x >> 'faction') == 'B_MACV' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-MACVUnits = MACVUnitsConfig apply {configName _x};
-
 // desert camo friendly soldiers
 
 bluforDesertUnits = [
@@ -492,19 +479,65 @@ bluforDesertUnits = [
 	'rhsusf_usmc_marpat_d_smaw'
 ];
 
-// desert camo nato soldiers
-natoDesertUnitsConfig= "getText (_x >> 'faction') == 'BLU_NATO_lxWS' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-natoDesertUnits = natoDesertUnitsConfig apply {configName _x};
+NVAUnits = [
+	'vn_o_men_nva_12',
+	'vn_o_men_nva_09',
+	'vn_o_men_nva_13',
+	'vn_o_men_nva_04',
+	'vn_o_men_nva_05',
+	'vn_o_men_nva_02',
+	'vn_o_men_nva_03',
+	'vn_o_men_nva_06',
+	'vn_o_men_nva_49',
+	'vn_o_men_nva_01',
+	'vn_o_men_nva_31',
+	'vn_o_men_nva_29',
+	'vn_o_men_nva_30',
+	'vn_o_men_nva_08',
+	'vn_o_men_nva_45',
+	'vn_o_men_nva_47',
+	'vn_o_men_nva_10',
+	'vn_o_men_nva_11',
+	'vn_o_men_nva_07',
+	'vn_o_men_nva_32',
+	'vn_o_men_nva_14',
+	'vn_o_men_nva_43',
+	'vn_o_men_nva_dc_12',
+	'vn_o_men_nva_dc_09',
+	'vn_o_men_nva_dc_13',
+	'vn_o_men_nva_dc_05',
+	'vn_o_men_nva_dc_02',
+	'vn_o_men_nva_dc_04',
+	'vn_o_men_nva_dc_03',
+	'vn_o_men_nva_dc_06',
+	'vn_o_men_nva_dc_01',
+	'vn_o_men_nva_dc_17',
+	'vn_o_men_nva_dc_15',
+	'vn_o_men_nva_dc_16',
+	'vn_o_men_nva_dc_08',
+	'vn_o_men_nva_dc_18',
+	'vn_o_men_nva_dc_10',
+	'vn_o_men_nva_dc_11',
+	'vn_o_men_nva_dc_14',
+	'vn_o_men_nva_dc_14'
+];
 
-// natoUnitsConfig = "
-// getText (_x >> 'faction') == 'BLU_F' && 
-// getText (_x >> 'simulation') == 'soldier' && 
-// getText (_x >> 'role') != 'Crewman' &&
-// getText (_x >> 'editorSubcategory') == 'EdSubcat_Personnel' &&
-// getText (_x >> 'role') != 'Unarmed' &&
-// getText (_x >> 'DLC') !='AoW' &&
-// getText (_x >> 'DLC') !='Jets'" 
-// configClasses (configFile >> "CfgVehicles");
+NVAVehicles = [
+	'vn_o_bicycle_01',
+	'vn_o_wheeled_btr40_mg_02',
+	'vn_o_wheeled_btr40_mg_06',
+	'vn_o_wheeled_btr40_01',
+	'vn_o_wheeled_z157_01',
+	'vn_o_wheeled_z157_02'
+];
+
+MACVTanks = [
+	'vn_o_armor_type63_01_nva65',
+	'vn_o_armor_pt76a_01_nva65',
+	'vn_o_armor_pt76b_01_nva65',
+	'vn_o_armor_type63_01_nva65'
+];
+
 natoUnits = [
 	'B_Soldier_A_F',
 	'B_support_AMG_F',
@@ -560,6 +593,105 @@ usArmy_armor = [
 	'rhsusf_stryker_m1132_m2_np_wd',
 	'rhsusf_m113_usarmy_M240',
 	'rhsusf_m1a1aimwd_usarmy'
+];
+
+MACVArmyUnits = [
+	'vn_b_men_army_02',
+	'vn_b_men_army_15',
+	'vn_b_men_army_16',
+	'vn_b_men_army_18',
+	'vn_b_men_army_19',
+	'vn_b_men_army_20',
+	'vn_b_men_army_21',
+	'vn_b_men_army_09',
+	'vn_b_men_army_11',
+	'vn_b_men_army_08',
+	'vn_b_men_army_03',
+	'vn_b_men_army_10',
+	'vn_b_men_army_27',
+	'vn_b_men_army_06',
+	'vn_b_men_army_07',
+	'vn_b_men_army_17',
+	'vn_b_men_army_12',
+	'vn_b_men_army_05',
+	'vn_b_men_army_04'
+];
+
+MACVAlphaSquad = [
+	'vn_b_men_cidg_22',
+	'vn_b_men_cidg_03',
+	'vn_b_men_cidg_08',
+	'vn_b_men_cidg_07',
+	'vn_b_men_cidg_11',
+	'vn_b_men_cidg_17',
+	'vn_b_men_cidg_05',
+	'vn_b_men_cidg_15',
+	'vn_b_men_cidg_18',
+	'vn_b_men_cidg_12',
+	'vn_b_men_cidg_02',
+	'vn_b_men_cidg_10',
+	'vn_b_men_cidg_20',
+	'vn_b_men_cidg_06',
+	'vn_b_men_cidg_14',
+	'vn_b_men_cidg_19',
+	'vn_b_men_cidg_04',
+	'vn_b_men_cidg_09',
+	'vn_b_men_cidg_21',
+	'vn_b_men_cidg_01'
+];
+
+MACVBravoSquad = [
+	'vn_b_men_seal_38',
+	'vn_b_men_seal_22',
+	'vn_b_men_seal_41',
+	'vn_b_men_seal_19',
+	'vn_b_men_seal_40',
+	'vn_b_men_seal_21',
+	'vn_b_men_seal_37',
+	'vn_b_men_seal_20',
+	'vn_b_men_seal_39',
+	'vn_b_men_seal_18'
+];
+
+MACVCharlieSquad = [
+	'vn_b_men_seal_10',
+	'vn_b_men_seal_11',
+	'vn_b_men_seal_14',
+	'vn_b_men_seal_15',
+	'vn_b_men_seal_07',
+	'vn_b_men_seal_03',
+	'vn_b_men_seal_09',
+	'vn_b_men_seal_08',
+	'vn_b_men_seal_12',
+	'vn_b_men_seal_05',
+	'vn_b_men_seal_16',
+	'vn_b_men_seal_17',
+	'vn_b_men_seal_13',
+	'vn_b_men_seal_02',
+	'vn_b_men_seal_06',
+	'vn_b_men_seal_04',
+	'vn_b_men_seal_01'
+];
+
+MACVArmyTrucks = [
+	'vn_b_wheeled_m54_02',
+	'vn_b_wheeled_m54_02_sog',
+	'vn_b_wheeled_m54_01',
+	'vn_b_wheeled_m54_mg_01',
+	'vn_b_wheeled_m151_02_mp',
+	'vn_b_wheeled_m151_01',
+	'vn_b_wheeled_m151_mg_03'
+];
+
+MACVArmyTanks = [
+	'vn_b_armor_m41_01_01',
+	'vn_b_armor_m48_01_01',
+	'vn_b_armor_m67_01_01',
+	'vn_b_armor_m132_01',
+	'vn_b_armor_m125_01',
+	'vn_b_armor_m113_acav_05',
+	'vn_b_armor_m113_acav_06',
+	'vn_b_armor_m113_acav_02'
 ];
 
 // global variable for units array
