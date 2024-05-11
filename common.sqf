@@ -118,10 +118,11 @@ if (isNil 'ALL_TRIGGERS') then {
 	// for all triggers if its not in red triggers, make green.
 	{
 		private _trigger = _x;
+		private _triggerObject = call compile _trigger;
 		private _triggerColor = 'ColorGreen';
-		private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
+		private _triggerArea = [triggerArea _triggerObject select 0, triggerArea _triggerObject select 1];
 
-		if (_trigger in ALL_TRIGGERS) then {
+		if (_trigger in RED_TRIGGERS) then {
 			_triggerColor setMarkerColor 'ColorRed';
 		};
 		private _triggerMark = createMarker[str _trigger, position _trigger];
@@ -130,7 +131,7 @@ if (isNil 'ALL_TRIGGERS') then {
 		_triggerMark setMarkerSize _triggerArea;
 		_triggerMark setMarkerColor _triggerColor;
 		diag_log format ['Trigger %1 set to %2', _trigger, _triggerColor];
-	} forEach RED_TRIGGERS;
+	} forEach ALL_TRIGGERS;
 };
 
 ALL_BASES = [];
