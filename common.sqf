@@ -180,34 +180,6 @@ LOCATION_TYPES = [
 ];
 
 // units arrays 
-Unit_Blacklist = [
-	'CUP_B_BAF_Pilot_DDPM',
-	'CUP_B_BAF_Soldier_RangeMaster_DDPM',
-	'CUP_B_BAF_Pilot_MTP',
-	'CUP_B_BAF_Soldier_Competitor_DPM',
-	'CUP_B_BAF_Soldier_FighterPilot_DPM',
-	'CUP_B_BAF_Soldier_Survivor_MTP',
-	'CUP_B_BAF_Soldier_RiflemanUnarmed_DDPM',
-	'CUP_B_BAF_Soldier_Paratrooper_MTP',
-	'CUP_B_BAF_Soldier_DeckCrew_MTP',
-	'AOR_2_SS_uniform',
-	'AOR_2_TCasual_uniform',
-	'AOR_2_uniform',
-	'B_soldier_PG_F',
-	'B_Soldier_support_base_F',
-	'B_soldier_exp_F_OCimport_01',
-	'B_soldier_exp_F_OCimport_01',
-	'B_soldier_LAT_F_OCimport_01',
-	'B_medic_F_OCimport_02',
-	'B_sniper_F_OCimport_02',
-	'B_Soldier_diver_base_F',
-	'B_Soldier_GL_F_OCimport_02',
-	'B_sniper_F_OCimport_01',
-	'B_soldier_AR_F_OCimport_02',
-	'B_Soldier_SL_F_OCimport_01',
-	'B_ghillie_base_F',
-	'B_recon_F_OCimport_01'
-];
 // enemy units 
 
 Isis_Vehicles = [
@@ -275,6 +247,7 @@ Isis_Vehicles = [
 	'O_IS_Ural_ZSU_23_01',
 	'O_IS_Ural_Troop_Truck_01'
 ];
+
 Isis_Tanks = [
 	'LOP_ISTS_OPF_BTR60',
 	'LOP_ISTS_OPF_M113_W',
@@ -297,6 +270,7 @@ Isis_Tanks = [
 	'O_IS_BTR_60_01',
 	'O_IS_T72B_01'
 ];
+
 Isis_units = [
 	'LOP_ISTS_OPF_Infantry_SL',
 	'LOP_ISTS_OPF_Infantry_AT',
@@ -416,7 +390,6 @@ CSAT_Tanks = [
 	'O_APC_Wheeled_02_rcws_v2_F'
 ];
 
-BocoHaran_Unit_Configs = "getText (_x >> 'faction') == 'LOP_BH' && getText (_x >> 'simulation') == 'soldier'" configClasses (configFile >> "CfgVehicles");
 BocoHaran_units = [
 	'CFP_O_BH_Asst_Gunner_DShKM_01',
 	'CFP_O_BH_Asst_Gunner_Mortar_01',
