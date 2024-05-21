@@ -423,6 +423,367 @@ BocoHaran_units = [
 	'LOP_BH_Infantry_SL'
 ];
 
+looters = [
+	"antifa",
+	"antifa_m4",
+	"antifa_mosin",
+	"antifa_pm",
+	"antifa_sa58",
+	"antifa_sks",
+	"antifa_taurus45",
+	"jogger_ak74",
+	"jogger_g17",
+	"jogger_mac10",
+	"jogger_sawedoff",
+	"jogger_tec9",
+	"jogger",
+	"jogger_urban_1",
+	"jogger_urban_2",
+	"jogger_urban_3",
+	"jogger_urban_4",
+	"jogger_urban_5",
+	"jogger_urban_6",
+	"jogger_urban_7"
+];
+
+lowLevelMilitia = [
+	"CFP_O_SOREBEL_Warlord_01",
+	"CFP_O_SOREBEL_Asst_Gunner_DShKM_01",
+	"CFP_O_SOREBEL_Asst_Gunner_Mortar_01",
+	"CFP_O_SOREBEL_Autorifleman_01",
+	"CFP_O_SOREBEL_Bombmaker_2_01",
+	"CFP_O_SOREBEL_Bombmaker_01",
+	"CFP_O_SOREBEL_Grenadier_01",
+	"CFP_O_SOREBEL_Gunner_DShKM_High_01",
+	"CFP_O_SOREBEL_Gunner_DShKM_Low_01",
+	"CFP_O_SOREBEL_Gunner_Mortar_01",
+	"CFP_O_SOREBEL_Gunner_SPG_01",
+	"CFP_O_SOREBEL_Autorifleman_2_01",
+	"CFP_O_SOREBEL_Marksman_01",
+	"CFP_O_SOREBEL_Rifleman_01",
+	"CFP_O_SOREBEL_Rifleman_Light_01",
+	"CFP_O_SOREBEL_Rifleman_AA_01",
+	"CFP_O_SOREBEL_Rifleman_AT_01",
+	"CFP_O_SOREBEL_Sharpshooter_01",
+	"I_INDEFM_Ammo_Bearer_01",
+	"I_INDEFM_Crewman_01",
+	"I_INDEFM_Grenadier_01",
+	"I_INDEFM_IED_Specialist_01",
+	"I_INDEFM_Marksman_01",
+	"I_INDEFM_Medic_01",
+	"I_INDEFM_Rifleman_01",
+	"I_INDEFM_Autorifleman_01",
+	"I_INDEFM_Team_Leader_01",
+	"I_INDEFM_Officer_01",
+	"I_INDEFM_Rifleman_02",
+	"O_INDEFM_Sniper_01",
+	"O_INDEFM_Spotter_01",
+	"I_INDEFM_Squad_Leader_01",
+	"I_INDEFM_Veteran_01",
+	"I_INDEFM_Veteran_Machinegunner_01"
+];
+
+hiredSoldiers = [
+	"O_PeoplesLiberationArmy_Soldier_AK74_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Ammo_Bearer_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Engineer_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Grenadier_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Marksman_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Medic_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Officer_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_RPG_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_RPK_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Squad_Leader_2025_01",
+	"O_PeoplesLiberationArmy_Soldier_Team_Leader_2025_01"
+];
+
+hiredEliteSoldiers = [
+	"O_PeoplesLiberationArmy_SF_Soldier_Grenadier_2025_01",
+	"O_PeoplesLiberationArmy_SF_Soldier_Medic_2025_01",
+	"O_PeoplesLiberationArmy_SF_Soldier_Navid_2025_01",
+	"O_PeoplesLiberationArmy_SF_Soldier_RPG_2025_01",
+	"O_PeoplesLiberationArmy_SF_Soldier_Squad_Leader_2025_01"
+];
+
+redWolfPMC = [
+	"O_RedWolf_Contractor_AK103_2025_01",
+	"O_RedWolf_Contractor_AK74_2025_01",
+	"O_RedWolf_Contractor_AR_2025_01",
+	"O_RedWolf_Contractor_AT_2025_01",
+	"O_RedWolf_Contractor_Bodyguard_Armed_2025_01",
+	"O_RedWolf_Contractor_Bodyguard_2025_01",
+	"O_RedWolf_Contractor_GL_2025_01",
+	"O_RedWolf_Contractor_Medic_2025_01",
+	"O_RedWolf_Contractor_MM_2025_01",
+	"O_RedWolf_Contractor_Radio_2025_01",
+	"O_RedWolf_Contractor_SG_2025_01",
+	"O_RedWolf_Contractor_Skorpion_2025_01",
+	"O_RedWolf_Contractor_TL_2025_01"
+];
+
+looterVehicles = [
+	"cWrangler_rouge_1",
+	"cWrangler_rouge",
+	"cWrangler_noir",
+	"cWrangler_noir_1",
+	"cWrangler_yellow",
+	"cWrangler_yellow_1",
+	"cWrangler_gris_1",
+	"cWrangler_gris",
+	"cWrangler_bleu",
+	"cWrangler_bleu_1",
+	"cWrangler",
+	"cWrangler_1",
+	"chwillys",
+	"chRenegade_rouge",
+	"chRenegade_noir",
+	"chRenegade_yellow",
+	"chRenegade_bleu",
+	"chGrand_Cherokee_noir",
+	"chGrand_Cherokee_yellow",
+	"chGrand_Cherokee_bleu",
+	"vn_c_car_04_01",
+	"vn_c_wheeled_m151_02",
+	"vn_c_wheeled_m151_01",
+	"vn_c_car_02_01",
+	"chdefender_civ_gris",
+	"chdefender_civ_rouge",
+	"chdiscovery",
+	"chdefender_civ_bleu",
+	"chdiscovery_gris",
+	"Peugeot_Boxer_laposte",
+	"berlingo2_laposte",
+	"Peugeot_Boxer_laposte",
+	"chexpert3_laposte",
+	"chH1_bleu",
+	"chH1_noir",
+	"chH1_rouge",
+	"cmax_civ_rouge",
+	"cmax_civ_gris",
+	"focus3ch_civ",
+	"focus3ch_civ_noir",
+	"focus03_civ_yellow",
+	"chfcrsciv",
+	"focussw1998_civ_yellow",
+	"focussw1998_civ_noir",
+	"fgtz3_civ_bleu",
+	"fgtz3_civ_rouge",
+	"chKa_noir",
+	"mondeo_civ_noir",
+	"mondeovch_civ",
+	"ranger17ch",
+	"ranger17ch_gris",
+	"galaxych_civ_yellow",
+	"ranger17ch_noir"
+];
+
+hiredSoldierVehicles = [
+	"O_INDEFM_UAZ_01",
+	"I_INDEFM_Technical_01",
+	"I_INDEFM_Troop_Technical_01",
+	"O_INDEFM_Ural_ZSU_23_01",
+	"O_INDEFM_Ural_01",
+	"O_INDEFM_Ural_Ammo_01",
+	"CFP_O_SOREBEL_Hilux_01",
+	"CFP_O_SOREBEL_Hilux_AGS_30_01",
+	"CFP_O_SOREBEL_Hilux_DShKM_01",
+	"CFP_O_SOREBEL_Hilux_MLRS_01",
+	"CFP_O_SOREBEL_Hilux_Podnos_01",
+	"CFP_O_SOREBEL_Hilux_ZU_23_01",
+	"CFP_O_SOREBEL_Technical_DSHkM_01",
+	"CFP_O_SOREBEL_Technical_PK_01",
+	"CFP_O_SOREBEL_Truck_01"
+];
+
+hiredEliteVehicles = [
+	"O_PeoplesLiberationArmy_Zamak_Transport_2025_01",
+	"O_PeoplesLiberationArmy_Zamak_Transport_Covered_2025_01",
+	"O_PeoplesLiberationArmy_Zamak_Zu_23_2025_01"
+];
+
+hiredSoldierTanks = [
+	"O_INDEFM_T72_01",
+	"O_INDEFM_BTR_60_01",
+	"O_INDEFM_BMP_1_01",
+	"O_INDEFM_BMP_1P_01"
+];
+
+hiredEliteTanks = [
+	"O_PeoplesLiberationArmy_T100_Varsuk_2025_01",
+	"O_PeoplesLiberationArmy_BTR_KKamysh_2025_01"
+];
+
+CSAT_Vehicles = [
+	'O_Truck_02_transport_F',
+	'O_Truck_02_covered_F',
+	'O_MRAP_02_hmg_F',
+	'O_MRAP_02_gmg_F',
+	'O_Truck_03_transport_F',
+	'O_Truck_03_covered_F',
+	'CUP_O_UAZ_Unarmed_CSAT',
+	'CUP_O_UAZ_MG_CSAT'
+];
+
+Isis_Tanks = [
+	'LOP_ISTS_OPF_BTR60',
+	'LOP_ISTS_OPF_M113_W',
+	'LOP_ISTS_OPF_T34',
+	'LOP_ISTS_OPF_T55',
+	'LOP_ISTS_OPF_T72BA',
+	'cfp_o_is_BMP1',
+	'cfp_o_is_BMP1P',
+	'cfp_o_is_BMP2',
+	'cfp_o_is_BMP2_PKM',
+	'cfp_o_is_BMP2_ZU',
+	'cfp_o_is_BTR40_MG',
+	'cfp_o_is_BTR40_MG_flag',
+	'cfp_o_is_BTR40_MG_flag',
+	'cfp_o_is_M113',
+	'cfp_o_is_M113_flag',
+	'cfp_o_is_T34',
+	'cfp_o_is_T55',
+	'cfp_o_is_T72_flag',
+	'O_IS_BTR_60_01',
+	'O_IS_T72B_01'
+];
+
+CSAT_Tanks = [
+	'O_MBT_04_cannon_F',
+	'O_MBT_04_command_F',
+	'CUP_O_T55_CSAT',
+	'CUP_O_T72_CSAT',
+	'O_MBT_02_cannon_F',
+	'O_APC_Tracked_02_cannon_F',
+	'CUP_O_BMP1_CSAT',
+	'CUP_O_BMP1P_CSAT',
+	'CUP_O_BMP2_CSAT',
+	'CUP_O_BMP2_ZU_CSAT',
+	'CUP_O_BMP_HQ_CSAT',
+	'CUP_O_BRDM2_ATGM_CSAT',
+	'CUP_O_BTR60_CSAT',
+	'CUP_O_BTR80_CSAT',
+	'CUP_O_BTR80A_CSAT',
+	'O_APC_Wheeled_02_rcws_F',
+	'O_APC_Wheeled_02_rcws_v2_F'
+];
+
+usArmy = [
+	'rhsusf_army_ucp_teamleader',
+	'rhsusf_army_ucp_squadleader',
+	'rhsusf_army_ucp_rifleman_m4',
+	'rhsusf_army_ucp_rifleman_m16',
+	'rhsusf_army_ucp_riflemanat',
+	'rhsusf_army_ucp_riflemanl',
+	'rhsusf_army_ucp_rifleman',
+	'rhsusf_army_ucp_marksman',
+	'rhsusf_army_ucp_machinegunner',
+	'rhsusf_army_ucp_grenadier'
+];
+
+usArmy_cars = [
+	'rhsusf_m1240a1_mk19crows_usarmy_wd',
+	'rhsusf_m1240a1_mk19_uik_usarmy_wd',
+	'rhsusf_m1240a1_m240_uik_usarmy_wd',
+	'rhsusf_m1240a1_m2_uik_usarmy_wd',
+	'rhsusf_m1240a1_m240_usarmy_wd',
+	'rhsusf_M1117_W',
+	'rhsusf_m1151_m240_v2_usarmy_wd',
+	'rhsusf_m1151_m2_v2_usarmy_wd',
+	'rhsusf_m1151_mk19_v2_usarmy_wd'
+];
+
+usArmy_armor = [
+	'rhsusf_stryker_m1126_m2_wd',
+	'rhsusf_stryker_m1126_mk19_wd',
+	'rhsusf_stryker_m1132_m2_np_wd',
+	'rhsusf_m113_usarmy_M240',
+	'rhsusf_m1a1aimwd_usarmy'
+];
+
+capstonePMC_Units = [
+	"B_CapstonePMC_Contractor_AR_2025_01",
+	"B_CapstonePMC_Contractor_CBRN_2025_01",
+	"B_CapstonePMC_Contractor_GL_2025_01",
+	"B_CapstonePMC_Contractor_HK416_2025_01",
+	"B_CapstonePMC_Contractor_M4_2025_01",
+	"B_BLUF_Contractor_Mk16_01",
+	"B_CapstonePMC_Contractor_MP7_2025_01",
+	"B_BCapstonePMC2025_Contractor_SG_01",
+	"B_CapstonePMC_Contractor_SR10_2025_01",
+	"B_CapstonePMC_Contractor_TL_2025_01",
+	"B_CapstonePMC_Contractor_Vector_2025_01",
+	"B_BCapstonePMC2025_QRF_Contractor_AR_01",
+	"B_BCapstonePMC2025_QRF_Contractor_HK416_01",
+	"B_BCapstonePMC2025_QRF_Contractor_Medic_01",
+	"B_BCapstonePMC2025_QRF_Contractor_TL_01"
+];
+
+blueSyndikat_units = [
+	"I_C_Soldier_Bandit_5_F",
+	"I_C_Soldier_Bandit_7_F",
+	"I_C_Soldier_Bandit_3_F",
+	"I_C_Soldier_Bandit_2_F",
+	"I_C_Soldier_Bandit_6_F",
+	"I_C_Soldier_Bandit_1_F",
+	"I_C_Soldier_Bandit_8_F",
+	"I_C_Soldier_Bandit_4_F",
+	"I_C_Soldier_Para_7_F",
+	"I_C_Soldier_Para_2_F",
+	"I_C_Soldier_Para_3_F",
+	"I_C_Soldier_Para_4_F",
+	"I_C_Soldier_Para_6_F",
+	"I_C_Soldier_Para_8_F",
+	"I_C_Sharpshooter_F",
+	"I_C_Soldier_Para_1_F",
+	"I_C_Soldier_Para_5_F"
+];
+
+blueSyndikat_vehicles = [
+	"I_C_Offroad_02_LMG_F",
+	"I_C_Offroad_02_AT_F",
+	"CUP_I_M151_M2_SYND",
+	"I_C_Offroad_01_F",
+	"I_C_Offroad_01_armed_F",
+	"I_INDCF_Technical_01",
+	"I_INDCF_Technical_50_01",
+	"I_C_Van_01_transport_F",
+	"I_C_Van_02_vehicle_F",
+	"I_C_Van_02_transport_F"
+];
+
+localFigthers = [
+	"I_AlThawra_Insurgent_IED_UAV_2025_01",
+	"I_AlThawra_Insurgent_RPG42_2025_01",
+	"I_AlThawra_Insurgent_AK74_2025_01",
+	"I_AlThawra_Insurgent_Ammo_Bearer_2025_01",
+	"I_AlThawra_Insurgent_ARM_2025_01",
+	"I_AlThawra_Insurgent_Bomber_2025_01",
+	"I_AlThawra_Insurgent_Engineer_2025_01",
+	"I_AlThawra_Insurgent_Galil_2025_01",
+	"I_AlThawra_Insurgent_Grenadier_2025_01",
+	"I_AlThawra_Insurgent_M14_2025_01",
+	"I_AlThawra_Insurgent_Medic_2025_01",
+	"I_AlThawra_Insurgent_RPG7_2025_01",
+	"I_AlThawra_Insurgent_RPK_2025_01",
+	"I_AlThawra_Insurgent_Scoped_SLR_2025_01",
+	"I_AlThawra_Insurgent_Shotgun_2025_01",
+	"I_AlThawra_Insurgent_SL_2025_01",
+	"I_AlThawra_Insurgent_Team_Leader_2025_01"
+];
+
+localFighterVehicles = [
+	"I_AlThawra_Van_Transport_2025_01",
+	"I_AlThawra_Van_Cargo_2025_01",
+	"I_AlThawra_Truck_2025_01",
+	"I_AlThawra_Offroad_UP_HMG_2025_01",
+	"I_AlThawra_Offroad_UP_AT_2025_01",
+	"I_AlThawra_Offroad_UP_2025_01",
+	"I_AlThawra_Offroad_HMG_2025_01",
+	"I_AlThawra_Offroad_AT_2025_01",
+	"I_AlThawra_Offroad_2025_01"
+];
+
+
 // desert camo friendly soldiers
 
 bluforDesertUnits = [
@@ -670,15 +1031,27 @@ MACVArmyTanks = [
 // global variable for units array
 BLU_UNITS_ARRAY = usArmy;
 
+BLU_UNITS_LOW_TIER = [];
+
+BLU_UNITS_MID_TIER = [];
+
+BLU_UNITS_HIGH_TIER = [];
+
 BLU_VEHICLE_ARRAY = usArmy_cars;
 
 BLU_TANK_ARRAY = usArmy_armor;
 
-RED_UNITS_ARRAY = BocoHaran_units + Isis_units;
+RED_UNITS_ARRAY = lowLevelMilitia + hiredSoldiers;
 
-RED_VEHICLE_ARRAY = Isis_Vehicles;
+RED_UNITS_LOW_TIER = [];
 
-RED_TANK_ARRAY = Isis_Tanks;
+RED_UNITS_MID_TIER = [];
+
+RED_UNITS_HIGH_TIER = [];
+
+RED_VEHICLE_ARRAY = looterVehicles + hiredSoldierVehicles;
+
+RED_TANK_ARRAY = hiredSoldierTanks;
 
 COMMON_DONE = true;
 
