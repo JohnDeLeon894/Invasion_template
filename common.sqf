@@ -1028,6 +1028,40 @@ MACVArmyTanks = [
 	'vn_b_armor_m113_acav_02'
 ];
 
+marsocRaidersUnits = [
+	'B_MR_Raider_Team_Leader_01',
+	'B_MR_Raider_Squad_Leader_01',
+	'B_MR_Raider_Scout_Spotter_01',
+	'B_MR_Raider_Scout_Spotter_01',
+	'B_MR_SARC_Corpsman_01',
+	'B_MR_SARC_Corpsman_01',
+	'B_MR_SARC_Corpsman_01',
+	'B_MR_Raider_Recon_Sniper_01',
+	'B_MR_Raider_Recon_01',
+	'B_MR_Raider_Marksman_01',
+	'B_MR_Raider_IAR_01',
+	'B_MR_Raider_Grenadier_01',
+	'B_MR_Raider_Grenadier_01',
+	'B_MR_Raider_Autorifleman_01',
+	'B_MR_Raider_AT4_01',
+	'B_MR_Raider_01',
+	'B_MR_SARC_Corpsman_01'
+];
+
+marsocRaidersVehicles = [
+	'rhsusf_m1240a1_usmc_wd',
+	'rhsusf_CGRCAT1A2_M2_usmc_wd',
+	'rhsusf_M1232_MC_M2_usmc_wd',
+	'rhsusf_m1240a1_m2_usmc_wd',
+	'rhsusf_m1240a1_m240_usmc_wd'
+];
+
+marsocRaidersTanks = [
+	'rhsusf_m1a1fep_wd',
+	'rhsusf_m1a1fep_od',
+	'rhsusf_m1a1hc_wd'
+];
+
 // global variable for units array
 BLU_UNITS_ARRAY = usArmy;
 
@@ -1037,9 +1071,9 @@ BLU_UNITS_MID_TIER = [];
 
 BLU_UNITS_HIGH_TIER = [];
 
-BLU_VEHICLE_ARRAY = usArmy_cars;
+BLU_VEHICLE_ARRAY = marsocRaidersVehicles;
 
-BLU_TANK_ARRAY = usArmy_armor;
+BLU_TANK_ARRAY = marsocRaidersTanks;
 
 RED_UNITS_ARRAY = lowLevelMilitia + hiredSoldiers;
 
