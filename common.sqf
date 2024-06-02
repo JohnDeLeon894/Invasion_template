@@ -42,14 +42,11 @@ backup_charlie = createGroup [west, false];
 
 ENEMY_GROUPS = [
 	attackGroup_1,
-	attackGroup_2,
-	attackGroup_3
+	attackGroup_2
 ];
 
 FRIENDLY_GROUPS = [
-	ally_1,
-	ally_2,
-	ally_3
+	ally_1
 ];
 BACKUP_GROUPS = [
 	backup_alpha,
