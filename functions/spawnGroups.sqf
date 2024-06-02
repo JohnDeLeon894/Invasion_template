@@ -13,7 +13,7 @@ if(isNil "_special") then { _special = 'NONE'};
 for [{private _i=0}, {_i<_count}, {_i=_i+1}] do {
 	private _soldierRole =  _unitsArray call BIS_fnc_selectRandom; 
 	private _newRecruit = _group createUnit [_soldierRole, [_position select 0, _position select 1], [], 50, _special];
-	_newRecruit setVariable ["lambs_danger_disableAI",true]; 
+	// _newRecruit setVariable ["lambs_danger_disableAI",true]; 
 	if ( _group == group player ) then {
 		player createDiarySubject['spawnRecord', 'Spawn Record'];
 		player createDiaryRecord ['spawnRecord',[format ['%1', _newRecruit], format['this is the unit spawned: %1', configOf _newRecruit]]];

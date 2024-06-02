@@ -21,15 +21,39 @@ hint format ['trigger: %1', _trigger];
 private _spawnedcount = 0;
 private _tries = 0;
 
+ /* Author: nkenny
+ * Sets the team in camp like behaviour.
+ *  Larger groups will set out patrols
+ *  Turrets may be manned
+ *  Some buildings may be garrisoned
+ *
+ * Arguments:
+ * 0: Group performing action, either unit <OBJECT> or group <GROUP>
+ * 1: Central position camp should be made, <ARRAY>
+ * 2: Range of patrols and turrets found, default is 50 meters <NUMBER>
+ * 3: Area the AI Camps in, default [] <ARRAY>
+ * 4: Teleport <BOOL>
+ * 5: Patrol <BOOL>
+ *
+ * Return Value:
+ * none
+ *
+ * Example:
+ * [bob, getPos bob, 50, [], false, true] call lambs_wp_fnc_taskCamp;
+ *
+ * Public: Yes
+*/
+
 {
 	private _basePos = getMarkerPos _x;
 	private _baseTriggerDistance = _basePos distance _trigger;
 
 	if (_basePos inArea _trigger) then {
-		private _groupname = format ['enemygroup_%1', _x];
-		private _eastgroup = creategroup [east, false];
-		_eastgroup setgroupId [_groupname];
-		_eastgroup = [_eastgroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
+		private _groupName = format ['enemygroup_%1', _x];
+		private _eastGroup = creategroup [east, false];
+		_eastGroup setGroupId [_groupName];
+		_eastGroup = [_eastGroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
+		[_eastGroup, _basePos, 100, [], false, true] call lambs_wp_fnc_taskCamp;
 		continue;
 	};
 
@@ -43,16 +67,17 @@ private _tries = 0;
 	} forEach ALL_TRIGGERS;
 
 	if ((_inActiveTrigger > 0) && (_baseTriggerDistance < 5000)) then {
-		private _groupname = format ['enemygroup_%1', _x];
-		private _eastgroup = creategroup [east, false];
-		_eastgroup setgroupId [_groupname];
-		_eastgroup = [_eastgroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
+		private _groupName = format ['enemygroup_%1', _x];
+		private _eastGroup = createGroup [east, false];
+		_eastGroup setGroupId [_groupName];
+		_eastGroup = [_eastGroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
+		[_eastGroup, _basePos, 100, [], false, true] call lambs_wp_fnc_taskCamp;
 	};
 
 } forEach ALL_BASES;
 
 while {_spawnedcount < _numberOfgroupstospawn} do {
-	private ['_position', '_groupname', '_waypointScript', '_wp', '_selectedLocation', '_eastgroup', '_westgroup', '_missionName'];
+	private ['_position', '_groupName', '_waypointScript', '_wp', '_selectedLocation', '_eastGroup', '_westgroup', '_missionName'];
 	
 	_selectedLocation = _nearbyLocations call BIS_fnc_selectRandom;
 	_nearbyLocations deleteAt (_nearbyLocations find _selectedLocation);
@@ -62,9 +87,9 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	diag_log ['the mission name', _missionName];
 	group_count = group_count + 1;
 	
-	_groupname = format ['enemygroup_%1', group_count];
-	_eastgroup = creategroup [east, false];
-	_eastgroup setgroupId [_groupname];
+	_groupName = format ['enemygroup_%1', group_count];
+	_eastGroup = creategroup [east, false];
+	_eastGroup setgroupId [_groupName];
 	
 	if (_usePosition) then {
 			_position = position _selectedLocation;
@@ -72,9 +97,9 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 			_position = locationposition _selectedLocation;
 	};
 	
-	_eastgroup = [_eastgroup, (_groupsize + random 4), RED_units_ARRAY, _position] call jMD_fnc_spawngroups;
+	_eastGroup = [_eastGroup, (_groupsize + random 4), RED_units_ARRAY, _position] call jMD_fnc_spawngroups;
 	
-	_wp = _eastgroup addWaypoint [_position, 200];
+	_wp = _eastGroup addWaypoint [_position, 200];
 	_wp setwaypointBehaviour 'SAFE';
 	/*
 	0: group performing action, either unit <OBJECT> or group <group>
@@ -87,9 +112,9 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	7: Sub-group patrols the area <BOOL>
 	*/
 	if( isNil 'lambs_wp_fnc_taskGarrison') then {
-		[_eastgroup, _position, 200] call BIS_fnc_taskDefend;
+		[_eastGroup, _position, 200] call BIS_fnc_taskDefend;
 	} else {
-		[_eastgroup, _position, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+		[_eastGroup, _position, 100, [], false, true] call lambs_wp_fnc_taskCamp;
 	};
 	// creating diary record and task
 	private ['_childTasIdk', '_description', '_completedChildren', '_activation', '_statement'];
@@ -123,7 +148,7 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 			[_position, _childTasIdk, _numberOfgroupstospawn] execVM 'functions\patrolTracker.sqf';
 		};
 		default { 
-			[_eastgroup, _childTasIdk, _numberOfgroupstospawn] execVM 'functions\groupTracker.sqf';
+			[_eastGroup, _childTasIdk, _numberOfgroupstospawn] execVM 'functions\groupTracker.sqf';
 		};
 	};
 	
@@ -131,9 +156,9 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	player createDiaryRecord ['taskRecord', [_diaryTitle, format['this is the marker found: %1', _selectedLocation]]];
 	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group count: %1', ({
 			alive _x
-	} count units _eastgroup)]]];
-	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group name: %1', _groupname]]];
-	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group id: %1', groupid _eastgroup]]];
+	} count units _eastGroup)]]];
+	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group name: %1', _groupName]]];
+	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group id: %1', groupid _eastGroup]]];
 	
 	_spawnedcount = _spawnedcount + 1;
 };

@@ -44,7 +44,8 @@ playMusic _song;
 	// Current result is saved in variable _x
 	private _count = {alive _x} count units _x;
 	private _spawnPoint = EAST_SPAWN;
-
+	private _spawnNumber = (RED_UNIT_SIZE - _count);
+	diag_log format ['spawining %1 east units for group %2', _spawnNumber, _x];
 	private _results =  [_x, (RED_UNIT_SIZE - _count), RED_UNITS_ARRAY, _spawnPoint] call  jMD_fnc_spawnGroups;
 	// private _waypoints = [_x, 200, _location, true, true] call jMD_fnc_deleteAndSetWaypoints;
 		/*
@@ -58,10 +59,34 @@ playMusic _song;
 	// [_x, 1000, 60] spawn lambs_wp_fnc_taskHunt;
 	// [_x, _spawnPoint, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
 
+	/*
+	* Author: nkenny
+	* Simple dynamic patrol script by nkenny
+	*          Suitable for infantry units (not so much vehicles, boats or air-- that will have to wait!)
+	*
+	* Arguments:
+	* 0: Group performing action, either unit <OBJECT> or group <GROUP>
+	* 1: Position being searched, default group position <OBJECT or ARRAY>
+	* 2: Range of tracking, default is 200 meters <NUMBER>
+	* 3: Waypoint Count, default 4  <NUMBER>
+	* 4: Area the AI Camps in, default [] <ARRAY>
+	* 5: Dynamic patrol pattern, default false <BOOL>
+	* 6: enable dynamic reinforcement <BOOL>
+	*
+	* Return Value:
+	* none
+	*
+	* Example:
+	* [bob, getPos bob, 500] call lambs_wp_fnc_taskPatrol;
+	*
+	* Public: Yes
+	*/
+
 	if( isNil 'lambs_wp_fnc_taskGarrison') then {
-		[_x, _spawnPoint, 200] call BIS_fnc_taskPatrol;
+		[_x, TRIGGER_POS, 200] call BIS_fnc_taskPatrol;
 	} else {
-		[_x, _spawnPoint, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+		[_x, TRIGGER_POS, 200, 5, [], true, true] call lambs_wp_fnc_taskPatrol;
+		_x setVariable ["lambs_danger_enableGroupReinforce", true, true];
 	};
 } forEach ENEMY_GROUPS;
 
@@ -87,7 +112,7 @@ playMusic _song;
 	};
 
 	[_x, 'lambs_danger_OnInformationShared', {
-    params ['_unit', '_group', '_target', '_groups'];
+    	params ['_unit', '_group', '_target', '_groups'];
 		[_unit, _group, _target, _groups] execVM 'functions\enemySpottedCallOut.sqf';
 	}] call BIS_fnc_addScriptedEventHandler;
 } forEach FRIENDLY_GROUPS;
@@ -99,11 +124,15 @@ _bluVehicleType = BLU_VEHICLE_ARRAY call BIS_fnc_selectRandom;
 _bluVeh = [ WEST_VEHICLE_SPAWN, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
 _bluVehGroup = _bluVeh select 2;
 
+_bluVehGroup setVariable ["lambs_danger_enableGroupReinforce", true, true];
+
 if( isNil 'lambs_wp_fnc_taskGarrison') then {
-	[_bluVehGroup, WEST_SPAWN, 500] call BIS_fnc_taskPatrol;
+	[_bluVehGroup, TRIGGER_POS, 500] call BIS_fnc_taskPatrol;
 } else {
-	[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
+	[_bluVehGroup, TRIGGER_POS, 500] call lambs_wp_fnc_taskPatrol;
 };
+
+_bluVehGroup setVariable ["lambs_danger_enableGroupReinforce", true, true];
 
 // hint format['Created vehicle %1', _veh select 0];
 _veh params ["_vehicle", "_crew", "_vehGroup"];
@@ -113,47 +142,70 @@ diag_log [_seatsAvailable, 'seats available'];
 diag_log [count units _vehGroup, 'in', _vehGroup];
 diag_log [_seatsAvailable - (count units _vehGroup), 'this should be the number to spawn'];
 [_vehGroup, (_seatsAvailable - (count units _vehGroup)), RED_UNITS_ARRAY, EAST_VEHICLE_SPAWN, 'CARGO'] call  jMD_fnc_spawnGroups;
-private _vWp = _vehGroup addWaypoint[position player, 50];
-_vWp waypointAttachVehicle vehicle player;
+
+if( isNil 'lambs_wp_fnc_taskGarrison') then {
+	[_vehGroup, TRIGGER_POS, 500] call BIS_fnc_taskPatrol;
+} else {
+	[_vehGroup, TRIGGER_POS, 500] call lambs_wp_fnc_taskPatrol;
+};
 
 if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-	private _veh2 = [ [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) + 10], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+	private _veh2SpawnPos = [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) + 10];
+	private _veh2 = [_veh2SpawnPos, 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
 	_veh2 params ["_vehicle", "_crew", "_vehGroup2"];
-	// hint format['Created vehicle %1', _veh2 select 0];
+
 	_vehGroup2 setBehaviour 'SAFE';
-	private _vWp2 = _vehGroup2 addWaypoint[position player, 50];
-	_vWp waypointAttachVehicle vehicle player;
+
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_vehGroup2, TRIGGER_POS, 500] call BIS_fnc_taskPatrol;
+	} else {
+		[_vehGroup2, TRIGGER_POS, 500] call lambs_wp_fnc_taskPatrol;
+	};
+
 	_seatsAvailable = [_vehicleType, true] call BIS_fnc_crewCount;
 	[_vehGroup2, (_seatsAvailable - (count units _vehGroup2)), RED_UNITS_ARRAY, EAST_VEHICLE_SPAWN, 'CARGO'] call  jMD_fnc_spawnGroups;
 
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-	private _veh3 = [  [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) - 10], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+
+	private _veh3SpawnPos =  [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) - 10];
+	private _veh3 = [  _veh3SpawnPos, 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
 	_veh3 params ["_vehicle", "_crew", "_vehGroup3"];
 	// hint format['Created vehicle %1', _veh3 select 0];
 	_vehGroup3 setBehaviour 'SAFE';
-	private _vWp3 = _vehGroup3 addWaypoint[position player, 50];
-	_vWp waypointAttachVehicle vehicle player;
+
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_vehGroup3, TRIGGER_POS, 500] call BIS_fnc_taskPatrol;
+	} else {
+		[_vehGroup3, TRIGGER_POS, 500] call lambs_wp_fnc_taskPatrol;
+	};
+	
 	_seatsAvailable = [_vehicleType, true] call BIS_fnc_crewCount;
 	[_vehGroup3, (_seatsAvailable - (count units _vehGroup3)), RED_UNITS_ARRAY, EAST_VEHICLE_SPAWN, 'CARGO'] call  jMD_fnc_spawnGroups;
 };
 if ((SPAWN_LOOP_COUNT mod 5) == 0) then {
 	_TankType = RED_TANK_ARRAY call BIS_fnc_selectRandom;
-	private _tank = [  [(EAST_VEHICLE_SPAWN select 0)  + 10, EAST_VEHICLE_SPAWN select 1], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+	private _tankSpawnPos = [(EAST_VEHICLE_SPAWN select 0)  + 10, EAST_VEHICLE_SPAWN select 1];
+	private _tank = [  _tankSpawnPos, 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
 	// hint format['Created vehicle %1', _veh select 0];
 	__tankGroup2 = _tank select 2;
 	__tankGroup2 setBehaviour 'SAFE';
-	private _vWp2 = __tankGroup2 addWaypoint[position player, 50];
-	_vWp waypointAttachVehicle vehicle player;
+	
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[__tankGroup2, TRIGGER_POS, 500] call BIS_fnc_taskPatrol;
+	} else {
+		[__tankGroup2, TRIGGER_POS, 500] call lambs_wp_fnc_taskPatrol;
+	};
 
 	_bluVehicleType = BLU_TANK_ARRAY call BIS_fnc_selectRandom;
-	_bluVeh = [ WEST_VEHICLE_SPAWN, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
+	private _bluTankSpawn = [(WEST_VEHICLE_SPAWN select 0)  + 10, WEST_VEHICLE_SPAWN select 1];
+	_bluVeh = [ _bluTankSpawn, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
 	_bluVehGroup = _bluVeh select 2;
 	
 	if( isNil 'lambs_wp_fnc_taskGarrison') then {
-		[_bluVehGroup, WEST_SPAWN, 500] call BIS_fnc_taskPatrol;
+		[_bluVehGroup, TRIGGER_POS, 500] call BIS_fnc_taskPatrol;
 	} else {
-		[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
+		[_bluVehGroup, TRIGGER_POS, 500] call lambs_wp_fnc_taskPatrol;
 	};
 };
 

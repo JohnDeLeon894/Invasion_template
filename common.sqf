@@ -69,8 +69,8 @@ continueLoop = true;
 doOnce = 0;
 SPAWN_LOOP_COUNT = 0;
 ONE_LOOP = false;
-BLU_UNIT_SIZE = 4;
-RED_UNIT_SIZE = 6;
+BLU_UNIT_SIZE = 6;
+RED_UNIT_SIZE = 4;
 
 // find the marker 
 // spawn points 
@@ -1063,7 +1063,7 @@ marsocRaidersTanks = [
 ];
 
 // global variable for units array
-BLU_UNITS_ARRAY = usArmy;
+BLU_UNITS_ARRAY = marsocRaidersUnits;
 
 BLU_UNITS_LOW_TIER = [];
 
