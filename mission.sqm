@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=198;
+		nextID=199;
 	};
 	class Camera
 	{
@@ -54,13 +54,14 @@ addons[]=
 	"A3_Weapons_F_Items",
 	"ace_medical_engine",
 	"ace_medical_treatment",
-	"VSM_Vests_Config"
+	"VSM_Vests_Config",
+	"DrongosDDW"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=30;
+		items=31;
 		class Item0
 		{
 			className="A3_Ui_F";
@@ -249,6 +250,12 @@ class AddonsMetaData
 			className="VSM_Vests_Config";
 			name="VSM_Vests_Config";
 		};
+		class Item30
+		{
+			className="DrongosDDW";
+			name="Drongo's Dynamic Weather";
+			author="Alias/Drongo";
+		};
 	};
 };
 dlcs[]=
@@ -288,7 +295,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=50;
+		items=51;
 		class Item0
 		{
 			dataType="Marker";
@@ -2005,6 +2012,293 @@ class Mission
 			{
 			};
 			id=196;
+		};
+		class Item50
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={7021.8271,56.966442,10556.716};
+			};
+			id=198;
+			type="DDW_Core";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="DYEL_WeightStormy";
+					expression="_this setVariable ['DDW_WeightStormy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="DYEL_WeightWindy";
+					expression="_this setVariable ['DDW_WeightWindy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=1;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="DDW_Delay";
+					expression="_this setVariable ['DDW_Delay',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="SetWind";
+					expression="_this setVariable ['DDW_SetWind',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=10;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="DYEL_WeightOvercast";
+					expression="_this setVariable ['DDW_WeightOvercast',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=1;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="DDW_Debug";
+					expression="_this setVariable ['DDW_Debug',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute6
+				{
+					property="DYEL_WeightMonsoon";
+					expression="_this setVariable ['DDW_WeightMonsoon',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=1;
+						};
+					};
+				};
+				class Attribute7
+				{
+					property="DDW_Cycle";
+					expression="_this setVariable ['DDW_Cycle',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=600;
+						};
+					};
+				};
+				class Attribute8
+				{
+					property="DYEL_WeightSnowstorm";
+					expression="_this setVariable ['DDW_WeightSnowstorm',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute9
+				{
+					property="DDW_ForceChangeStart";
+					expression="_this setVariable ['DDW_ForceChangeStart',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=1;
+						};
+					};
+				};
+				class Attribute10
+				{
+					property="DYEL_WeightTornado";
+					expression="_this setVariable ['DDW_WeightTornado',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute11
+				{
+					property="DYEL_WeightRainy";
+					expression="_this setVariable ['DDW_WeightRainy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=2;
+						};
+					};
+				};
+				class Attribute12
+				{
+					property="DDW_ChangeTime";
+					expression="_this setVariable ['DDW_ChangeTime',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=60;
+						};
+					};
+				};
+				class Attribute13
+				{
+					property="DDW_SkipTimeStart";
+					expression="_this setVariable ['DDW_SkipTimeStart',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute14
+				{
+					property="DDW_Chance";
+					expression="_this setVariable ['DDW_Chance',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=50;
+						};
+					};
+				};
+				class Attribute15
+				{
+					property="DYEL_WeightDuststorm";
+					expression="_this setVariable ['DDW_WeightDuststorm',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute16
+				{
+					property="MaxFog";
+					expression="_this setVariable ['DDW_MaxFog',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0.60000002;
+						};
+					};
+				};
+				class Attribute17
+				{
+					property="DYEL_WeightSunny";
+					expression="_this setVariable ['DDW_WeightSunny',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=2;
+						};
+					};
+				};
+				class Attribute18
+				{
+					property="DDW_ForceChange";
+					expression="_this setVariable ['DDW_ForceChange',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute19
+				{
+					property="DYEL_WeightFoggy";
+					expression="_this setVariable ['DDW_WeightFoggy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=1;
+						};
+					};
+				};
+				class Attribute20
+				{
+					property="DYEL_WeightCloudy";
+					expression="_this setVariable ['DDW_WeightCloudy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=1;
+						};
+					};
+				};
+				nAttributes=21;
+			};
 		};
 	};
 	class Connections
