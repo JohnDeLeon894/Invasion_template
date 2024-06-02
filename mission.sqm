@@ -1423,7 +1423,7 @@ class Mission
 				name="m2";
 			};
 			id=652;
-			type="B_MBT_01_arty_F";
+			type="rhsusf_M142_usmc_WD";
 			atlOffset=0.25556374;
 		};
 		class Item32
@@ -1649,7 +1649,7 @@ class Mission
 				name="m4";
 			};
 			id=664;
-			type="B_MBT_01_arty_F";
+			type="rhsusf_M142_usmc_WD";
 		};
 		class Item35
 		{
@@ -1665,7 +1665,7 @@ class Mission
 				name="m1";
 			};
 			id=666;
-			type="B_MBT_01_arty_F";
+			type="rhsusf_M142_usmc_WD";
 			atlOffset=1.9073486e-006;
 		};
 		class Item36
@@ -1682,7 +1682,7 @@ class Mission
 				name="m3";
 			};
 			id=670;
-			type="B_MBT_01_arty_F";
+			type="rhsusf_M142_usmc_WD";
 			atlOffset=1.9073486e-006;
 		};
 		class Item37
