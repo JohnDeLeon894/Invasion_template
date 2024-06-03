@@ -10,7 +10,7 @@ private _parentTaskId = _this select 5;
 private _useSectorName = _this select 6;
 private _type = _this select 7;
 diag_log format ['*********** the type= %1 *************', _type];
-private _numberOfgroupstospawn = floor  (3 + random 3);
+private _numberOfgroupstospawn = floor  (2 + random 3);
 private _state = 'AUtoASSIGNED';
 private _owner = WEST;
 private _priority = -1;
@@ -20,6 +20,10 @@ hint format ['trigger: %1', _trigger];
 
 private _spawnedcount = 0;
 private _tries = 0;
+
+if (_type == 'move') then {
+	_numberOfgroupstospawn = _numberOfgroupstospawn + 1; 
+};
 
  /* Author: nkenny
  * Sets the team in camp like behaviour.
