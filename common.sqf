@@ -121,7 +121,7 @@ if (isNil 'ALL_TRIGGERS') then {
 		if (_trigger in  RED_TRIGGERS) then {
 			_triggerColor = 'ColorRed';
 		};
-		private _triggerMark = createMarker[str _trigger, position _trigger];
+		private _triggerMark = createMarker[_trigger, position _triggerObject];
 		_triggerMark setMarkerBrush 'CROSS';
 		_triggerMark setMarkerShape 'RECTANGLE';
 		_triggerMark setMarkerSize _triggerArea;

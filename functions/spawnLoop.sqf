@@ -88,6 +88,8 @@ playMusic _song;
 		[_x, TRIGGER_POS, 200, 5, [], true, true] call lambs_wp_fnc_taskPatrol;
 		_x setVariable ["lambs_danger_enableGroupReinforce", true, true];
 	};
+
+	_x setDynamicSimulationDistance viewDistance;
 } forEach ENEMY_GROUPS;
 
 {
