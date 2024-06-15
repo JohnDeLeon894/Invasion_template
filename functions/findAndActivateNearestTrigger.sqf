@@ -29,6 +29,7 @@ _lastClosest = call compile (RED_TRIGGERS select 2);
 private _triggerList = [_closestTrigger, _nextClosest, _lastClosest];
 // _selectedTrigger = _triggerList call BIS_fnc_selectRandom;
 _selectedTrigger = _triggerList select 0;
+TRIGGER_POS = position _selectedTrigger;
 private _subject = player createDiarySubject ['triggerPicker', 'trigger picker'];
 private _triggerListText = format['%1', _triggerList];
 player createDiaryRecord ['triggerPicker', ['the trigger array', _triggerListText]];
@@ -41,6 +42,6 @@ player createDiaryRecord ['triggerPicker', ['the trigger statements', format['%1
 
 _selectedTrigger setTriggerStatements ['true', _copyActivation, _copyDeactivation];
 
-RED_TRIGGERS deleteAt (RED_TRIGGERS find _selectedTrigger);
+RED_TRIGGERS deleteAt (RED_TRIGGERS find str _selectedTrigger);
 sector = _selectedTrigger;
 _selectedTrigger

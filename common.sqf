@@ -70,7 +70,7 @@ doOnce = 0;
 SPAWN_LOOP_COUNT = 0;
 ONE_LOOP = false;
 BLU_UNIT_SIZE = 4;
-RED_UNIT_SIZE = 6;
+RED_UNIT_SIZE = 4;
 CONTINUOUS = true; // activate new trigger? true = new trigger will be activated, false = mission will end.
 
 // find the marker 

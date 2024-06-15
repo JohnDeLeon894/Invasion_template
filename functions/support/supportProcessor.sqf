@@ -160,7 +160,7 @@ private _artyProcessor = {
 				[bob, getPos angryJoe] spawn lambs_wp_fnc_taskAssault;
 				*/
 				[_x, _position, false, 100, 4, false] spawn lambs_wp_fnc_taskAssault;
-			} forEach FRIENDLY_GROUPS;
+			} forEach (FRIENDLY_GROUPS + BACKUP_GROUPS);
 			private _missionName = [_mrkText] call _taskMarkerName;
 			[_marker, _missionName] call _replaceMarker;
 			continue
