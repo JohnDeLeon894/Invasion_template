@@ -418,7 +418,6 @@ CSAT_Tanks = [
 	'O_APC_Wheeled_02_rcws_v2_F'
 ];
 
-BocoHaran_Unit_Configs = "getText (_x >> 'faction') == 'LOP_BH' && getText (_x >> 'simulation') == 'soldier'" configClasses (configFile >> "CfgVehicles");
 BocoHaran_units = [
 	'CFP_O_BH_Asst_Gunner_DShKM_01',
 	'CFP_O_BH_Asst_Gunner_Mortar_01',
