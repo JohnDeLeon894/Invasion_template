@@ -158,7 +158,7 @@ if ((SPAWN_LOOP_COUNT mod 5) == 0) then {
 };
 
 diag_log 'deleting the dead';
-{ if (_x distance player > 500) then { deleteVehicle _x}} forEach allDeadMen;
+{ if (_x distance player > 300) then { deleteVehicle _x}} forEach allDeadMen;
 
 // check to see if all support assets are still alive
 

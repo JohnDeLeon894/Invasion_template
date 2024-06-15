@@ -9,14 +9,14 @@ private _troops = units _group;
 player createDiaryRecord ['taskRecord', [_diaryTitle, format['group %1 is is being tracked', _group]]];
 // waitUntil given group no longer has any living members
 waitUntil {({alive _x}count _troops) < 3 };
-{
-	_x setCaptive true;
-	_x action['Surrender'];
-}forEach units _group;
-player sideChat 'Remaining units have surrendered';
-{
-	_x addAction ['Restrain', 'functions\ArrestScripts\handcuff.sqf']
-} forEach units _group;
+// {
+// 	_x setCaptive true;
+// 	_x action['Surrender'];
+// }forEach units _group;
+player sideChat 'Remaining units have scattering';
+// {
+// 	_x addAction ['Restrain', 'functions\ArrestScripts\handcuff.sqf']
+// } forEach units _group;
 
 GROUPS_KILLED = GROUPS_KILLED + 1;
 // create a diary record stating this group has been killed

@@ -5,6 +5,7 @@ currentDate = date;
 diag_log format['the Trigger Name: %1', _trigger];
 diag_log format[" *** end mission triggered : %1 : %2 ***", currentDate, RED_TRIGGERS] ;
 saveVar 'currentDate';
+saveVar 'ALL_TRIGGERS';
 saveVar 'RED_TRIGGERS';
 
 hint format['%1', RED_TRIGGERS];
