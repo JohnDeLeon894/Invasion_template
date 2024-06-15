@@ -89,7 +89,7 @@ playMusic _song;
 		_x setVariable ["lambs_danger_enableGroupReinforce", true, true];
 	};
 
-	_x setDynamicSimulationDistance viewDistance;
+	_x enableDynamicSimulation true;
 } forEach ENEMY_GROUPS;
 
 {

@@ -1,6 +1,7 @@
 ['intro',false] call BIS_fnc_blackOut;
 COMMON_DONE = false ;
 player loadStatus "playerstate";
+[] execVM 'functions\dynamicSimulationRunner.sqf';
 [] execVM 'common.sqf';
 [] execVM 'briefing.sqf';
 waitUntil {COMMON_DONE};

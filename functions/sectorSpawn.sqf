@@ -58,7 +58,7 @@ if (_type == 'move') then {
 		_eastGroup setGroupId [_groupName];
 		_eastGroup = [_eastGroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
 		[_eastGroup, _basePos, 100, [], false, true] call lambs_wp_fnc_taskCamp;
-		_eastGroup setDynamicSimulationDistance viewDistance;
+		_eastGroup  enableDynamicSimulation true;
 		continue;
 	};
 
@@ -77,7 +77,7 @@ if (_type == 'move') then {
 		_eastGroup setGroupId [_groupName];
 		_eastGroup = [_eastGroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
 		[_eastGroup, _basePos, 100, [], false, true] call lambs_wp_fnc_taskCamp;
-		_eastGroup setDynamicSimulationDistance viewDistance;
+		_eastGroup  enableDynamicSimulation true;
 	};
 
 } forEach ALL_BASES;
@@ -158,7 +158,7 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 		};
 	};
 
-	_eastGroup setDynamicSimulationDistance viewDistance;
+	_eastGroup  enableDynamicSimulation true;
 	
 	private _diaryTitle = format['Trigger %1 created:', _trigger];
 	player createDiaryRecord ['taskRecord', [_diaryTitle, format['this is the marker found: %1', _selectedLocation]]];
