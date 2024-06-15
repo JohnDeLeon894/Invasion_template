@@ -63,6 +63,9 @@ playMusic _song;
 	} else {
 		[_x, _spawnPoint, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
 	};
+
+	_x enableDynamicSimulation true;
+
 } forEach ENEMY_GROUPS;
 
 {
@@ -173,4 +176,5 @@ sleep 300; //1200 = 20 min
 diag_log 'Spawn Timer End';
 // saveGame;
 // ONE_LOOP = false;
+diag_log 'starting spawn loop again';
 [] spawn jMD_fnc_spawnLoop;
