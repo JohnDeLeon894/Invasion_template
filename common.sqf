@@ -114,6 +114,10 @@ if (isNil 'ALL_TRIGGERS') then {
 	private _entry = format ['The list of triggers from previous mission: %1', ALL_TRIGGERS];
 	player createDiaryRecord ['TriggersFound', ['found existing triggers!', _entry]];
 
+	if ( isNil RED_TRIGGERS) then {
+		RED_TRIGGERS = ALL_TRIGGERS;
+	};
+
 	// Should make this a function in functions library
 	// for all triggers if its not in red triggers, make green.
 	{
@@ -417,7 +421,6 @@ CSAT_Tanks = [
 	'O_APC_Wheeled_02_rcws_v2_F'
 ];
 
-BocoHaran_Unit_Configs = "getText (_x >> 'faction') == 'LOP_BH' && getText (_x >> 'simulation') == 'soldier'" configClasses (configFile >> "CfgVehicles");
 BocoHaran_units = [
 	'CFP_O_BH_Asst_Gunner_DShKM_01',
 	'CFP_O_BH_Asst_Gunner_Mortar_01',

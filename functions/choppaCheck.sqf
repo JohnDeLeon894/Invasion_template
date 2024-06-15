@@ -27,6 +27,7 @@ private _choppaCheck = {
 	diag_log _hawk;
 	_hawkGroup setVariable ['TCL_Disabled', true];
 	_hawkGroup setVariable ["Vcm_Disable",true];
+	_hawkGroup enableDynamicSimulation false;
 	
 	missionNamespace setVariable [_newName, _hawk];
 	_hawk setVehicleVarName _newName;
@@ -60,6 +61,7 @@ private _splitOnChoppa = {
 	if ( !(_canMove) ) then { 
 		[_choppa, true] call _choppaCheck;
 	}; 
+	_choppa enableDynamicSimulation false;
 }  forEach TRANSPORTS;
 
 if (_choppaCount < 4) then {
