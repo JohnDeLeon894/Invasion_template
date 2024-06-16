@@ -3,8 +3,8 @@ private ['_player', '_closestTrigger', '_nextClosest', '_selectedTrigger'];
 _player = player;
 // _closestTrigger = call compile (ALL_TRIGGERS select 0);
 _closestTrigger = call compile (RED_TRIGGERS select 0);
-_nextClosest = call compile (RED_TRIGGERS select 1);;
-_lastClosest = call compile (RED_TRIGGERS select 2);
+_nextClosest = call compile (RED_TRIGGERS select 0);
+_lastClosest = call compile (RED_TRIGGERS select 0);
 
 {
 	private _currentTrigger = call compile _x;

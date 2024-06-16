@@ -110,6 +110,10 @@ if (isNil 'ALL_TRIGGERS') then {
 	private _entry = format ['The list of triggers from previous mission: %1', ALL_TRIGGERS];
 	player createDiaryRecord ['TriggersFound', ['found existing triggers!', _entry]];
 
+	if ( isNil RED_TRIGGERS) then {
+		RED_TRIGGERS = ALL_TRIGGERS;
+	};
+
 	// Should make this a function in functions library
 	// for all triggers if its not in red triggers, make green.
 	{
@@ -1072,15 +1076,9 @@ BLU_VEHICLE_ARRAY = marsocRaidersVehicles;
 
 BLU_TANK_ARRAY = marsocRaidersTanks;
 
-RED_UNITS_ARRAY = lowLevelMilitia + hiredSoldiers;
+RED_UNITS_ARRAY = BocoHaran_units + Isis_units;
 
-RED_UNITS_LOW_TIER = [];
-
-RED_UNITS_MID_TIER = [];
-
-RED_UNITS_HIGH_TIER = [];
-
-RED_VEHICLE_ARRAY = looterVehicles + hiredSoldierVehicles;
+RED_VEHICLE_ARRAY = Isis_Vehicles;
 
 RED_TANK_ARRAY = hiredSoldierTanks;
 

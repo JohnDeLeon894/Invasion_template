@@ -13,7 +13,7 @@ waitUntil {({alive _x}count _troops) < 2 };
 // 	_x setCaptive true;
 // 	_x action['Surrender'];
 // }forEach units _group;
-player sideChat 'Remaining units have scattered.';
+player sideChat 'Remaining units have scattering';
 // {
 // 	_x addAction ['Restrain', 'functions\ArrestScripts\handcuff.sqf']
 // } forEach units _group;
