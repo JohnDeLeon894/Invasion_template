@@ -143,7 +143,7 @@ TRANSPORTS = [];
 {
 	private _heli = toLower str _x;
 	if ( (_heli find 'hawk') >= 0) then {
-		TRANSPORTS pushBack _heli;
+		TRANSPORTS pushBack _x;
 	};
  
 } forEach (entities 'Helicopter') ;
