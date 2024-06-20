@@ -450,20 +450,6 @@ BocoHaran_units = [
 	'LOP_BH_Infantry_SL'
 ];
 
-// new vietnam troups
-NVA_Unit_Configs = "getText (_x >> 'faction') == 'O_PAVN' && getText (_x >> 'simulation') == 'soldier'" configClasses (configFile >> "CfgVehicles");
-NVAUnits = NVA_Unit_Configs apply {configName _x};
-NVA_Vehicle_Configs = "getText (_x >> 'faction') == 'O_VC' && getText (_x >> 'simulation') == 'carX'" configClasses (configFile >> "CfgVehicles");
-NVAVehicles = NVA_Vehicle_Configs apply {configName _x};
-
-// friendly soldiers array 
-bluforUnitsConfig= "getText (_x >> 'faction') == 'rhs_faction_usmc_wd' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-bluforUnits = bluforUnitsConfig apply {configName _x};
-
-// new macv units
-MACVUnitsConfig= "getText (_x >> 'faction') == 'B_MACV' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-MACVUnits = MACVUnitsConfig apply {configName _x};
-
 // desert camo friendly soldiers
 
 bluforDesertUnits = [
@@ -497,15 +483,6 @@ bluforDesertUnits = [
 natoDesertUnitsConfig= "getText (_x >> 'faction') == 'BLU_NATO_lxWS' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
 natoDesertUnits = natoDesertUnitsConfig apply {configName _x};
 
-// natoUnitsConfig = "
-// getText (_x >> 'faction') == 'BLU_F' && 
-// getText (_x >> 'simulation') == 'soldier' && 
-// getText (_x >> 'role') != 'Crewman' &&
-// getText (_x >> 'editorSubcategory') == 'EdSubcat_Personnel' &&
-// getText (_x >> 'role') != 'Unarmed' &&
-// getText (_x >> 'DLC') !='AoW' &&
-// getText (_x >> 'DLC') !='Jets'" 
-// configClasses (configFile >> "CfgVehicles");
 natoUnits = [
 	'B_Soldier_A_F',
 	'B_support_AMG_F',
@@ -564,7 +541,7 @@ usArmy_armor = [
 ];
 
 // global variable for units array
-BLU_UNITS_ARRAY = usArmy;
+BLU_UNITS_ARRAY = bluforDesertUnits;
 
 BLU_VEHICLE_ARRAY = usArmy_cars;
 
