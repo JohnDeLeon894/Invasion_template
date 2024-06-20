@@ -47,8 +47,7 @@ ENEMY_GROUPS = [
 
 FRIENDLY_GROUPS = [
 	ally_1,
-	ally_2,
-	ally_3
+	ally_2
 ];
 BACKUP_GROUPS = [
 	backup_alpha,
