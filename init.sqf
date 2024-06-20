@@ -1,6 +1,7 @@
 ['intro',false] call BIS_fnc_blackOut;
 COMMON_DONE = false ;
 player loadStatus "playerstate";
+[] execVM 'functions\dynamicSimulationRunner.sqf';
 [] execVM 'common.sqf';
 [] execVM 'briefing.sqf';
 [] execVM 'functions\dynamicSimulationRunner.sqf';
@@ -11,4 +12,3 @@ ACTIVE_TRIGGER = []execVM 'functions\findAndActivateNearestTrigger.sqf';
 [] spawn jMD_fnc_spawnLoop;
 sleep 5;
 ['intro', true] call BIS_fnc_blackIn;
-[]execVM 'AresetInit.sqf';

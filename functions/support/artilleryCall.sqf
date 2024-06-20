@@ -8,11 +8,12 @@ player createDiarySubject['Arty Record', 'Artilory Record'];
 
 private _parseAmmoType = {
 	private _string = _this select 0;
-	_artyRounds = '32Rnd_155mm_Mo_shells';
-	if ('smoke' in _string) then {_artyRounds ='6Rnd_155mm_Mo_smoke' };
-	if ('lg' in _string) then {_artyRounds = '2Rnd_155mm_Mo_LG'};
-	if ('cluster' in _string) then {_artyRounds = '2Rnd_155mm_Mo_Cluster'};
-	if ('guided' in _string) then {_artyRounds = '4Rnd_155mm_Mo_guided'};
+	// _artyRounds = '32Rnd_155mm_Mo_shells';
+	_artyRounds = "rhs_mag_m26a1_6";
+	// if ('smoke' in _string) then {_artyRounds ='6Rnd_155mm_Mo_smoke' };
+	// if ('lg' in _string) then {_artyRounds = '2Rnd_155mm_Mo_LG'};
+	// if ('cluster' in _string) then {_artyRounds = '2Rnd_155mm_Mo_Cluster'};
+	// if ('guided' in _string) then {_artyRounds = '4Rnd_155mm_Mo_guided'};
 	_artyRounds
 };
 
