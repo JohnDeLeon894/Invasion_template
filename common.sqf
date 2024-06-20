@@ -111,7 +111,7 @@ if (isNil 'ALL_TRIGGERS') then {
 	private _entry = format ['The list of triggers from previous mission: %1', ALL_TRIGGERS];
 	player createDiaryRecord ['TriggersFound', ['found existing triggers!', _entry]];
 
-	if ( isNil RED_TRIGGERS) then {
+	if ( isNil 'RED_TRIGGERS') then {
 		RED_TRIGGERS = ALL_TRIGGERS;
 	};
 
@@ -119,19 +119,20 @@ if (isNil 'ALL_TRIGGERS') then {
 	// for all triggers if its not in red triggers, make green.
 	{
 		private _trigger = _x;
+		private _triggerObject = call compile _x;
 		private _triggerColor = 'ColorGreen';
-		private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
+		private _triggerArea = [triggerArea _triggerObject select 0, triggerArea _triggerObject select 1];
 
-		if (_trigger in ALL_TRIGGERS) then {
+		if (_trigger in RED_TRIGGERS) then {
 			_triggerColor setMarkerColor 'ColorRed';
 		};
-		private _triggerMark = createMarker[str _trigger, position _trigger];
+		private _triggerMark = createMarker[_trigger, position _triggerObject];
 		_triggerMark setMarkerBrush 'CROSS';
 		_triggerMark setMarkerShape 'RECTANGLE';
 		_triggerMark setMarkerSize _triggerArea;
 		_triggerMark setMarkerColor _triggerColor;
 		diag_log format ['Trigger %1 set to %2', _troggerName, _triggerColor];
-	} forEach RED_TRIGGERS;
+	} forEach ALL_TRIGGERS;
 };
 
 ALL_BASES = [];
@@ -147,7 +148,7 @@ TRANSPORTS = [];
 {
 	private _heli = toLower str _x;
 	if ( (_heli find 'hawk') >= 0) then {
-		TRANSPORTS pushBack _heli;
+		TRANSPORTS pushBack _x;
 	};
  
 } forEach (entities 'Helicopter') ;

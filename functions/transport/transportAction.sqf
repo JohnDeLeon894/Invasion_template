@@ -71,7 +71,11 @@ if (unitReady _transport) then {
 	waitUntil { isTouchingGround _transport }; 
 
 	switch (_action) do {
-		case  'infil': { _transport sideChat "We're at the destination, exit when ready.";};
+		case  'infil': { 
+			_transport sideChat "We're at the destination, exit when ready.";
+			doGetOut units group player;
+		};
+		
 		case 'alphaInfil': {
 			_transport sideChat "We're at the destination, exiting vehicle.";
 			doGetOut units backup_alpha;
