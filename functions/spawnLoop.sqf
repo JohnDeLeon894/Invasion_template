@@ -95,6 +95,16 @@ playMusic _song;
 	}] call BIS_fnc_addScriptedEventHandler;
 } forEach FRIENDLY_GROUPS;
 
+// This should be moved to external file for higher level scope
+private _setPatrol = {
+	params ['_group', '_pos', '_radius'];
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_group, _pos, _radius] call BIS_fnc_taskPatrol;
+	} else {
+		[_group, _pos, _radius] call lambs_wp_fnc_taskPatrol;
+	};
+};
+
 _vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
 _veh = [ EAST_VEHICLE_SPAWN, 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
 
@@ -102,11 +112,8 @@ _bluVehicleType = BLU_VEHICLE_ARRAY call BIS_fnc_selectRandom;
 _bluVeh = [ WEST_VEHICLE_SPAWN, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
 _bluVehGroup = _bluVeh select 2;
 
-if( isNil 'lambs_wp_fnc_taskGarrison') then {
-	[_bluVehGroup, WEST_SPAWN, 500] call BIS_fnc_taskPatrol;
-} else {
-	[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
-};
+[_bluVehGroup, SECTOR_POS, 500] call _setPatrol;
+
 
 // hint format['Created vehicle %1', _veh select 0];
 _veh params ["_vehicle", "_crew", "_vehGroup"];
@@ -116,8 +123,8 @@ diag_log [_seatsAvailable, 'seats available'];
 diag_log [count units _vehGroup, 'in', _vehGroup];
 diag_log [_seatsAvailable - (count units _vehGroup), 'this should be the number to spawn'];
 [_vehGroup, (_seatsAvailable - (count units _vehGroup)), RED_UNITS_ARRAY, EAST_VEHICLE_SPAWN, 'CARGO'] call  jMD_fnc_spawnGroups;
-private _vWp = _vehGroup addWaypoint[position player, 50];
-_vWp waypointAttachVehicle vehicle player;
+
+[_vehGroup, SECTOR_POS, 500] call _setPatrol;
 
 if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
@@ -125,20 +132,22 @@ if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 	_veh2 params ["_vehicle", "_crew", "_vehGroup2"];
 	// hint format['Created vehicle %1', _veh2 select 0];
 	_vehGroup2 setBehaviour 'SAFE';
-	private _vWp2 = _vehGroup2 addWaypoint[position player, 50];
-	_vWp waypointAttachVehicle vehicle player;
+
 	_seatsAvailable = [_vehicleType, true] call BIS_fnc_crewCount;
 	[_vehGroup2, (_seatsAvailable - (count units _vehGroup2)), RED_UNITS_ARRAY, EAST_VEHICLE_SPAWN, 'CARGO'] call  jMD_fnc_spawnGroups;
+
+	[_vehGroup2, SECTOR_POS, 500] call _setPatrol;
 
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
 	private _veh3 = [  [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) - 10], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
 	_veh3 params ["_vehicle", "_crew", "_vehGroup3"];
 	// hint format['Created vehicle %1', _veh3 select 0];
 	_vehGroup3 setBehaviour 'SAFE';
-	private _vWp3 = _vehGroup3 addWaypoint[position player, 50];
-	_vWp waypointAttachVehicle vehicle player;
+
 	_seatsAvailable = [_vehicleType, true] call BIS_fnc_crewCount;
 	[_vehGroup3, (_seatsAvailable - (count units _vehGroup3)), RED_UNITS_ARRAY, EAST_VEHICLE_SPAWN, 'CARGO'] call  jMD_fnc_spawnGroups;
+
+	[_vehGroup3, SECTOR_POS, 500] call _setPatrol;
 };
 if ((SPAWN_LOOP_COUNT mod 5) == 0) then {
 	_TankType = RED_TANK_ARRAY call BIS_fnc_selectRandom;
@@ -146,18 +155,14 @@ if ((SPAWN_LOOP_COUNT mod 5) == 0) then {
 	// hint format['Created vehicle %1', _veh select 0];
 	__tankGroup2 = _tank select 2;
 	__tankGroup2 setBehaviour 'SAFE';
-	private _vWp2 = __tankGroup2 addWaypoint[position player, 50];
-	_vWp waypointAttachVehicle vehicle player;
+
+	[__tankGroup2, SECTOR_POS, 500] call _setPatrol;
 
 	_bluVehicleType = BLU_TANK_ARRAY call BIS_fnc_selectRandom;
 	_bluVeh = [ WEST_VEHICLE_SPAWN, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
 	_bluVehGroup = _bluVeh select 2;
 	
-	if( isNil 'lambs_wp_fnc_taskGarrison') then {
-		[_bluVehGroup, WEST_SPAWN, 500] call BIS_fnc_taskPatrol;
-	} else {
-		[_bluVehGroup, WEST_SPAWN, 500] call lambs_wp_fnc_taskPatrol;
-	};
+	[_bluVehGroup, SECTOR_POS, 500] call _setPatrol;
 };
 
 diag_log 'deleting the dead';

@@ -2,34 +2,56 @@
 // [trigger, group size] call jMD_fnc_sectorspawn
 
 private _trigger	 = _this select 0;
-private _groupsize	 = _this select 1;
+private _groupSize	 = _this select 1;
 private _nearbyLocations = _this select 2;
 private _usePosition = _this select 3;
-private _arearadious = _this select 4;
+private _areaRadius = _this select 4;
 private _parentTaskId = _this select 5;
 private _useSectorName = _this select 6;
 private _type = _this select 7;
 diag_log format ['*********** the type= %1 *************', _type];
-private _numberOfgroupstospawn = floor  (3 + random 3);
+private _numberOfGroupsToSpawn = floor  (3 + random 3);
 private _state = 'AUtoASSIGNED';
 private _owner = WEST;
 private _priority = -1;
-private _locationcount = count _nearbyLocations;
+private _locationCount = count _nearbyLocations;
 private _resultsArray = [];
 hint format ['trigger: %1', _trigger];
 
-private _spawnedcount = 0;
+private _spawnedCount = 0;
 private _tries = 0;
+
+// This should be moved to external file for higher level scope
+private _setPatrol = {
+	params ['_group', '_pos', '_radius'];
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_group, _pos, _radius] call BIS_fnc_taskPatrol;
+	} else {
+		[_group, _pos, _radius] call lambs_wp_fnc_taskPatrol;
+	};
+};
+
+private _setGarrison = {
+	params ['_group', '_pos', '_radius'];
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_group, _pos, _radius] call BIS_fnc_taskDefend;
+	} else {
+		[_group, _pos, _radius, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+	};
+};
 
 {
 	private _basePos = getMarkerPos _x;
 	private _baseTriggerDistance = _basePos distance _trigger;
 
 	if (_basePos inArea _trigger) then {
-		private _groupname = format ['enemygroup_%1', _x];
-		private _eastgroup = creategroup [east, false];
-		_eastgroup setgroupId [_groupname];
-		_eastgroup = [_eastgroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
+		private _groupName = format ['enemyGroup_%1', _x];
+		private _eastGroup = createGroup [east, false];
+		_eastGroup setGroupId [_groupName];
+		_eastGroup = [_eastGroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawnGroups;
+
+		[_eastGroup, _basePos, 100] call _setGarrison;
+
 		continue;
 	};
 
@@ -43,39 +65,41 @@ private _tries = 0;
 	} forEach ALL_TRIGGERS;
 
 	if ((_inActiveTrigger > 0) && (_baseTriggerDistance < 5000)) then {
-		private _groupname = format ['enemygroup_%1', _x];
-		private _eastgroup = creategroup [east, false];
-		_eastgroup setgroupId [_groupname];
-		_eastgroup = [_eastgroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawngroups;
+		private _groupName = format ['enemyGroup_%1', _x];
+		private _eastGroup = createGroup [east, false];
+		_eastGroup setGroupId [_groupName];
+		_eastGroup = [_eastGroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawnGroups;
+
+		[_eastGroup, _basePos, 100] call _setGarrison;
 	};
 
 } forEach ALL_BASES;
 
-while {_spawnedcount < _numberOfgroupstospawn} do {
-	private ['_position', '_groupname', '_waypointScript', '_wp', '_selectedLocation', '_eastgroup', '_westgroup', '_missionName'];
+while {_spawnedCount < _numberOfGroupsToSpawn} do {
+	private ['_position', '_groupName', '_waypointScript', '_wp', '_selectedLocation', '_eastGroup', '_westGroup', '_missionName'];
 	
 	_selectedLocation = _nearbyLocations call BIS_fnc_selectRandom;
 	_nearbyLocations deleteAt (_nearbyLocations find _selectedLocation);
 	_resultsArray pushBack _selectedLocation;
-	_westgroup = FRIendlY_groupS select _spawnedcount;
+	_westGroup = FRIendlY_groupS select _spawnedCount;
 	_missionName = ['Combat Patrol'] call missionNamer;
 	diag_log ['the mission name', _missionName];
 	group_count = group_count + 1;
 	
-	_groupname = format ['enemygroup_%1', group_count];
-	_eastgroup = creategroup [east, false];
-	_eastgroup setgroupId [_groupname];
+	_groupName = format ['enemyGroup_%1', group_count];
+	_eastGroup = createGroup [east, false];
+	_eastGroup setGroupId [_groupName];
 	
 	if (_usePosition) then {
 			_position = position _selectedLocation;
 	} else {
-			_position = locationposition _selectedLocation;
+			_position = locationPosition _selectedLocation;
 	};
 	
-	_eastgroup = [_eastgroup, (_groupsize + random 4), RED_units_ARRAY, _position] call jMD_fnc_spawngroups;
+	_eastGroup = [_eastGroup, (_groupSize + random 4), RED_units_ARRAY, _position] call jMD_fnc_spawnGroups;
 	
-	_wp = _eastgroup addWaypoint [_position, 200];
-	_wp setwaypointBehaviour 'SAFE';
+	_wp = _eastGroup addWaypoint [_position, 200];
+	_wp setWaypointBehaviour 'SAFE';
 	/*
 	0: group performing action, either unit <OBJECT> or group <group>
 	1: position to occupy, default group location <ARRAY or OBJECT>
@@ -86,11 +110,13 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	6: exit Conditions that breaks a Unit free (-2 random, -1 All, 0 None, 1 Hit, 2 fired, 3 firedNear, 4 Suppressed), default -2 <NUMBER>
 	7: Sub-group patrols the area <BOOL>
 	*/
-	if( isNil 'lambs_wp_fnc_taskGarrison') then {
-		[_eastgroup, _position, 200] call BIS_fnc_taskDefend;
-	} else {
-		[_eastgroup, _position, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
-	};
+
+	[_eastGroup, _position, _areaRadius] call _setGarrison;
+	// if( isNil 'lambs_wp_fnc_taskGarrison') then {
+	// 	[_eastGroup, _position, 200] call BIS_fnc_taskDefend;
+	// } else {
+	// 	[_eastGroup, _position, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
+	// };
 	// creating diary record and task
 	private ['_childTasIdk', '_description', '_completedChildren', '_activation', '_statement'];
 	_childTasIdk = _missionName;
@@ -106,24 +132,19 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	
 	[bob, bob, 500] call lambs_wp_fnc_taskPatrol;
 	*/
-	if (! (isnil '_westgroup')) then {
-			// hint format['found group %1', _westgroup];
-		if( isNil 'lambs_wp_fnc_taskGarrison') then {
-			[_westgroup, _position, 300] call BIS_fnc_taskPatrol;
-		} else {
-			[_westgroup, _position, 300] call lambs_wp_fnc_taskPatrol;
-		};
-			
+	if (! (isnil '_westGroup')) then {
+		// hint format['found group %1', _westGroup];
+		[_westGroup, _position, _areaRadius] call _setPatrol;
 	};
 	diag_log [_childTasIdk, _parentTaskId];
 	[_owner, [_childTasIdk, _parentTaskId], _description, _position, _state, _priority, _shownotification, _type, _visiblein3D] call BIS_fnc_taskCreate;
 
 	switch (_type) do {
 		case "move": { 
-			[_position, _childTasIdk, _numberOfgroupstospawn] execVM 'functions\patrolTracker.sqf';
+			[_position, _childTasIdk, _numberOfGroupsToSpawn] execVM 'functions\patrolTracker.sqf';
 		};
 		default { 
-			[_eastgroup, _childTasIdk, _numberOfgroupstospawn] execVM 'functions\groupTracker.sqf';
+			[_eastGroup, _childTasIdk, _numberOfGroupsToSpawn] execVM 'functions\groupTracker.sqf';
 		};
 	};
 	
@@ -131,11 +152,11 @@ while {_spawnedcount < _numberOfgroupstospawn} do {
 	player createDiaryRecord ['taskRecord', [_diaryTitle, format['this is the marker found: %1', _selectedLocation]]];
 	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group count: %1', ({
 			alive _x
-	} count units _eastgroup)]]];
-	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group name: %1', _groupname]]];
-	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group id: %1', groupid _eastgroup]]];
+	} count units _eastGroup)]]];
+	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group name: %1', _groupName]]];
+	player createDiaryRecord ['taskRecord', [_diaryTitle, format['This is the current group id: %1', groupId _eastGroup]]];
 	
-	_spawnedcount = _spawnedcount + 1;
+	_spawnedCount = _spawnedCount + 1;
 };
 
 _resultsArray
