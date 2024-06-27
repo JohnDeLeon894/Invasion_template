@@ -106,10 +106,10 @@ private _setPatrol = {
 };
 
 _vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-_veh = [ EAST_VEHICLE_SPAWN, 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+_veh = [ EAST_VEHICLE_SPAWN, random 360, _vehicleType, east] call BIS_fnc_spawnVehicle;
 
 _bluVehicleType = BLU_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-_bluVeh = [ WEST_VEHICLE_SPAWN, 330, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
+_bluVeh = [ WEST_VEHICLE_SPAWN, random 360, _bluVehicleType, WEST] call BIS_fnc_spawnVehicle;
 _bluVehGroup = _bluVeh select 2;
 
 [_bluVehGroup, SECTOR_POS, 500] call _setPatrol;
@@ -126,7 +126,7 @@ diag_log [_seatsAvailable - (count units _vehGroup), 'this should be the number 
 
 if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-	private _veh2 = [ [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) + (random [10, 15, 20])], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+	private _veh2 = [ [(EAST_VEHICLE_SPAWN select 0) + (random [20, 40, 80]), (EAST_VEHICLE_SPAWN select 1) + (random [20, 40, 80])], random 360, _vehicleType, east] call BIS_fnc_spawnVehicle;
 
 	private _vehGroup2 = _veh2 select 2;
 	// hint format['Created vehicle %1', _veh2 select 0];
@@ -138,7 +138,7 @@ if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 	[_vehGroup2, SECTOR_POS, 500] call _setPatrol;
 
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-	private _veh3 = [  [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) - (random [10, 15, 20])], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+	private _veh3 = [  [(EAST_VEHICLE_SPAWN select 0) - (random [20, 40, 80]), (EAST_VEHICLE_SPAWN select 1) - (random [20, 40, 80])], random 360, _vehicleType, east] call BIS_fnc_spawnVehicle;
 	private _vehGroup3 = _veh3 select 2;
 
 	_vehGroup3 setBehaviour 'SAFE';
@@ -150,7 +150,7 @@ if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 };
 if ((SPAWN_LOOP_COUNT mod 5) == 0) then {
 	_TankType = RED_TANK_ARRAY call BIS_fnc_selectRandom;
-	private _tank = [  [(EAST_VEHICLE_SPAWN select 0)  + 10, EAST_VEHICLE_SPAWN select 1], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+	private _tank = [  [(EAST_VEHICLE_SPAWN select 0)  + 10, EAST_VEHICLE_SPAWN select 1], random 360, _vehicleType, east] call BIS_fnc_spawnVehicle;
 	// hint format['Created vehicle %1', _veh select 0];
 	__tankGroup2 = _tank select 2;
 	__tankGroup2 setBehaviour 'SAFE';
