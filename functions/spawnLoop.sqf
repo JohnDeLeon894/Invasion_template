@@ -114,9 +114,7 @@ _bluVehGroup = _bluVeh select 2;
 
 [_bluVehGroup, SECTOR_POS, 500] call _setPatrol;
 
-
-// hint format['Created vehicle %1', _veh select 0];
-_veh params ["_vehicle", "_crew", "_vehGroup"];
+private _vehGroup = _veh select 2;
 _vehGroup setBehaviour 'SAFE';
 _seatsAvailable = [_vehicleType, true] call BIS_fnc_crewCount;
 diag_log [_seatsAvailable, 'seats available'];
@@ -128,8 +126,9 @@ diag_log [_seatsAvailable - (count units _vehGroup), 'this should be the number 
 
 if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-	private _veh2 = [ [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) + 10], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
-	_veh2 params ["_vehicle", "_crew", "_vehGroup2"];
+	private _veh2 = [ [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) + (random [10, 15, 20])], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+
+	private _vehGroup2 = _veh2 select 2;
 	// hint format['Created vehicle %1', _veh2 select 0];
 	_vehGroup2 setBehaviour 'SAFE';
 
@@ -139,9 +138,9 @@ if ((SPAWN_LOOP_COUNT mod 3) == 0) then {
 	[_vehGroup2, SECTOR_POS, 500] call _setPatrol;
 
 	_vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
-	private _veh3 = [  [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) - 10], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
-	_veh3 params ["_vehicle", "_crew", "_vehGroup3"];
-	// hint format['Created vehicle %1', _veh3 select 0];
+	private _veh3 = [  [EAST_VEHICLE_SPAWN select 0, (EAST_VEHICLE_SPAWN select 1) - (random [10, 15, 20])], 330, _vehicleType, east] call BIS_fnc_spawnVehicle;
+	private _vehGroup3 = _veh3 select 2;
+
 	_vehGroup3 setBehaviour 'SAFE';
 
 	_seatsAvailable = [_vehicleType, true] call BIS_fnc_crewCount;
