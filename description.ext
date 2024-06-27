@@ -1,6 +1,6 @@
-onLoadName = "Invasion of Shapur";
-OnLoadMission = "This is the mission where you soldier around and do soldier things. ";
-briefingName = "The Test Invasion of Shapur";
+onLoadName = "Securing Norther Malden";
+OnLoadMission = "Taking over the Northern Airport Has given your unit a strong starting position on Malden. Its time for you to secure your surroundings.";
+briefingName = "A good start. Keep going. ";
 // loadscreen="girl-with-machine-gun.jpg";
 
 loadScreen = __EVAL(["images\ddcchc7-4be57c1b-3682-42b3-b75d-cc9557440c2e.jpg",   "images\ddcesqk-8b4c80e6-91ce-456c-b27d-76baa131456e.jpg",  "images\girl-with-machine-gun.jpg",    "images\zargInvasion2.jpg","images\ddcchmi-02a5b585-146d-423e-960c-40acb186de96.jpg","images\ddccjuc-4f3b627f-9325-449a-b8a7-b3454a769931.jpg", "images\ddcffie-36fddff5-9adf-48cb-b7a9-2295bd71a869.jpg",  "images\hotGirlWithGun.jpg", "images\zargInvasion3.jpg", "images\ddccid0-b81c6c67-0043-4e5a-be00-218e06aa4461.jpg", "images\ddceqfe-de601ee9-d487-4b51-9149-837fd48d26da.jpg",        "images\ddcfyv7-d700731a-7c9d-4c74-8e82-9c1faef6a3bc.jpg", "images\takistanInvasionPhoto.jpg", "images\zargInvasion4.jpg","images\ddccim8-7fa54892-1ae8-4134-8c06-a7cec0cbbdec.jpg",   "images\ddcery1-50ec93a2-dc63-4c41-8090-980fe25a2b2d.jpg",        "images\ddcfz65-dbe96708-4023-48d3-9f42-9b901383b0d4.jpg", "images\takistanInvasionPhoto2.jpg", "images\zargInvasion5.jpg", "images\ddccjbh-8b892acb-6bf5-4e83-b388-b6931667ca81.jpg", "images\ddces9g-1214c8b9-3048-41ef-8f37-fee1cedbc77e.jpg", "images\ddcg170-aaa880e9-30cc-490f-8560-52d5e1cb6f65.jpg",   "images\takistanInvasionPhoto3.jpg",   "images\zargInvasion6.jpg", "images\ddccjkm-064cd054-345f-4479-9048-c55c8797ae2a.jpg", "images\ddcesek-b1b11f21-6e0b-46c5-a1c0-41c0a04f6634.jpg", "images\deadEnemy1.jpg", "images\zargInvasion1.jpg"] select round random 23);

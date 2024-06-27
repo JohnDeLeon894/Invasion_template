@@ -10,7 +10,7 @@ private _parentTaskId = _this select 5;
 private _useSectorName = _this select 6;
 private _type = _this select 7;
 diag_log format ['*********** the type= %1 *************', _type];
-private _numberOfGroupsToSpawn = floor  (3 + random 3);
+private _numberOfgroupstospawn = floor  (2 + random 3);
 private _state = 'AUtoASSIGNED';
 private _owner = WEST;
 private _priority = -1;
@@ -62,7 +62,7 @@ private _setGarrison = {
 		if (_basePos inArea _outsideTrigger) then {
 			_inActiveTrigger = _inActiveTrigger + 1;
 		};
-	} forEach ALL_TRIGGERS;
+	} forEach RED_TRIGGERS;
 
 	if ((_inActiveTrigger > 0) && (_baseTriggerDistance < 5000)) then {
 		private _groupName = format ['enemyGroup_%1', _x];
@@ -71,6 +71,7 @@ private _setGarrison = {
 		_eastGroup = [_eastGroup, (8 + random 4), RED_units_ARRAY, _basePos] call jMD_fnc_spawnGroups;
 
 		[_eastGroup, _basePos, 100] call _setGarrison;
+		_eastGroup  enableDynamicSimulation true;
 	};
 
 } forEach ALL_BASES;
@@ -147,6 +148,8 @@ while {_spawnedCount < _numberOfGroupsToSpawn} do {
 			[_eastGroup, _childTasIdk, _numberOfGroupsToSpawn] execVM 'functions\groupTracker.sqf';
 		};
 	};
+
+	_eastGroup  enableDynamicSimulation true;
 	
 	private _diaryTitle = format['Trigger %1 created:', _trigger];
 	player createDiaryRecord ['taskRecord', [_diaryTitle, format['this is the marker found: %1', _selectedLocation]]];
