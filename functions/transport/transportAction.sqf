@@ -71,7 +71,14 @@ if (unitReady _transport) then {
 	waitUntil { isTouchingGround _transport }; 
 
 	switch (_action) do {
-		case  'infil': { _transport sideChat "We're at the destination, exit when ready.";};
+		case  'infil': { 
+				_transport sideChat "We're at the destination, exit when ready.";
+				{
+					if (_x in _transport) then {
+						doGetOut _x;
+					};
+				} forEach units group player;
+			};
 		case 'alphaInfil': {
 			_transport sideChat "We're at the destination, exiting vehicle.";
 			doGetOut units backup_alpha;
@@ -102,6 +109,9 @@ if (unitReady _transport) then {
 				[backup_charlie, _position, 200] call lambs_wp_fnc_taskPatrol;
 			};
 		};
+		case 'exfil' : {
+			[_transport] execVM  "functions\transport\transport_exfil_action.sqf";
+		}
 		default {
 			_transport sideChat format['%1 at LZ, lets get the hello out of here!', _transport];
 			waitUntil {{_x in _transport} count units group player == {alive _x} count units group player};

@@ -113,10 +113,10 @@ playMusic _song;
 		doOnce = doOnce +1;
 	};
 
-	[_x, 'lambs_danger_OnInformationShared', {
-    	params ['_unit', '_group', '_target', '_groups'];
-		[_unit, _group, _target, _groups] execVM 'functions\enemySpottedCallOut.sqf';
-	}] call BIS_fnc_addScriptedEventHandler;
+	// [_x, 'lambs_danger_OnInformationShared', {
+    // 	params ['_unit', '_group', '_target', '_groups'];
+	// 	[_unit, _group, _target, _groups] execVM 'functions\enemySpottedCallOut.sqf';
+	// }] call BIS_fnc_addScriptedEventHandler;
 } forEach FRIENDLY_GROUPS;
 
 // This should be moved to external file for higher level scope

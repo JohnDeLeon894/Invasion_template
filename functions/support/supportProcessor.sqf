@@ -34,7 +34,6 @@ private _replaceMarker = {
 	private _missionName = _this select 1;
 	private _pos = markerPos _mark;
 
-	m1 globalChat 'replacing marker';
 	// private _fireMissionName = [] call _nameFireMission;
 	private _artyMarker = createMarker [_missionName, _pos];
 	_artyMarker setMarkerType 'mil_warning_noShadow';
@@ -74,11 +73,11 @@ private _artyProcessor = {
 
 		private _theCaller = _marker;
 		_theCaller = (_theCaller splitString '#/,_USER_DEFINED ') select 0;
-		private _stringToPrint = format['*** *** *** support caller is %1 *** *** ***', _theCaller];
-		diag_log _stringToPrint;
-		private _userId = getPlayerUID player;
-		private _stringToPrint = format['*** *** *** support caller is %1 *** *** ***', _userId];
-		diag_log _userId;
+		// private _stringToPrint = format['*** *** *** support caller is %1 *** *** ***', _theCaller];
+		// diag_log _stringToPrint;
+		// private _userId = getPlayerUID player;
+		// private _stringToPrint = format['*** *** *** support caller is %1 *** *** ***', _userId];
+		// diag_log _userId;
 
 		if ('arty' in _mrkText) then {
 			private _splitMarkerText = [_mrkText] call _splitOnChoppa;
@@ -160,7 +159,7 @@ private _artyProcessor = {
 				[bob, getPos angryJoe] spawn lambs_wp_fnc_taskAssault;
 				*/
 				[_x, _position, false, 100, 4, false] spawn lambs_wp_fnc_taskAssault;
-			} forEach FRIENDLY_GROUPS;
+			} forEach (FRIENDLY_GROUPS + BACKUP_GROUPS);
 			private _missionName = [_mrkText] call _taskMarkerName;
 			[_marker, _missionName] call _replaceMarker;
 			continue

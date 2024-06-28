@@ -1,4 +1,7 @@
-params ['_unit', '_group', '_target', '_groups', '_timeOut'];
+// params ['_unit', '_group', '_target', '_groups', '_timeOut'];
+private _unit = _this select 0;
+private _group = _this select 1;
+private _target = _this select 2;
 private ['_targetPos', '_targetGrid', '_message'];
 hint 'eventhandler fired!';
 _targetPos = position _target;

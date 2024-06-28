@@ -5,15 +5,15 @@ _position = _this select 2;
 _fireMissionName = _this select 3;
 
 player createDiarySubject['Arty Record', 'Artilory Record'];
-
+// ["rhs_mag_155mm_m795_28","rhs_mag_155mm_m825a1_2","rhs_mag_155mm_485_2","rhs_mag_155mm_m712_2","rhs_mag_155mm_m731_1","rhs_mag_155mm_raams_1","rhs_mag_155mm_m864_3"]
 private _parseAmmoType = {
 	private _string = _this select 0;
-	// _artyRounds = '32Rnd_155mm_Mo_shells';
-	_artyRounds = "rhs_mag_m26a1_6";
-	// if ('smoke' in _string) then {_artyRounds ='6Rnd_155mm_Mo_smoke' };
-	// if ('lg' in _string) then {_artyRounds = '2Rnd_155mm_Mo_LG'};
-	// if ('cluster' in _string) then {_artyRounds = '2Rnd_155mm_Mo_Cluster'};
-	// if ('guided' in _string) then {_artyRounds = '4Rnd_155mm_Mo_guided'};
+	_artyRounds = "rhs_mag_155mm_m795_28";
+	if ('smoke' in _string) then {_artyRounds ='rhs_mag_155mm_m825a1_2' };
+	if ('flare' in _string) then {_artyRounds ='rhs_mag_155mm_485_2' };
+	if ('lg' in _string) then {_artyRounds = 'rhs_mag_155mm_m712_2'};
+	if ('cluster' in _string) then {_artyRounds = 'rhs_mag_155mm_m864_3'};
+	if ('guided' in _string) then {_artyRounds = 'rhs_mag_155mm_m712_2'};
 	_artyRounds
 };
 
