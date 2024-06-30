@@ -38,7 +38,16 @@ private _song = [
 ]  call BIS_fnc_selectRandom;
 hint _song; 
 playMusic _song;
-//declare groups to count
+
+// This should be moved to external file for higher level scope
+private _setPatrol = {
+	params ['_group', '_pos', '_radius'];
+	if( isNil 'lambs_wp_fnc_taskGarrison') then {
+		[_group, _pos, _radius] call BIS_fnc_taskPatrol;
+	} else {
+		[_group, _pos, _radius] call lambs_wp_fnc_taskPatrol;
+	};
+};
 
 {
 	// Current result is saved in variable _x
@@ -107,27 +116,21 @@ playMusic _song;
 		private _results =  [_group, (_groupSize - _count), BLU_UNITS_ARRAY, WEST_SPAWN] call  jMD_fnc_spawnGroups;
 		if (_timer > 255) then { breakTo 'unitSpawn'};
 	};
-	if (doOnce < count FRIENDLY_GROUPS) then {
-		_x setBehaviour 'SAFE';
-		FRIENDLY_GROUPS deleteAt(FRIENDLY_GROUPS find group player);
-		doOnce = doOnce +1;
-	};
+	// if (doOnce < count FRIENDLY_GROUPS) then {
+	// 	_group setBehaviour 'SAFE';
+	// 	FRIENDLY_GROUPS deleteAt(FRIENDLY_GROUPS find group player);
+	// 	doOnce = doOnce +1;
+	// };
 
-	// [_x, 'lambs_danger_OnInformationShared', {
-    // 	params ['_unit', '_group', '_target', '_groups'];
-	// 	[_unit, _group, _target, _groups] execVM 'functions\enemySpottedCallOut.sqf';
-	// }] call BIS_fnc_addScriptedEventHandler;
+	if (_group != group player) then {
+		[_group, TRIGGER_POS, 500] call _setPatrol;
+	 };
+
+	[_x, 'lambs_danger_OnInformationShared', {
+    	params ['_unit', '_group', '_target', '_groups'];
+		[_unit, _group, _target, _groups] execVM 'functions\enemySpottedCallOut.sqf';
+	}] call BIS_fnc_addScriptedEventHandler;
 } forEach FRIENDLY_GROUPS;
-
-// This should be moved to external file for higher level scope
-private _setPatrol = {
-	params ['_group', '_pos', '_radius'];
-	if( isNil 'lambs_wp_fnc_taskGarrison') then {
-		[_group, _pos, _radius] call BIS_fnc_taskPatrol;
-	} else {
-		[_group, _pos, _radius] call lambs_wp_fnc_taskPatrol;
-	};
-};
 
 _vehicleType = RED_VEHICLE_ARRAY call BIS_fnc_selectRandom;
 _veh = [ EAST_VEHICLE_SPAWN, random 360, _vehicleType, east] call BIS_fnc_spawnVehicle;
@@ -201,7 +204,7 @@ diag_log 'deleting the dead';
 	// if crew is dead, spawn new crew and order them to asset and to bring it back to base. 
 
 diag_log 'Spawn loop end';
-sleep 900; //1200 = 20 min
+sleep 300; //1200 = 20 min
 diag_log 'Spawn Timer End';
 // saveGame;
 // ONE_LOOP = false;

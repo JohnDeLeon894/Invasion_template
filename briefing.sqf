@@ -1,6 +1,18 @@
 // player createDiaryRecord ["Diary", "Information gathered.<br /><img image='wellDone_ca.paa' />"]
 
-private _briefingText = format['Gear up soldier! I know technically you are just an Electrical Engineer. However, we are shorthanded and you are the highest ranking we have. So, you''re the newest squad leader. You know those guys that were mortaring us all summer? Well, we are attacking them head on. We are outnumbered and surrounded so bringing the fight to them is our only hope. <br /> The plan is to blaze a trail all the way to their base. Problem is, we don''t know where exactly that base is. We have an idea, but its your job to go out their and confirm our suspicions. When you find them, don''t try to hit them by yourself. Call it in the best assets for the job. Artillery, close air support, or boots on the ground, call it in and we''ll get''m there. Assets are limited so don''t over do it. Alright soldier, move out.'];
+private _briefingText = format["Our mission in Virohlati has escalated. Mercenaries of unknown origin have seized control of the municipality, driving out local authorities and threatening civilian safety. Our objective is clear: bring disruption to their operations and reclaim control of the region, starting with the old airbase in the southwestern part of Virohlati.<br />
+
+Intelligence indicates a moderate enemy presence, estimated at 15 to 20 hostiles. Despite limited resources and the presence of outdated Soviet-era BMP-2s, we anticipate minimal resistance. Our force of 60 personnel will secure the airbase swiftly and decisively.<br />
+
+We'll conduct our insertion just south of the target, near beachfront residences—a tactical advantage in this operation. Prepare your teams and gear for immediate deployment. Our success here will pave the way for further operations against these hostile forces.<br />
+
+Stay sharp, stay vigilant. Our actions today will determine the future of Virohlati."];
+
+private _missionText = format["Infiltrate and occupy the strategic airport located on the peninsula of Harvananiemi in Virohlati, Finland. Our objective is clear: establish a foothold in enemy territory to disrupt their logistics and reinforce our own supply lines. The airport is heavily guarded and enclosed by a formidable perimeter fence. Equip yourself with wire cutters to breach the barrier and gain entry.<br />
+
+Be vigilant; expect resistance from enemy patrols and automated defenses. Stealth and precision are paramount as we cannot afford to alert the entire garrison. Once inside, secure key locations and disable communications to prevent reinforcements. The success of this operation hinges on our ability to seize control swiftly and maintain it until reinforcements arrive.<br />
+
+Move out, soldiers."];
 
 private _supportSystem = format['
 The Combat Support System<br />
@@ -16,3 +28,4 @@ Available support requests are as follows;<br />
 // player createDiarySubject['Briefing', 'Briefing'];
 
 player createDiaryRecord ['Diary',['Situation', _briefingText]];
+player createDiaryRecord ['Diary',['Mission', _missionText]];

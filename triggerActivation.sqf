@@ -10,7 +10,7 @@ diag_log _useSectorName;
 private _owner = WEST;
 private _parentTaskId = format['Clear %1', _namedSector]; 
 private _description = [
-	format['Enemies detected in %1', [_trigger, _namedSector] select _useSectorName], 
+	format['The enemy presence in %1 must be removed.', [_trigger, _namedSector] select _useSectorName], 
 	[format['Clear %1', _trigger], format['Assault %1', _namedSector]] select _useSectorName, 
 	position _trigger
 ];

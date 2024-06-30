@@ -121,7 +121,7 @@ while {_spawnedCount < _numberOfGroupsToSpawn} do {
 	// creating diary record and task
 	private ['_childTasIdk', '_description', '_completedChildren', '_activation', '_statement'];
 	_childTasIdk = _missionName;
-	_description = [format['Enemy soldiers were spotted near the marked location. Patrol the area and engage any units you come across.<br />Mission codename: %1', _missionName], _missionName, _selectedLocation];
+	_description = [format['An enemy group was spotted here. Seek them out and eliminate them.<br />Mission codename: %1', _missionName], _missionName, _selectedLocation];
 	_activation = format['["%1", "SUCCEEDED"] call BIS_fnc_tasksetState;', _childTasIdk];
 	
 	/*

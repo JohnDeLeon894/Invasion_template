@@ -47,7 +47,9 @@ ENEMY_GROUPS = [
 
 FRIENDLY_GROUPS = [
 	ally_1,
-	ally_2
+	ally_2,
+	ally_3,
+	ally_4
 ];
 BACKUP_GROUPS = [
 	backup_alpha,
@@ -68,7 +70,7 @@ doOnce = 0;
 SPAWN_LOOP_COUNT = 0;
 ONE_LOOP = false;
 BLU_UNIT_SIZE = 6;
-RED_UNIT_SIZE = 4;
+RED_UNIT_SIZE = 8;
 
 // find the marker 
 // spawn points 
