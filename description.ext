@@ -1,5 +1,5 @@
-onLoadName = "Securing Norther Malden";
-OnLoadMission = "Taking over the Northern Airport Has given your unit a strong starting position on Malden. Its time for you to secure your surroundings.";
+onLoadName = "Operation Northern Vigilance";
+OnLoadMission = "Taking over the Airbase Has given your unit a strong starting position. Its time for you to secure your surroundings.";
 briefingName = "A good start. Keep going. ";
 // loadscreen="girl-with-machine-gun.jpg";
 
@@ -7,9 +7,11 @@ loadScreen = __EVAL(["images\ddcchc7-4be57c1b-3682-42b3-b75d-cc9557440c2e.jpg", 
 pictureMap = "";
 overviewPicture = __EVAL(["images\deadEnemy1.paa", "images\gir-with-machine-gun.paa", "images\hotGirlWithGun.paa", "images\takistanInvasionPhoto3.paa", "images\zargInvasion1.paa", "images\zargInvasion2.paa", "images\zargInvasion3.paa", "images\zargInvasion4.paa", "images\zargInvasion5.paa", "images\zargInvasion6.paa"] select round random 10);
 
-overviewText = "This is a test mission with the minimun required assets to run invasion campaign missions. This is intended to be a template for expanding campaigns.";
+overviewText = "";
 author = "Mr D.";
 enableDebugConsole = 2;
+
+weaponPool = true;
 
 class cfgFunctions{
   class jMD {

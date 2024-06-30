@@ -111,9 +111,9 @@ if (unitReady _transport) then {
 		};
 		case 'exfil' : {
 			[_transport] execVM  "functions\transport\transport_exfil_action.sqf";
-		}
+			_transport sideChat format["%1 at LZ, lets get the hell out of here! I won't stick around for ever!", _transport];
 		default {
-			_transport sideChat format['%1 at LZ, lets get the hello out of here!', _transport];
+			_transport sideChat format['%1 at LZ, lets get the hell out of here!', _transport];
 			waitUntil {{_x in _transport} count units group player == {alive _x} count units group player};
 		};
 	};
