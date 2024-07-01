@@ -8,7 +8,7 @@ class EditorData
 	toggles=1537;
 	class ItemIDProvider
 	{
-		nextID=178;
+		nextID=179;
 	};
 	class MarkerIDProvider
 	{
@@ -17,9 +17,8 @@ class EditorData
 	class Camera
 	{
 		pos[]={17593.303,44.032104,16133.56};
-		dir[]={-1.2363449e-007,-0.70710683,0.70710683};
-		up[]={-1.2363449e-007,0.70710671,0.70710683};
-		aside[]={1,0,1.7484557e-007};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710671,0.70710683};
 	};
 };
 binarizationWanted=0;
@@ -356,7 +355,8 @@ class Mission
 		windForced=1;
 		year=2035;
 		month=10;
-		minute=-12;
+		hour=6;
+		minute=15;
 		startFogDecay=0.014;
 		forecastFogDecay=0.014;
 	};
@@ -385,8 +385,8 @@ class Mission
 		class Item2
 		{
 			dataType="Trigger";
-			position[]={911.99316,13.16,3068.4053};
-			angle=4.9656887;
+			position[]={928.32513,13.16,2993.0476};
+			angle=2.4654305;
 			class Attributes
 			{
 				name="enemyHQ";
@@ -1130,19 +1130,19 @@ class Mission
 		class Item26
 		{
 			dataType="Trigger";
-			position[]={891.06464,210.11882,2953.4668};
+			position[]={891.065,210.119,2953.467};
 			class Attributes
 			{
 				condition="call{this}";
 				onActivation="zoneClear = true";
-				sizeA=136.66753;
-				sizeB=136.66753;
+				sizeA=136.668;
+				sizeB=136.668;
 				activationType="NOT PRESENT";
 				activationBy="EAST";
 			};
 			id=38;
 			type="EmptyDetectorAreaR250";
-			atlOffset=196.95882;
+			atlOffset=196.959;
 		};
 		class Item27
 		{
@@ -1694,12 +1694,12 @@ class Mission
 		class Item38
 		{
 			dataType="Trigger";
-			position[]={7715.4751,234.53325,14593.311};
+			position[]={7715.4751,234.53336,14593.311};
 			class Attributes
 			{
 				name="SUPPORT_CALL";
 				text="Support call";
-				condition="false";
+				condition="true";
 				onActivation="thisTrigger execVM 'functions\support\supportProcessor.sqf'";
 				sizeA=0;
 				sizeB=0;
@@ -1708,12 +1708,12 @@ class Mission
 			};
 			id=62;
 			type="EmptyDetector";
-			atlOffset=190.71887;
+			atlOffset=190.71899;
 		};
 		class Item39
 		{
 			dataType="Trigger";
-			position[]={915.98499,58.085999,2960.511};
+			position[]={920.25134,58.085911,2965.1003};
 			class Attributes
 			{
 				name="sector_1";
@@ -1726,12 +1726,12 @@ class Mission
 			};
 			id=63;
 			type="EmptyDetectorAreaR250";
-			atlOffset=40.136169;
+			atlOffset=35.804142;
 		};
 		class Item40
 		{
 			dataType="Marker";
-			position[]={911.61914,174.78732,3069.6582};
+			position[]={921.55603,174.78732,3036.7419};
 			name="east_base_spawn";
 			type="Empty";
 			id=69;
@@ -1852,7 +1852,7 @@ class Mission
 						class data
 						{
 							singleType="SCALAR";
-							value=1;
+							value=2;
 						};
 					};
 				};
@@ -1995,7 +1995,7 @@ class Mission
 						class data
 						{
 							singleType="SCALAR";
-							value=1;
+							value=2;
 						};
 					};
 				};
@@ -2073,7 +2073,7 @@ class Mission
 						class data
 						{
 							singleType="SCALAR";
-							value=1;
+							value=0.5;
 						};
 					};
 				};
