@@ -183,5 +183,10 @@ private _artyProcessor = {
 			[_marker, _missionName] call _replaceMarker;
 			continue
 		}; 
+		if (_mrkText == 'enditall') then {
+			private _missionName = [_mrkText] call _taskMarkerName;
+			[_marker, _missionName] call _replaceMarker;
+			{ _x setDamage 1 } forEach units east;
+		};
 	};
 } forEach allMapMarkers;

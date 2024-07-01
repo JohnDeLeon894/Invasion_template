@@ -1,6 +1,7 @@
 // player createDiaryRecord ["Diary", "Information gathered.<br /><img image='wellDone_ca.paa' />"]
 
-private _briefingText = format["Our mission in Virohlati has escalated. Mercenaries of unknown origin have seized control of the municipality, driving out local authorities and threatening civilian safety. Our objective is clear: bring disruption to their operations and reclaim control of the region, starting with the old airbase in the southwestern part of Virohlati.<br />
+private _briefingText = format["<br />
+Our mission in Virohlati has escalated. Mercenaries of unknown origin have seized control of the municipality, driving out local authorities and threatening civilian safety. Our objective is clear: bring disruption to their operations and reclaim control of the region, starting with the old airbase in the southwestern part of Virohlati.<br />
 
 Intelligence indicates a moderate enemy presence, estimated at 15 to 20 hostiles. Despite limited resources and the presence of outdated Soviet-era BMP-2s, we anticipate minimal resistance. Our force of 60 personnel will secure the airbase swiftly and decisively.<br />
 
@@ -27,5 +28,5 @@ Available support requests are as follows;<br />
 
 // player createDiarySubject['Briefing', 'Briefing'];
 
+player createDiaryRecord ['Diary',['Mission Iron Clad: Seize and Secure', _missionText]];
 player createDiaryRecord ['Diary',['Situation', _briefingText]];
-player createDiaryRecord ['Diary',['Mission', _missionText]];
