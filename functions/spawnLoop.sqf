@@ -194,7 +194,7 @@ diag_log 'deleting the dead';
 
 // check to see if all support assets are still alive
 
-// [] call jMD_fnc_choppaCheck;
+[] call jMD_fnc_choppaCheck;
 
 // if asset is damaged and away from base...
 	// if crew is alive, repair asset and order to return to base waypoint
