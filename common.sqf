@@ -39,6 +39,7 @@ ally_4 = createGroup [west, false];
 backup_alpha = createGroup [west, false];
 backup_bravo = createGroup [west, false];
 backup_charlie = createGroup [west, false];
+hq_guard = createGroup [west, false];
 
 ENEMY_GROUPS = [
 	attackGroup_1,
@@ -56,10 +57,10 @@ BACKUP_GROUPS = [
 	backup_charlie
 ];
 ARTY = [
-	m1,
-	m2,
-	m3,
-	m4
+	// m1,
+	// m2,
+	// m3,
+	// m4
 ];
 
 // variable for counting stuff
@@ -68,7 +69,7 @@ continueLoop = true;
 doOnce = 0;
 SPAWN_LOOP_COUNT = 0;
 ONE_LOOP = false;
-BLU_UNIT_SIZE = 8;
+BLU_UNIT_SIZE = 6;
 RED_UNIT_SIZE = 6;
 
 // find the marker 
@@ -155,7 +156,7 @@ TRANSPORTS = [];
 
 
 CAS = [
-	Buzzard_01
+	// Buzzard_01
 ];
 
 LOCATION_TYPES = [
@@ -182,34 +183,7 @@ LOCATION_TYPES = [
 ];
 
 // units arrays 
-Unit_Blacklist = [
-	'CUP_B_BAF_Pilot_DDPM',
-	'CUP_B_BAF_Soldier_RangeMaster_DDPM',
-	'CUP_B_BAF_Pilot_MTP',
-	'CUP_B_BAF_Soldier_Competitor_DPM',
-	'CUP_B_BAF_Soldier_FighterPilot_DPM',
-	'CUP_B_BAF_Soldier_Survivor_MTP',
-	'CUP_B_BAF_Soldier_RiflemanUnarmed_DDPM',
-	'CUP_B_BAF_Soldier_Paratrooper_MTP',
-	'CUP_B_BAF_Soldier_DeckCrew_MTP',
-	'AOR_2_SS_uniform',
-	'AOR_2_TCasual_uniform',
-	'AOR_2_uniform',
-	'B_soldier_PG_F',
-	'B_Soldier_support_base_F',
-	'B_soldier_exp_F_OCimport_01',
-	'B_soldier_exp_F_OCimport_01',
-	'B_soldier_LAT_F_OCimport_01',
-	'B_medic_F_OCimport_02',
-	'B_sniper_F_OCimport_02',
-	'B_Soldier_diver_base_F',
-	'B_Soldier_GL_F_OCimport_02',
-	'B_sniper_F_OCimport_01',
-	'B_soldier_AR_F_OCimport_02',
-	'B_Soldier_SL_F_OCimport_01',
-	'B_ghillie_base_F',
-	'B_recon_F_OCimport_01'
-];
+
 // enemy units 
 
 Isis_Vehicles = [
@@ -451,20 +425,6 @@ BocoHaran_units = [
 	'LOP_BH_Infantry_SL'
 ];
 
-// new vietnam troups
-NVA_Unit_Configs = "getText (_x >> 'faction') == 'O_PAVN' && getText (_x >> 'simulation') == 'soldier'" configClasses (configFile >> "CfgVehicles");
-NVAUnits = NVA_Unit_Configs apply {configName _x};
-NVA_Vehicle_Configs = "getText (_x >> 'faction') == 'O_VC' && getText (_x >> 'simulation') == 'carX'" configClasses (configFile >> "CfgVehicles");
-NVAVehicles = NVA_Vehicle_Configs apply {configName _x};
-
-// friendly soldiers array 
-bluforUnitsConfig= "getText (_x >> 'faction') == 'rhs_faction_usmc_wd' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-bluforUnits = bluforUnitsConfig apply {configName _x};
-
-// new macv units
-MACVUnitsConfig= "getText (_x >> 'faction') == 'B_MACV' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-MACVUnits = MACVUnitsConfig apply {configName _x};
-
 // desert camo friendly soldiers
 
 bluforDesertUnits = [
@@ -494,19 +454,6 @@ bluforDesertUnits = [
 	'rhsusf_usmc_marpat_d_smaw'
 ];
 
-// desert camo nato soldiers
-natoDesertUnitsConfig= "getText (_x >> 'faction') == 'BLU_NATO_lxWS' && getText (_x >> 'simulation') == 'soldier' && getText (_x >> 'role') != 'Crewman'" configClasses (configFile >> "CfgVehicles");
-natoDesertUnits = natoDesertUnitsConfig apply {configName _x};
-
-// natoUnitsConfig = "
-// getText (_x >> 'faction') == 'BLU_F' && 
-// getText (_x >> 'simulation') == 'soldier' && 
-// getText (_x >> 'role') != 'Crewman' &&
-// getText (_x >> 'editorSubcategory') == 'EdSubcat_Personnel' &&
-// getText (_x >> 'role') != 'Unarmed' &&
-// getText (_x >> 'DLC') !='AoW' &&
-// getText (_x >> 'DLC') !='Jets'" 
-// configClasses (configFile >> "CfgVehicles");
 natoUnits = [
 	'B_Soldier_A_F',
 	'B_support_AMG_F',
@@ -528,6 +475,47 @@ natoUnits = [
 	'B_soldier_LAT_F',
 	'B_Sharpshooter_F'
 ];
+
+desertLiberationForces = [
+	'B_BALF2025_Soldier_Team_Leader_01',
+	'B_BALF2025_Militia_AT_01',
+	'B_BALF2025_Militia_FAL_01',
+	'B_BALF2025_Militia_Medic_01',
+	'B_BALF2025_Militia_Squad_Leader_01',
+	'B_BALF2025_Soldier_LAT_01',
+	'B_BALF2025_Soldier_Ammo_Bearer_01',
+	'B_BALF2025_Soldier_Engineer_01',
+	'B_BALF2025_Soldier_FAL_01',
+	'B_BALF2025_Soldier_Field_Officer_01',
+	'B_BALF2025_Soldier_Grenadier_01',
+	'B_BALF2025_Soldier_HAT_01',
+	'B_BALF2025_Soldier_HAT_01',
+	'B_BALF2025_Soldier_Marksman_01',
+	'B_BALF2025_Soldier_Medic_01',
+	'B_BALF2025_Soldier_R4_01',
+	'B_BALF2025_Soldier_Squad_Leader_01',
+	'B_BALF2025_Soldier_SS77_01',
+	'B_BALF2025_Soldier_UAV_Operator_01'
+];
+
+capstonePMCUnits = [
+	'B_CapstonePMC_Contractor_AR_2025_01',
+	'B_CapstonePMC_Contractor_CBRN_2025_01',
+	'B_CapstonePMC_Contractor_GL_2025_01',
+	'B_CapstonePMC_Contractor_HK416_2025_01',
+	'B_CapstonePMC_Contractor_M4_2025_01',
+	'B_BLUF_Contractor_Mk16_01',
+	'B_CapstonePMC_Contractor_MP7_2025_01',
+	'B_BCapstonePMC2025_Contractor_SG_01',
+	'B_CapstonePMC_Contractor_TL_2025_01',
+	'B_CapstonePMC_Contractor_Vector_2025_01',
+	'B_BCapstonePMC2025_QRF_Contractor_AR_01',
+	'B_BCapstonePMC2025_QRF_Contractor_HK416_01',
+	'B_BCapstonePMC2025_QRF_Contractor_M4_01',
+	'B_BCapstonePMC2025_QRF_Contractor_Medic_01',
+	'B_BCapstonePMC2025_QRF_Contractor_TL_01'
+];
+
 // precompile function files
 missionNamer = compile preprocessFile 'functions\makeMissionName.sqf';
 
@@ -564,12 +552,24 @@ usArmy_armor = [
 	'rhsusf_m1a1aimwd_usarmy'
 ];
 
+desertLiberation_cars = [
+	'B_BALF2025_Zamak_Transport_Covered_01',
+	'B_BALF2025_Offroad_UP_01',
+	'B_BALF2025_Offroad_UP_HMG_01'
+];
+
+desertLiberation_armor = [
+	'CFP_B_UGARMY_BMP_2_01'
+];
+
 // global variable for units array
-BLU_UNITS_ARRAY = usArmy;
+BLU_UNITS_ARRAY = desertLiberationForces;
 
-BLU_VEHICLE_ARRAY = usArmy_cars;
+BLU_GUARD_ARRAY = capstonePMCUnits;
 
-BLU_TANK_ARRAY = usArmy_armor;
+BLU_VEHICLE_ARRAY = desertLiberation_cars;
+
+BLU_TANK_ARRAY = desertLiberation_armor;
 
 RED_UNITS_ARRAY = BocoHaran_units + Isis_units;
 

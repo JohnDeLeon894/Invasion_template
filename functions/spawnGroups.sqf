@@ -18,7 +18,6 @@ for [{private _i=0}, {_i<_count}, {_i=_i+1}] do {
 		player createDiarySubject['spawnRecord', 'Spawn Record'];
 		player createDiaryRecord ['spawnRecord',[format ['%1', _newRecruit], format['this is the unit spawned: %1', configOf _newRecruit]]];
 	};
-
 };
 
 // return value

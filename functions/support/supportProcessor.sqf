@@ -34,7 +34,7 @@ private _replaceMarker = {
 	private _missionName = _this select 1;
 	private _pos = markerPos _mark;
 
-	m1 globalChat 'replacing marker';
+	hQGuard_TL globalChat 'replacing marker';
 	// private _fireMissionName = [] call _nameFireMission;
 	private _artyMarker = createMarker [_missionName, _pos];
 	_artyMarker setMarkerType 'mil_warning_noShadow';

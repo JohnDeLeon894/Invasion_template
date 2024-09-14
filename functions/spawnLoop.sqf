@@ -85,7 +85,7 @@ playMusic _song;
 	};
 	if (doOnce < count FRIENDLY_GROUPS) then {
 		_x setBehaviour 'SAFE';
-		// FRIENDLY_GROUPS deleteAt(FRIENDLY_GROUPS find group player);
+		FRIENDLY_GROUPS deleteAt(FRIENDLY_GROUPS find group player);
 		doOnce = doOnce +1;
 	};
 
