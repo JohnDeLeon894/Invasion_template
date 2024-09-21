@@ -44,7 +44,7 @@ private _replaceMarker = {
 	deleteMarker _mark;
 };
 
-private _splitOnChoppa = {
+private _splitMarkerString = {
 	private _string = _this select 0;
 
 	private _splitString = _string splitString '_- ';
@@ -69,7 +69,7 @@ private _artyProcessor = {
 		private _mrkText = toLower(markerText _x);
 		private _position = markerPos _x;
 		private _marker = _x;
-		private _splitMarkerText = [_mrkText] call _splitOnChoppa;
+		private _splitMarkerText = [_mrkText] call _splitMarkerString;
 		hint format ['%1', _splitMarkerText];
 
 		private _theCaller = _marker;
@@ -81,7 +81,7 @@ private _artyProcessor = {
 		diag_log _userId;
 
 		if ('arty' in _mrkText) then {
-			private _splitMarkerText = [_mrkText] call _splitOnChoppa;
+			private _splitMarkerText = [_mrkText] call _splitMarkerString;
 			private _missionName = [_splitMarkerText select 0] call _taskMarkerName;
 			[_marker, _missionName] call _replaceMarker;
 			[_splitMarkerText, _position, _missionName] call _artyProcessor;
@@ -91,10 +91,10 @@ private _artyProcessor = {
 			[_position, 'reinforce'] execVM 'functions\transport\callTransport.sqf';
 			private _missionName = [_mrkText] call _taskMarkerName;
 			[_marker, _missionName] call _replaceMarker;
-			sleep 5;		 
+			sleep (random 5);		 
 			continue
 		}; 
-		if (_mrkText == 'alpha') then {
+		if ('alpha'  in _mrkText) then {
 			if ({alive _x}count(units backup_alpha) > 4) then {
 				private _missionName = [_mrkText] call _taskMarkerName;
 				
@@ -109,10 +109,11 @@ private _artyProcessor = {
 				private _missionName = [_mrkText] call _taskMarkerName;
 				[_marker, _missionName] call _replaceMarker;
 			}; 
-			sleep 5;
+			
+			sleep (random 5);
 			continue
 		}; 
-		if (_mrkText == 'bravo') then {
+		if ('bravo' in _mrkText) then {
 			if ({alive _x}count(units backup_bravo) > 4) then {
 				private _missionName = [_mrkText] call _taskMarkerName;
 				if( isNil 'lambs_wp_fnc_taskGarrison') then {
@@ -126,10 +127,11 @@ private _artyProcessor = {
 				private _missionName = [_mrkText] call _taskMarkerName;
 				[_marker, _missionName] call _replaceMarker;
 			}; 
-			sleep 5;
+
+			sleep (random 5);
 			continue
 		}; 
-		if (_mrkText == 'charlie') then {
+		if ('charlie'  in _mrkText) then {
 			if ({alive _x}count(units backup_charlie) > 4) then {
 				private _missionName = [_mrkText] call _taskMarkerName;
 				if( isNil 'lambs_wp_fnc_taskGarrison') then {
@@ -142,8 +144,9 @@ private _artyProcessor = {
 				[_position, 'charlie'] execVM 'functions\transport\callTransport.sqf';
 				private _missionName = [_mrkText] call _taskMarkerName;
 				[_marker, _missionName] call _replaceMarker;
-			}; 
-			sleep 5;
+			};
+
+			sleep (random 5);
 			continue
 		}; 
 		if (_mrkText == 'tic') then {

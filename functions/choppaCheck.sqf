@@ -56,7 +56,7 @@ private _splitOnChoppa = {
 };
 
 { 
- 	private _choppa = call compile _x; 
+ 	private _choppa = call compile '_x'; 
  	private _canMove = canMove _choppa; 
 	private _choppaName =  vehicleVarName _choppa;
 	_defaultChoppaType = typeOf _choppa;
