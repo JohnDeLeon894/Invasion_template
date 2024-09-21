@@ -13,7 +13,7 @@ hint format['%1', RED_TRIGGERS];
 waitUntil{player distance WEST_SPAWN < 300};
 sleep 10;
 
-if ( count RED_TRIGGERS > 0 ) then {
+if ( count RED_TRIGGERS > 0 && false ) then {
 	// optional contineus game for stand alone mission. 
 	ACTIVE_TRIGGER = []execVM 'functions\findAndActivateNearestTrigger.sqf';
 } else {

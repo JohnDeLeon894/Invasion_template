@@ -1,10 +1,16 @@
 private _choppaCount = count TRANSPORTS;
+private _defaultChoppaType = '';
 
 private _choppaCheck = {
 	private ['_choppaName', '_choppa', '_liveChoppa', '_choppaType', '_splitChoppaName', '_choppaNumber', '_hawkNumber', '_newName', '_hawk', '_hawkGroup'];
 	_choppa = _this select 0;
 	_liveChoppa = _this select 1;
-	_choppaType = typeOf _choppa;
+
+	if (typeName _choppa == 'string') then {
+		_choppaType = _defaultChoppaType;
+	} else {
+		_choppaType = typeOf _choppa;
+	};
 
 	if (_liveChoppa) then {
 		// HINT format['Choppa %1 cant move', _choppa]; 
@@ -14,11 +20,12 @@ private _choppaCheck = {
 	} else {
 			_choppaName = _choppa;
 	};
-
+	CHOPPA_COUNT = CHOPPA_COUNT +1; 
 	_splitChoppaName = [_choppaName] call _splitOnChoppa;
 	HINT format ['%1', _splitChoppaName];
 	_choppaNumber = _splitChoppaName select 1;
-	_hawkNumber = (parseNumber _choppaNumber) + 3;
+	// _hawkNumber = (parseNumber _choppaNumber) + 3;
+	_hawkNumber = CHOPPA_COUNT;
 	diag_log _hawkNumber;
 	_newName = format['Hawk_%1', _hawkNumber];
 	diag_log _choppaName;
@@ -49,9 +56,10 @@ private _splitOnChoppa = {
 };
 
 { 
- 	private _choppa = _x; 
+ 	private _choppa = call compile _x; 
  	private _canMove = canMove _choppa; 
 	private _choppaName =  vehicleVarName _choppa;
+	_defaultChoppaType = typeOf _choppa;
  	private _status =  ['The Choppa status',format['the Choppa"s status is %1', _canMove]]; 
  	player createDiarySubject['choppaStatus', 'Chopper Status']; 
  	player createDiaryRecord ['choppaStatus', _status]; 

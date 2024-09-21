@@ -6,6 +6,8 @@ private _groupsToKill = _this select 2;
 private _diaryTitle = format['group tracking: %1', _group];
 private _troops = units _group;
 
+diag_log format ['group %1: \n child task %2 \n groups to kill %3', _group, _childTask, _groupsToKill];
+
 player createDiaryRecord ['taskRecord', [_diaryTitle, format['group %1 is is being tracked', _group]]];
 // waitUntil given group no longer has any living members
 waitUntil {({alive _x}count _troops) < 3 };

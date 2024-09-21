@@ -5,7 +5,8 @@ private _action = _this select 1;
 hint 'transport called';
 {
 	// Current result is saved in variable _x
-	private _choppa = call '_x';
+	diag_log typeOf (call compile _x);
+	private _choppa = call compile _x;
 	private _tooFarFromLZ = _choppa distance TRANSPORT_ZONE > 400;
 	if(!(alive _choppa)) then {
 		private _notAliveString = 'transport not alive';

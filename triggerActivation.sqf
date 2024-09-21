@@ -14,37 +14,43 @@ private _description = [
 	[format['Clear %1', _trigger], format['Assault %1', _namedSector]] select _useSectorName, 
 	position _trigger
 ];
+
+private _sectorName = format['%1', [_trigger, _namedSector] select _useSectorName];
 private _state = 'AUTOASSIGNED';
 private _priority = -1;
 private _showNotification = true;
 private _type = "attack";
 private _visibleIn3D = false;
-private _diaryTitle = format['Trigger %1 Activated', _trigger];
+// private _diaryTitle = format['Trigger %1 Activated', _trigger];
 private _isPlayerInList = ( _thisList findIf{ _x == player}) > 0;
 private _isPlayerWaypointInList = (waypoints player findIf{ [_trigger,waypointPosition _x] call BIS_fnc_inTrigger }) >= 0;
 private _allLocationTypes = LOCATION_TYPES;
 private _triggerAreaRadius = ( triggerArea _trigger select 0 );
 private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
 private _activePositions = [];
-// "_allLocationTypes pushBack configName _x" configClasses (configFile >> "CfgLocationTypes");
+
+// getting locations within trigger radious
 private _nearbyLocations = nearestLocations [position _trigger, _allLocationTypes, _triggerAreaRadius];
 private _isTooFewLocations = count _nearbyLocations < 10; 
 // private _isTooFewLocations = true ; 
 if (_isTooFewLocations) then {
 	_nearbyLocations = position _trigger nearObjects ['House', _triggerAreaRadius];
 };
-if (!_useSectorName) then {
-	_type = 'move';
-	PATROL_COMPLETE = 0;
-	diag_log format ['*********** the type in triggerActivation = %1 *************', _type];
-} else {
-	GROUPS_KILLED = 0;
-	diag_log format ['*********** the type in triggerActivation = %1 *************', _type];
-};
-player createDiarySubject['taskRecord', 'Task Record'];
-[_owner, _parentTaskId, _description, objNull, _state, _priority, _showNotification, _type, _visibleIn3D] call BIS_fnc_taskCreate;
+// if (!_useSectorName) then {
+// 	_type = 'move';
+// 	PATROL_COMPLETE = 0;
+// 	diag_log format ['*********** the type in triggerActivation = %1 *************', _type];
+// } else {
+// 	GROUPS_KILLED = 0;
+// 	diag_log format ['*********** the type in triggerActivation = %1 *************', _type];
+// };
+// player createDiarySubject['taskRecord', 'Task Record'];
+// [_owner, _parentTaskId, _description, objNull, _state, _priority, _showNotification, _type, _visibleIn3D] call BIS_fnc_taskCreate;
 
 _activePositions = [_trigger, _count, _nearbyLocations, _isTooFewLocations, _triggerAreaRadius, _parentTaskId, _useSectorName, _type] call jMD_fnc_sectorSpawn;
+
+// deligate mission assignment 
+[ _activePositions, _sectorName ]execVM 'functions\taskManagement\taskManager.sqf';
 
 // hint format['this is the trigger %1',_trigger];
 
@@ -54,9 +60,9 @@ _activePositions = [_trigger, _count, _nearbyLocations, _isTooFewLocations, _tri
 // player createDiaryRecord ['taskRecord',[_diaryTitle, format['Is the player in the trigger List: %1', _isPlayerInList]]];
 // player createDiaryRecord ['taskRecord',[_diaryTitle, format['Is too few locations: %1', _isTooFewLocations]]];
 // player createDiaryRecord ['taskRecord',[_diaryTitle, format['Trigger area radius: %1', _triggerAreaRadius]]];
-player createDiaryRecord ['taskRecord',[_diaryTitle, format['Nearest Locations List: %1/nLocations returned: %2; /nlist / returned location counts %3 / %4', _nearbyLocations, _activePositions, count _nearbyLocations, count _activePositions]]];
+// player createDiaryRecord ['taskRecord',[_diaryTitle, format['Nearest Locations List: %1/nLocations returned: %2; /nlist / returned location counts %3 / %4', _nearbyLocations, _activePositions, count _nearbyLocations, count _activePositions]]];
 
-player createDiaryRecord ['taskRecord',[_diaryTitle, format['This will only show up if %1 evaluates to true.',_isPlayerWaypointInList]]];
+// player createDiaryRecord ['taskRecord',[_diaryTitle, format['This will only show up if %1 evaluates to true.',_isPlayerWaypointInList]]];
 
 if ((count waypoints group player) > 1) then {
 	{
