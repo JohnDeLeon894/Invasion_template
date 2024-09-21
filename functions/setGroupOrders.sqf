@@ -59,11 +59,34 @@ private _setCamp = {
 	};
 };
 
+/**
+
+Arguments:
+0: Unit fleeing <OBJECT>
+1: Destination <ARRAY>
+2: Forced retreat, default false <BOOL>
+3: Distance threshold, default 10 <NUMBER>
+4: Update cycle, default 2 <NUMBER>
+5: Is Called for Waypoint, default false <BOOLEAN>
+
+[bob, getPos angryJoe] spawn lambs_wp_fnc_taskAssault;
+ */
+
+ private _attack = {
+	params ['_group', '_pos', '_radius'];
+	if( isNil 'lambs_wp_fnc_taskAssault') then {
+		[_group, _pos, _radius] call BIS_fnc_taskAttack;
+	} else {
+		[_group, _pos, false, _radius] call lambs_wp_fnc_taskAssault;
+	};
+ };
+
 private _orders = toLower _orders;
 
 switch (_orders) do {
 	case 'patrol': { [_group, _pos, _radius] call _setPatrol; };
 	case 'garrison': { [_group, _pos, _radius] call _setGarrison; };
 	case 'camp': { [_group, _pos, _radius] call _setCamp; };
+	case 'attack': { [_group, _pos, _radius] call _attack; };
 	default { };
 };

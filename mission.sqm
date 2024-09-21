@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=56;
+		nextID=59;
 	};
 	class Camera
 	{
 		pos[]={5747.2993,52.986881,1365.1549};
-		dir[]={0.058669832,-0.20971821,0.97605413};
-		up[]={0.012585216,0.97775441,0.20936689};
-		aside[]={0.99823952,4.6985588e-007,-0.06000299};
+		dir[]={0.058666736,-0.20970713,0.97600263};
+		up[]={0.012582617,0.97776425,0.20932931};
+		aside[]={0.99819833,0,-0.0600009};
 	};
 };
 binarizationWanted=0;
@@ -1337,7 +1337,7 @@ class Mission
 						class data
 						{
 							singleType="SCALAR";
-							value=1;
+							value=0.2;
 						};
 					};
 				};
@@ -1363,7 +1363,7 @@ class Mission
 						class data
 						{
 							singleType="SCALAR";
-							value=7;
+							value=4;
 						};
 					};
 				};
@@ -1519,7 +1519,7 @@ class Mission
 						class data
 						{
 							singleType="SCALAR";
-							value=0.5;
+							value=0.1;
 						};
 					};
 				};
@@ -2648,11 +2648,11 @@ class Mission
 					dataType="Layer";
 					name="Briefing Hanger [1] [M]";
 					id=973;
-					atlOffset=-0.0072822571;
+					atlOffset=-70.699997;
 				};
 			};
 			id=1053;
-			atlOffset=0.099422455;
+			atlOffset=-70.699997;
 		};
 	};
 };

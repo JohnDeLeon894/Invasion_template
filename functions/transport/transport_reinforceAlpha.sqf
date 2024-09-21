@@ -1,9 +1,9 @@
 // spawn reinforcements and load into chopper
 
 private _transport = _this select 0;
-private _reinforcementCount = BLU_UNIT_SIZE;
+private _reinforcementCount = BLU_UNIT_SIZE - ({alive _x} count units backup_alpha);
 private _position = getMarkerPos 'westSpawn';
-
+diag_log ['unit count to spawn = ', _reinforcementCount];
 // hint 'started';
 for '_i' from 1 to _reinforcementCount do {
 	private _soldier = BLU_UNITS_ARRAY call BIS_fnc_selectRandom;

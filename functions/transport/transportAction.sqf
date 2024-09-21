@@ -9,7 +9,7 @@ private _action = _this select 1;
 private _pos = _this select 2;
 private _mapGrid = mapGridPosition _pos;
 private _customLz = USER_LZ;
-private _backup = BACKUP_GROUPS call BIS_fnc_selectRandom;
+
 choppa_group = createGroup west;
 
 _transport setVariable ["onMission", true];
@@ -64,6 +64,18 @@ _customLz setPos _pos;
 
 waitUntil {unitReady _transport};
 
+private _infilAction = {
+	params ['_group', '_radius', '_order'];
+	_transport sideChat "We're at the destination, exiting vehicle.";
+
+	{ 
+		_x action ["GetOut", _transport];
+	} forEach (units _group);
+
+	_group leaveVehicle _transport;
+	[_group, _pos, _radius, _order]call jMD_fnc_setOrders;
+};
+
 if (unitReady _transport) then { 
 	_transport land "GET IN"; // used only for helicopters
 	_transport animateDoor ['door_R', 1]; 
@@ -71,36 +83,32 @@ if (unitReady _transport) then {
 	waitUntil { isTouchingGround _transport }; 
 
 	switch (_action) do {
-		case  'infil': { _transport sideChat "We're at the destination, exit when ready.";};
+		case  'infil': { 
+			private _group = group player;
+			_transport sideChat "We're at the destination, exit when ready.";
+			{ 
+				_x action ["GetOut", _transport];
+			 	_x  leaveVehicle _transport;
+			} forEach (units _group);
+		};
 		case 'alphaInfil': {
-			_transport sideChat "We're at the destination, exiting vehicle.";
-			doGetOut units backup_alpha;
-			backup_alpha leaveVehicle _transport;
-			if( isNil 'lambs_wp_fnc_taskGarrison') then {
-				[backup_alpha, _position, 200] call BIS_fnc_taskPatrol;
-			} else {
-				[backup_alpha, _position, 200] call lambs_wp_fnc_taskPatrol;
-			};
+			private _group = backup_alpha;
+			private _radius = 200;
+
+			[_group, _radius, 'patrol'] call _infilAction;
 		};
 		case 'bravoInfil': {
 			_transport sideChat "We're at the destination, exiting vehicle.";
-			doGetOut units backup_bravo;
-			backup_bravo leaveVehicle _transport;
-			if( isNil 'lambs_wp_fnc_taskGarrison') then {
-				[backup_bravo, _position, 200] call BIS_fnc_taskPatrol;
-			} else {
-				[backup_bravo, _position, 200] call lambs_wp_fnc_taskPatrol;
-			};
+			private _group = backup_bravo;
+			private _radius = 200;
+			[_group, _radius, 'patrol'] call _infilAction;
 		};
 		case 'charlieInfil': {
 			_transport sideChat "We're at the destination, exiting vehicle.";
-			doGetOut units backup_charlie;
-			backup_charlie leaveVehicle _transport;
-			if( isNil 'lambs_wp_fnc_taskGarrison') then {
-				[backup_charlie, _position, 200] call BIS_fnc_taskPatrol;
-			} else {
-				[backup_charlie, _position, 200] call lambs_wp_fnc_taskPatrol;
-			};
+			private _group = backup_charlie;
+			private _radius = 200;
+
+			[_group, _radius, 'patrol'] call _infilAction;
 		};
 		default {
 			_transport sideChat format['%1 at LZ, lets get the hello out of here!', _transport];

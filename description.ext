@@ -34,6 +34,14 @@ class cfgFunctions{
 		file = "functions\setGroupOrders.sqf";
 		description = "['_group', '_pos', '_radius', '_orders']call jMD_fnc_setOrders";
 	  };
+	  class transportAction {
+		file = "functions\transport\transportAction.sqf";
+		description = "[this, _action, _pos]call jMD_fnc_transportAction.sqf";
+	  };
+	  class backupManager {
+		file = "functions\backupManagement\backupManager.sqf";
+		description = "['_group', '_orders', '_marker', '_pos'] call jMD_fnc_backupManager";
+	  };
       class choppaCheck {
         file = "functions\choppaCheck.sqf";
       };
