@@ -8,6 +8,7 @@ waitUntil {COMMON_DONE};
 _groupsNamed = [] execVM 'nameAllGroups.sqf';
 parsingNamespace setVariable ['VCM_ARTYENABLE', false];
 ACTIVE_TRIGGER = []execVM 'functions\findAndActivateNearestTrigger.sqf';
+[] execVM 'functions\hqPatrol.sqf';
 [] spawn jMD_fnc_spawnLoop;
 sleep 5;
 ['intro', true] call BIS_fnc_blackIn;

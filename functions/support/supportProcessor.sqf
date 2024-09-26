@@ -32,19 +32,25 @@ private _taskMarkerName = {
 private _replaceMarker = {
 	private _mark = _this select 0;
 	private _missionName = _this select 1;
+	private _markerType = _this select 2;
 	private _pos = markerPos _mark;
 
-	m1 globalChat 'replacing marker';
+	if (isNil('_markerType')) then {
+		_markerType = 'mil_warning_noShadow';
+	};
+
+	hQGuard_TL globalChat 'replacing marker';
 	// private _fireMissionName = [] call _nameFireMission;
-	private _artyMarker = createMarker [_missionName, _pos];
-	_artyMarker setMarkerType 'mil_warning_noShadow';
-	_artyMarker setMarkerText _missionName;
-	_artyMarker setMarkerColor 'ColorRed';
-	format['original name %1', _missionName];
+	private _newMarker = createMarker [_missionName, _pos];
+	_newMarker setMarkerType _markerType;
+	_newMarker setMarkerText _missionName;
+	_newMarker setMarkerColor 'ColorRed';
+	diag_log format['original name %1', _missionName];
 	deleteMarker _mark;
+	_newMarker
 };
 
-private _splitOnChoppa = {
+private _splitMarkerString = {
 	private _string = _this select 0;
 
 	private _splitString = _string splitString '_- ';
@@ -69,7 +75,7 @@ private _artyProcessor = {
 		private _mrkText = toLower(markerText _x);
 		private _position = markerPos _x;
 		private _marker = _x;
-		private _splitMarkerText = [_mrkText] call _splitOnChoppa;
+		private _splitMarkerText = [_mrkText] call _splitMarkerString;
 		hint format ['%1', _splitMarkerText];
 
 		private _theCaller = _marker;
@@ -81,7 +87,7 @@ private _artyProcessor = {
 		diag_log _userId;
 
 		if ('arty' in _mrkText) then {
-			private _splitMarkerText = [_mrkText] call _splitOnChoppa;
+			private _splitMarkerText = [_mrkText] call _splitMarkerString;
 			private _missionName = [_splitMarkerText select 0] call _taskMarkerName;
 			[_marker, _missionName] call _replaceMarker;
 			[_splitMarkerText, _position, _missionName] call _artyProcessor;
@@ -91,62 +97,49 @@ private _artyProcessor = {
 			[_position, 'reinforce'] execVM 'functions\transport\callTransport.sqf';
 			private _missionName = [_mrkText] call _taskMarkerName;
 			[_marker, _missionName] call _replaceMarker;
-			sleep 5;		 
+			sleep (random 5);		 
 			continue
 		}; 
-		if (_mrkText == 'alpha') then {
-			if ({alive _x}count(units backup_alpha) > 4) then {
-				private _missionName = [_mrkText] call _taskMarkerName;
-				
-				if( isNil 'lambs_wp_fnc_taskGarrison') then {
-					[backup_alpha, _position, 200] call BIS_fnc_taskPatrol;
-				} else {
-					[backup_alpha, _position, 200] call lambs_wp_fnc_taskPatrol;
-				};
-				[_marker, _missionName] call _replaceMarker;
-			} else {
-				[_position, 'alpha'] execVM 'functions\transport\callTransport.sqf';
-				private _missionName = [_mrkText] call _taskMarkerName;
-				[_marker, _missionName] call _replaceMarker;
-			}; 
-			sleep 5;
+		if ('alpha'  in _mrkText) then {
+			private _group = backup_alpha;
+
+			private _missionName = [_mrkText] call _taskMarkerName;
+			private _orders = _splitMarkerText select 1;
+			private _newMarker = [_marker, _missionName, 'loc_LetterA'] call _replaceMarker;
+
+			// send orders to backup manager 
+			diag_log format['calling backup manager with the following params:', _group, _splitMarkerText, _newMarker, _position];
+			// [_group, _splitMarkerText, _newMarker, _position] call jMD_fnc_backupManager;
+			[_group, _splitMarkerText, _newMarker, _position] execVM 'functions\backupManagement\backupManager.sqf';
+			sleep (random 5);
 			continue
 		}; 
-		if (_mrkText == 'bravo') then {
-			if ({alive _x}count(units backup_bravo) > 4) then {
-				private _missionName = [_mrkText] call _taskMarkerName;
-				if( isNil 'lambs_wp_fnc_taskGarrison') then {
-					[backup_bravo, _position, 200] call BIS_fnc_taskPatrol;
-				} else {
-					[backup_bravo, _position, 200] call lambs_wp_fnc_taskPatrol;
-				};
-				[_marker, _missionName] call _replaceMarker;
-			} else {
-				[_position, 'bravo'] execVM 'functions\transport\callTransport.sqf';
-				private _missionName = [_mrkText] call _taskMarkerName;
-				[_marker, _missionName] call _replaceMarker;
-			}; 
-			sleep 5;
+		if ('bravo' in _mrkText) then {
+			private _group = backup_bravo;
+			private _missionName = [_mrkText] call _taskMarkerName;
+			private _orders = _splitMarkerText select 1;
+			private _newMarker = [_marker, _missionName, 'loc_LetterB'] call _replaceMarker;
+
+			// send orders to backup manager
+			[_group, _splitMarkerText, _newMarker, _position] call jMD_fnc_backupManager;
+
+			sleep (random 5);
 			continue
 		}; 
-		if (_mrkText == 'charlie') then {
-			if ({alive _x}count(units backup_charlie) > 4) then {
-				private _missionName = [_mrkText] call _taskMarkerName;
-				if( isNil 'lambs_wp_fnc_taskGarrison') then {
-					[backup_charlie, _position, 200] call BIS_fnc_taskPatrol;
-				} else {
-					[backup_charlie, _position, 200] call lambs_wp_fnc_taskPatrol;
-				};
-				[_marker, _missionName] call _replaceMarker;
-			} else {
-				[_position, 'charlie'] execVM 'functions\transport\callTransport.sqf';
-				private _missionName = [_mrkText] call _taskMarkerName;
-				[_marker, _missionName] call _replaceMarker;
-			}; 
-			sleep 5;
+		if ('charlie'  in _mrkText) then {
+			private _group = backup_charlie;
+			private _missionName = [_mrkText] call _taskMarkerName;
+			private _orders = _splitMarkerText select 1;
+			private _newMarker = [_marker, _missionName, 'loc_LetterC'] call _replaceMarker;
+
+			// send orders to backup manager
+			[_group, _splitMarkerText, _newMarker, _position] call jMD_fnc_backupManager;
+
+			sleep (random 5);
 			continue
 		}; 
 		if (_mrkText == 'tic') then {
+			private _friendlyGroups = FRIENDLY_GROUPS + BACKUP_GROUPS;
 			{
 				// [_x, _position, _marker] call _moveGroupToMarkerPos;
 				/*
@@ -160,7 +153,7 @@ private _artyProcessor = {
 				[bob, getPos angryJoe] spawn lambs_wp_fnc_taskAssault;
 				*/
 				[_x, _position, false, 100, 4, false] spawn lambs_wp_fnc_taskAssault;
-			} forEach FRIENDLY_GROUPS;
+			} forEach _friendlyGroups;
 			private _missionName = [_mrkText] call _taskMarkerName;
 			[_marker, _missionName] call _replaceMarker;
 			continue
@@ -168,7 +161,7 @@ private _artyProcessor = {
 		if ((_mrkText == 'pickup') || (_mrkText == 'exfil')) then {
 			[_position, 'exfil'] execVM 'functions\transport\callTransport.sqf';
 			private _missionName = [_mrkText] call _taskMarkerName;
-			[_marker, _missionName] call _replaceMarker;
+			[_marker, _missionName, 'mil_pickup'] call _replaceMarker;
 			continue
 		}; 
 		if (_mrkText == 'infil') then {

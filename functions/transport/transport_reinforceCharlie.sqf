@@ -1,7 +1,7 @@
 // spawn reinforcements and load into chopper
 
 private _transport = _this select 0;
-private _reinforcementCount = BLU_UNIT_SIZE;
+private _reinforcementCount = BLU_UNIT_SIZE - ({alive _x} count units backup_bravo);
 private _position = getMarkerPos 'westSpawn';
 
 // hint 'started';
