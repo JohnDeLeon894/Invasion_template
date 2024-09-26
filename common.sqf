@@ -110,7 +110,7 @@ if (isNil 'ALL_TRIGGERS') then {
 	private _entry = format ['The list of triggers from previous mission: %1', ALL_TRIGGERS];
 	player createDiaryRecord ['TriggersFound', ['found existing triggers!', _entry]];
 
-	if ( isNil RED_TRIGGERS) then {
+	if ( isNil 'RED_TRIGGERS') then {
 		RED_TRIGGERS = ALL_TRIGGERS;
 	};
 
@@ -1076,11 +1076,11 @@ BLU_VEHICLE_ARRAY = marsocRaidersVehicles;
 
 BLU_TANK_ARRAY = marsocRaidersTanks;
 
-RED_UNITS_ARRAY = BocoHaran_units + Isis_units;
+RED_UNITS_ARRAY = hiredSoldiers + hiredEliteSoldiers ;
 
-RED_VEHICLE_ARRAY = Isis_Vehicles;
+RED_VEHICLE_ARRAY = hiredSoldierVehicles + hiredEliteVehicles;
 
-RED_TANK_ARRAY = hiredSoldierTanks;
+RED_TANK_ARRAY = hiredSoldierTanks + hiredEliteTanks;
 
 COMMON_DONE = true;
 
