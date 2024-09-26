@@ -34,6 +34,7 @@ private _subject = player createDiarySubject ['triggerPicker', 'trigger picker']
 private _triggerListText = format['%1', _triggerList];
 player createDiaryRecord ['triggerPicker', ['the trigger array', _triggerListText]];
 player createDiaryRecord ['triggerPicker', ['the trigger chosen', format['%1',_selectedTrigger]]];
+player createDiaryRecord ['triggerPicker', ['the red triggers', format['%1',RED_TRIGGERS]]];
 
 private _copyStatements = triggerStatements _selectedTrigger;
 private _copyActivation = _copyStatements select 1;

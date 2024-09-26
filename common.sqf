@@ -114,14 +114,14 @@ if (isNil 'ALL_TRIGGERS') then {
 	private _entry = format ['The list of triggers from previous mission: %1', ALL_TRIGGERS];
 	player createDiaryRecord ['TriggersFound', ['found existing triggers!', _entry]];
 
-	if ( isNil RED_TRIGGERS) then {
+	if ( isNil 'RED_TRIGGERS') then {
 		RED_TRIGGERS = ALL_TRIGGERS;
 	};
 
 	// Should make this a function in functions library
 	// for all triggers if its not in red triggers, make green.
 	{
-		private _trigger = _x;
+		private _trigger = call compile _x;
 		private _triggerColor = 'ColorGreen';
 		private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
 
@@ -133,7 +133,7 @@ if (isNil 'ALL_TRIGGERS') then {
 		_triggerMark setMarkerShape 'RECTANGLE';
 		_triggerMark setMarkerSize _triggerArea;
 		_triggerMark setMarkerColor _triggerColor;
-		diag_log format ['Trigger %1 set to %2', _troggerName, _triggerColor];
+		diag_log format ['Trigger %1 set to %2', _x, _triggerColor];
 	} forEach ALL_TRIGGERS;
 };
 

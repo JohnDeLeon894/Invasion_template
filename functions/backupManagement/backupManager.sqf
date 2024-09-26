@@ -3,11 +3,11 @@
 // list of commands for backup group
 
 /**
-infil - command to call new backup group and infil at marked location 
-status check - request status updated of given group
-patrol - patrol area around marker 
-move - move and hold position
-attack - engage marked position
+	infil - command to call new backup group and infil at marked location 
+	status check - request status updated of given group
+	patrol - patrol area around marker 
+	move - move and hold position
+	attack - engage marked position
  */
 diag_log 'backup manager started';
 params ['_group', '_splitMarkerText', '_marker', '_pos'];

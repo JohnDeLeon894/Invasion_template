@@ -6,6 +6,7 @@ hint 'transport called';
 {
 	// Current result is saved in variable _x
 	private _choppa = call compile _x;
+	private _choppaName = str _choppa;
 	private _tooFarFromLZ = _choppa distance TRANSPORT_ZONE > 400;
 	if(!(alive _choppa)) then {
 		private _notAliveString = 'transport not alive';
@@ -24,7 +25,7 @@ hint 'transport called';
 	// if(!(_tooFarFromLZ)) exitWith {
 		_choppa setVariable ['onMission', true, true];
 		hint format ['%1 on the move', _choppa];
-		private _transportReport = format['%1 action sent assigned to %2', _action, _x];
+		private _transportReport = format['%1 action sent assigned to %2', _action, _choppaName];
 		diag_log _transportReport;
 		// [_choppa, _action, _pos]execVM "functions\transport\transportAction.sqf";
 		[_choppa, _action, _pos]call jMD_fnc_transportAction;
