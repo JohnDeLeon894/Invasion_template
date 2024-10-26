@@ -6,7 +6,7 @@ private _groupSize	 = _this select 1;
 private _nearbyLocations = _this select 2;
 private _usePosition = _this select 3;
 private _areaRadius = _this select 4;
-private _numberOfGroupsToSpawn = floor  (3 + random 3);
+private _numberOfGroupsToSpawn = 3;
 private _locationCount = count _nearbyLocations;
 private _resultsArray = [];
 hint format ['trigger: %1', _trigger];
@@ -51,7 +51,7 @@ while {_spawnedCount < _numberOfGroupsToSpawn} do {
 
 	_resultsArray pushBack _position;
 
-	_eastGroup = [_eastGroup, (_groupSize + random 4), RED_units_ARRAY, _position] call jMD_fnc_spawnGroups;
+	_eastGroup = [_eastGroup, (_groupSize + random 4), RED_UNITS_ARRAY, _position] call jMD_fnc_spawnGroups;
 	_groups pushBack [_eastGroup, _position];
 	
 	_wp = _eastGroup addWaypoint [_position, 200];

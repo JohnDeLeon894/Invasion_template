@@ -29,7 +29,7 @@ _priority = -1;
 	_missionName = ['Assault Mission'] call missionNamer;
 	_childTasIdk = _missionName;
 	_description = [
-		format['Enemy soldiers were spotted near the marked location. Patrol the area and engage any units you come across.<br />Mission codename: %1',_missionName], 
+		format['We are supposed to meet the contact in Kannuka. Our transport bird was shot down while we were on our way there. We survived with a couple of bruises, but the pilot and the bird are dead. We have to clear out Kannuka and hope our contact is still alive.<br />Mission codename: %1',_missionName], 
 		_missionName, 
 		_position
 	];

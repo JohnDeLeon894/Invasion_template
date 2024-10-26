@@ -175,9 +175,9 @@ diag_log 'deleting the dead';
 	// if crew is dead, spawn new crew and order them to asset and to bring it back to base. 
 
 diag_log 'Spawn loop end';
-sleep 600; //1200 = 20 min
+// sleep 600; //1200 = 20 min
 diag_log 'Spawn Timer End';
 // saveGame;
 // ONE_LOOP = false;
-diag_log 'starting spawn loop again';
-[] spawn jMD_fnc_spawnLoop;
+// diag_log 'starting spawn loop again';
+// [] spawn jMD_fnc_spawnLoop;

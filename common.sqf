@@ -69,7 +69,7 @@ continueLoop = true;
 doOnce = 0;
 SPAWN_LOOP_COUNT = 0;
 ONE_LOOP = false;
-BLU_UNIT_SIZE = 8;
+BLU_UNIT_SIZE = 4;
 RED_UNIT_SIZE = 6;
 CHOPPA_COUNT = 0;
 
@@ -1104,17 +1104,17 @@ desertLiberation_armor = [
 ];
 
 // global variable for units array
-BLU_UNITS_ARRAY = usArmy;
+BLU_UNITS_ARRAY = capstonePMC_Units;
 
-BLU_VEHICLE_ARRAY = usArmy_cars;
+BLU_VEHICLE_ARRAY = localFighterVehicles;
 
-BLU_TANK_ARRAY = usArmy_armor;
+BLU_TANK_ARRAY = localFighterVehicles;
 
-RED_UNITS_ARRAY = BocoHaran_units + Isis_units;
+RED_UNITS_ARRAY = looters;
 
-RED_VEHICLE_ARRAY = Isis_Vehicles;
+RED_VEHICLE_ARRAY = looterVehicles;
 
-RED_TANK_ARRAY = Isis_Tanks;
+RED_TANK_ARRAY = hiredSoldierVehicles;
 
 COMMON_DONE = true;
 
