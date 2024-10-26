@@ -51,7 +51,7 @@ while {_spawnedCount < _numberOfGroupsToSpawn} do {
 
 	_resultsArray pushBack _position;
 
-	_eastGroup = [_eastGroup, (_groupSize + random 4), RED_UNITS_ARRAY, _position] call jMD_fnc_spawnGroups;
+	_eastGroup = [_eastGroup, (_groupSize + random 2), RED_UNITS_ARRAY, _position] call jMD_fnc_spawnGroups;
 	_groups pushBack [_eastGroup, _position];
 	
 	_wp = _eastGroup addWaypoint [_position, 200];

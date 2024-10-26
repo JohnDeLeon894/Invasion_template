@@ -2,8 +2,8 @@ hint 'activated!';
 private ['_player', '_closestTrigger', '_nextClosest', '_selectedTrigger'];
 _player = player;
 // _closestTrigger = call compile (ALL_TRIGGERS select 0);
+_closestTrigger = call compile (RED_TRIGGERS select 0);
 if((count RED_TRIGGERS) > 1 ) then {
-	_closestTrigger = call compile (RED_TRIGGERS select 0);
 	_nextClosest = call compile (RED_TRIGGERS select 0);
 	_lastClosest = call compile (RED_TRIGGERS select 0);
 
@@ -31,7 +31,8 @@ if((count RED_TRIGGERS) > 1 ) then {
 	// _selectedTrigger = _triggerList call BIS_fnc_selectRandom;
 	_selectedTrigger = _triggerList select 0;
 } else {
-	_selectedTrigger = RED_TRIGGERS select 0;
+	private _triggerList = RED_TRIGGERS;
+	_selectedTrigger = _closestTrigger;
 };
 
 SECTOR_POS = position _selectedTrigger;
