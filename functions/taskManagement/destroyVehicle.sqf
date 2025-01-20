@@ -1,11 +1,13 @@
+// params ['_spawnLocations', '_sectorName'];
+
 private _spawnLocations = _this select 0;
 private _sectorName = _this select 1;
 
-private _chosenSpawnLocation = selectRandom _spawnLocations;
-private _vehicleSpawnPoint =   [_chosenSpawnLocation, 500] call BIS_fnc_nearestRoad; // [getPosATL player, 500] call BIS_fnc_nearestRoad;
-private _vehicleType = selectRandom RED_TANK_ARRAY;
+diag_log ['****** the spawn locations **********', _spawnLocations];
 
-//Create diary record for the parent task 
+private _testSpawnLocationSelection = selectRandom _spawnLocations;
+
+diag_log ['****** the test spawn location **********', _testSpawnLocationSelection];
 
 private _parentTaskId = format['Clear %1', _sectorName];
 private _type = "danger";
@@ -18,20 +20,35 @@ _priority = -1;
 
 [_parentTaskId, _type, _description, SECTOR_POS] execVM "functions\taskManagement\taskCreater.sqf";
 
-TARGET_VEHICLE = createVehicle [_vehicleType, _vehicleSpawnPoint];
+private _totalTaskCount = 1 + (floor (random 3));
+
+VEHICLES_DESTROYED = 0;
+
+// TARGET_VEHICLE = createVehicle [_vehicleType, _vehicleSpawnPoint];
 
 // creating the child task
 
-private _position = _vehicleSpawnPoint;
-_type = "destroy";
-diag_log ['the position:', _position];
-_missionName = ['Destroy Mission'] call missionNamer;
-_childTasIdk = _missionName;
-_description = [
-	format['Enemy vehicle spotted here.<br />Mission codename: %1',_missionName], 
-	_missionName, 
-	_position
-];
-// diag_log ['the mission name', _missionName];
-// [_owner, [_childTasIdk, _parentTaskId], _description, _position, _state, _priority, _showNotification, _type, _visibleIn3D] call BIS_fnc_taskCreate;
-[ [_childTasIdk, _parentTaskId], _type, _description, _position] execVM "functions\taskManagement\taskCreater.sqf";
+for [{private _i = 0}, {_i < _totalTaskCount}, {_i = _i + 1 }] do {
+	// [(selectRandom _spawnLocations)]call _createDestroyVehicleMission;
+	private _chosenSpawnLocation = selectRandom _spawnLocations;
+	diag_log ['******* chosen spawn location. ********', _chosenSpawnLocation];
+	private _vehicleSpawnPoint =   [_chosenSpawnLocation, 500] call BIS_fnc_nearestRoad; // [getPosATL player, 500] call BIS_fnc_nearestRoad;
+	private _vehicleType = selectRandom RED_TANK_ARRAY;
+	private _childType = "destroy";
+	private _missionName = ['Mission Codename: Destroy-'] call missionNamer;
+	private _childTasIdk = _missionName;
+
+	private _targetVehicle = createVehicle [_vehicleType, _vehicleSpawnPoint];
+	diag_log ['the position:', _vehicleSpawnPoint];
+
+	_description = [
+		format['Enemy vehicle spotted here.<br />Mission codename: %1',_missionName], 
+		_missionName, 
+		_chosenSpawnLocation
+	];
+
+	diag_log 'creating the task';
+	[ [_childTasIdk, _parentTaskId], _type, _description, _chosenSpawnLocation] execVM "functions\taskManagement\taskCreater.sqf";
+	diag_log 'starting the tracker';
+	[_targetVehicle, _childTasIdk, _totalTaskCount ] execVM 'functions\taskManagement\targetVehicleTracker.sqf';
+};
