@@ -10,5 +10,6 @@ parsingNamespace setVariable ['VCM_ARTYENABLE', false];
 ACTIVE_TRIGGER = []execVM 'functions\findAndActivateNearestTrigger.sqf';
 [] execVM 'functions\hqPatrol.sqf';
 [] spawn jMD_fnc_spawnLoop;
+[] execVM 'functions\songLoop.sqf';
 sleep 5;
 ['intro', true] call BIS_fnc_blackIn;

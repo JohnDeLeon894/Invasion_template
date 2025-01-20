@@ -35,6 +35,7 @@ private _choppaCheck = {
 	_hawkGroup setVariable ['TCL_Disabled', true];
 	_hawkGroup setVariable ["Vcm_Disable",true];
 	_hawkGroup enableDynamicSimulation false;
+	TRANSPORTS pushBack _newName; 
 	
 	missionNamespace setVariable [_newName, _hawk];
 	_hawk setVehicleVarName _newName;
@@ -43,7 +44,6 @@ private _choppaCheck = {
 	_newName = _hawk;
 	diag_log ['is the Variable nil?', _newName];
 	diag_log ['variable name', vehicleVarName _hawk];
-	TRANSPORTS pushBack _hawk; 
 	[_hawk]execVM 'functions\transport\transport_infil_action.sqf';
 };
 
@@ -57,6 +57,7 @@ private _splitOnChoppa = {
 
 { 
  	private _choppa = call compile _x; 
+ 	// private _choppa = _x; 
  	private _canMove = canMove _choppa; 
 	private _choppaName =  vehicleVarName _choppa;
 	_defaultChoppaType = typeOf _choppa;
@@ -67,7 +68,9 @@ private _splitOnChoppa = {
 	_choppa setVariable ['TCL_Disabled', true];
 	_choppa setVariable ["Vcm_Disable",true];
 	if ( !(_canMove) ) then { 
-		[_choppa, true] call _choppaCheck;
+		// [_choppa, true] call _choppaCheck;
+		_choppa setDamage 1; 
+		TRANSPORTS deleteAt (TRANSPORTS find _choppa);
 	}; 
 	_choppa enableDynamicSimulation false;
 }  forEach TRANSPORTS;

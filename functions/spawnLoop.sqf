@@ -11,33 +11,7 @@ if (!continueLoop) exitWith {
 // ONE_LOOP = true;
 SPAWN_LOOP_COUNT = SPAWN_LOOP_COUNT + 1;
 // 'westSpawn' setMarkerPos position mobileSpawn;
-private _song = [ 
-	'extremeTrapRacingMusic', 
-	'dragonCastle', 
-	'powerfulTrapy',
-	'theArmyOfMinotaur', 
-	'computerGameIdra',
-	'chillHipHop',
-	'enigma',
-	'deflector',
-	'downtownGlow',
-	'urbanHipHop',
-	'whiteBatBroken',
-	'whiteBatCultoftheskull',
-	'whiteBatDarkAngel',
-	'whiteBatDrive',
-	'whiteBatFightLikeHell',
-	'whiteBatHardware',
-	'whiteBatHauntingoftheFlesh',
-	'whiteBatLicenseToKill',
-	'whiteBatPlagueRat',
-	'whiteBatPrisonPlanet',
-	'whiteBatRedux',
-	'whiteBatTornFlesh',
-	'whiteBatXenomorph'
-]  call BIS_fnc_selectRandom;
-hint _song; 
-playMusic _song;
+
 //declare groups to count
 
 {

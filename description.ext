@@ -61,6 +61,10 @@ class cfgFunctions{
         preInit = 1;
         file = "functions\preInit\wordArrayDefinitions.sqf";
       };
+      class factionDictionary {
+        preInit = 1;
+        file = "compositions\factionDictionary.sqf";
+      };
     };
   };
 };
