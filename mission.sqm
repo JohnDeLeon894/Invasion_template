@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=926;
+		nextID=928;
 	};
 	class MarkerIDProvider
 	{
@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={5992.3306,89.547501,11409.937};
-		dir[]={0.93613088,-0.35169041,0.0050855628};
-		up[]={0.35169727,0.93611032,0.0019104484};
-		aside[]={0.0054325787,-5.0251765e-07,-1.0000162};
+		dir[]={0.93610615,-0.35168111,0.0050855568};
+		up[]={0.35167599,0.93611985,0.0019105399};
+		aside[]={0.0054325913,0,-0.99998534};
 	};
 };
 binarizationWanted=0;
@@ -65,13 +65,15 @@ addons[]=
 	"A3_Weapons_F_Items",
 	"ace_medical_engine",
 	"ace_medical_treatment",
-	"ace_compat_rhs_usf3_nightvision"
+	"ace_compat_rhs_usf3_nightvision",
+	"A3_Modules_F_Curator_Effects",
+	"DrongosDDW"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=37;
+		items=38;
 		class Item0
 		{
 			className="A3_Ui_F";
@@ -311,6 +313,12 @@ class AddonsMetaData
 			author="ACE-Team";
 			url="https://ace3.acemod.org/";
 		};
+		class Item37
+		{
+			className="DrongosDDW";
+			name="Drongo's Dynamic Weather";
+			author="Alias/Drongo";
+		};
 	};
 };
 dlcs[]=
@@ -347,7 +355,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=163;
+		items=165;
 		class Item0
 		{
 			dataType="Marker";
@@ -4995,6 +5003,333 @@ class Mission
 			{
 			};
 			id=924;
+		};
+		class Item163
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8347.7041,296.04001,2080.656};
+			};
+			id=926;
+			type="ModulePostprocess_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModulePostprocess_F_CommitTime";
+					expression="_this setVariable ['CommitTime',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModulePostprocess_F_Template";
+					expression="_this setVariable ['Template',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="lxWS_Dust";
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item164
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8270.1563,296.04001,2039.531};
+			};
+			id=927;
+			type="DDW_Core";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="DYEL_WeightStormy";
+					expression="_this setVariable ['DDW_WeightStormy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="DYEL_WeightWindy";
+					expression="_this setVariable ['DDW_WeightWindy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0.0099999998;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="DDW_Delay";
+					expression="_this setVariable ['DDW_Delay',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="SetWind";
+					expression="_this setVariable ['DDW_SetWind',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=3;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="DYEL_WeightOvercast";
+					expression="_this setVariable ['DDW_WeightOvercast',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0.0099999998;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="DDW_Debug";
+					expression="_this setVariable ['DDW_Debug',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute6
+				{
+					property="DYEL_WeightMonsoon";
+					expression="_this setVariable ['DDW_WeightMonsoon',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute7
+				{
+					property="DDW_Cycle";
+					expression="_this setVariable ['DDW_Cycle',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=300;
+						};
+					};
+				};
+				class Attribute8
+				{
+					property="DYEL_WeightSnowstorm";
+					expression="_this setVariable ['DDW_WeightSnowstorm',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute9
+				{
+					property="DDW_ForceChangeStart";
+					expression="_this setVariable ['DDW_ForceChangeStart',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute10
+				{
+					property="DYEL_WeightTornado";
+					expression="_this setVariable ['DDW_WeightTornado',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute11
+				{
+					property="DYEL_WeightRainy";
+					expression="_this setVariable ['DDW_WeightRainy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0.0099999998;
+						};
+					};
+				};
+				class Attribute12
+				{
+					property="DDW_ChangeTime";
+					expression="_this setVariable ['DDW_ChangeTime',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=10;
+						};
+					};
+				};
+				class Attribute13
+				{
+					property="DDW_SkipTimeStart";
+					expression="_this setVariable ['DDW_SkipTimeStart',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute14
+				{
+					property="DDW_Chance";
+					expression="_this setVariable ['DDW_Chance',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=50;
+						};
+					};
+				};
+				class Attribute15
+				{
+					property="DYEL_WeightDuststorm";
+					expression="_this setVariable ['DDW_WeightDuststorm',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute16
+				{
+					property="MaxFog";
+					expression="_this setVariable ['DDW_MaxFog',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0.5;
+						};
+					};
+				};
+				class Attribute17
+				{
+					property="DYEL_WeightSunny";
+					expression="_this setVariable ['DDW_WeightSunny',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=1;
+						};
+					};
+				};
+				class Attribute18
+				{
+					property="DDW_ForceChange";
+					expression="_this setVariable ['DDW_ForceChange',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute19
+				{
+					property="DYEL_WeightFoggy";
+					expression="_this setVariable ['DDW_WeightFoggy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0.0099999998;
+						};
+					};
+				};
+				class Attribute20
+				{
+					property="DYEL_WeightCloudy";
+					expression="_this setVariable ['DDW_WeightCloudy',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0.0099999998;
+						};
+					};
+				};
+				nAttributes=21;
+			};
 		};
 	};
 	class Connections

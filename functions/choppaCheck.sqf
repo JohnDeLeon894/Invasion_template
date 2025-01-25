@@ -75,7 +75,7 @@ private _splitOnChoppa = {
 	_choppa enableDynamicSimulation false;
 }  forEach TRANSPORTS;
 
-if (_choppaCount < 4) then {
+if (_choppaCount < 6) then {
 	private _randomNumber = floor random 100;
 	private _newChoppa = format ['foHawk_%1', _randomNumber];
 	[_newChoppa, false] call _choppaCheck;
