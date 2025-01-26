@@ -13,10 +13,29 @@ diag_log ['Positions passed to fetch task', _positions];
 TASK_POS = _position;
 // get composition 
 spawnerDone = false;
+// find best pos looking for buildings 
+// myPlaces = selectBestPlaces [position player, 50, "meadow + 2*hills", 1, 5];
+// nearestObjects [player, ["house"], 200];
+private _buildingFound = false;
+private _nearestBuildings = [];
+private _radius = 50;
+
+while {! _buildingFound} do {
+	_nearestBuildings = nearestObjects [_position, ["house"], _radius];
+	if ((count _nearestBuildings) > 1) then {
+		_buildingFound = true;
+	} else {
+		_radius = _radius + 50
+	};
+};
+
+private _selectedBuilding = selectRandom _nearestBuildings;
+private _buildingPositions = [_selectedBuilding] call BIS_fnc_buildingPositions;
+private _spawnDocsPosition = selectRandom _buildingPositions;
 
 // spawn composition 
 // [[ 0, 0, 0 ], _compositionArray] execVM 'functions\spawners\compositionSpawner.sqf';
-[_position, _compositionArray] execVM 'functions\spawners\compositionSpawner.sqf';
+[_spawnDocsPosition, _compositionArray] execVM 'functions\spawners\compositionSpawner.sqf';
 
 // create retrieval item
 private _addItem = { 

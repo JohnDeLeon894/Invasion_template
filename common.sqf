@@ -129,7 +129,7 @@ if (isNil 'ALL_TRIGGERS') then {
 		private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
 
 		if (_trigger in RED_TRIGGERS) then {
-			_triggerColor setMarkerColor 'ColorRed';
+			_triggerColor = 'ColorRed';
 		};
 		private _triggerMark = createMarker[str _trigger, position _trigger];
 		_triggerMark setMarkerBrush 'CROSS';
