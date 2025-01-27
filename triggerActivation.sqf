@@ -2,7 +2,7 @@ private _trigger = _this select 0;
 private _thisList = _this select 1;
 private _count = _this select 2; 
 private _namedSector = _this select 3;
-diag_log _namedSector;
+// diag_log _namedSector;
 private _triggerName = str _trigger;
 diag_log format ['*** the trigger name from trigger activation %1 ***',_triggerName];
 private _useSectorName = !isNil '_namedSector';
@@ -16,6 +16,7 @@ private _description = [
 ];
 
 private _sectorName = format['%1', [_trigger, _namedSector] select _useSectorName];
+private _isControlSector = 'control' in (toLower _sectorName); 
 private _state = 'AUTOASSIGNED';
 private _priority = -1;
 private _showNotification = true;
@@ -36,64 +37,19 @@ private _isTooFewLocations = count _nearbyLocations < 10;
 if (_isTooFewLocations) then {
 	_nearbyLocations = position _trigger nearObjects ['House', _triggerAreaRadius];
 };
-// if (!_useSectorName) then {
-// 	_type = 'move';
-// 	PATROL_COMPLETE = 0;
-// 	diag_log format ['*********** the type in triggerActivation = %1 *************', _type];
-// } else {
-// 	GROUPS_KILLED = 0;
-// 	diag_log format ['*********** the type in triggerActivation = %1 *************', _type];
-// };
-// player createDiarySubject['taskRecord', 'Task Record'];
-// [_owner, _parentTaskId, _description, objNull, _state, _priority, _showNotification, _type, _visibleIn3D] call BIS_fnc_taskCreate;
 
 _activePositions = [_trigger, _count, _nearbyLocations, _isTooFewLocations, _triggerAreaRadius, _parentTaskId, _useSectorName, _type] call jMD_fnc_sectorSpawn;
 
 // deligate mission assignment 
-[ _activePositions, _sectorName ]execVM 'functions\taskManagement\taskManager.sqf';
+[ _activePositions, _sectorName, _sectorName ]execVM 'functions\taskManagement\taskManager.sqf';
 
-// hint format['this is the trigger %1',_trigger];
-
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['this is the trigger activated: %1', _trigger]]];
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['this is the trigger List: %1', _thisList]]];
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['Does the player have a waypoint in triggert: %1', _isPlayerWaypointInList]]];
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['Is the player in the trigger List: %1', _isPlayerInList]]];
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['Is too few locations: %1', _isTooFewLocations]]];
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['Trigger area radius: %1', _triggerAreaRadius]]];
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['Nearest Locations List: %1/nLocations returned: %2; /nlist / returned location counts %3 / %4', _nearbyLocations, _activePositions, count _nearbyLocations, count _activePositions]]];
-
-// player createDiaryRecord ['taskRecord',[_diaryTitle, format['This will only show up if %1 evaluates to true.',_isPlayerWaypointInList]]];
-
-if ((count waypoints group player) > 1) then {
-	{
-		deleteWaypoint [ group player, waypoints group player find _x ];
-	} forEach waypoints group player;
-};
-
-// {
-// 	private [ '_destination'];
-// 	if (_isTooFewLocations) then {
-// 		_destination = position _x;
-// 	} else {
-// 		_destination = (locationPosition _x);
-// 	};
-
+// don't know if this is needed
+// if ((count waypoints group player) > 1) then {
 // 	{
-// 		private _group = _x;
-// 		[_x, 50, _destination, false, false] call jMD_fnc_deleteAndSetWaypoints;
-// 	} forEach FRIENDLY_GROUPS; 
+// 		deleteWaypoint [ group player, waypoints group player find _x ];
+// 	} forEach waypoints group player;
+// };
 
-// 	[group player, 50, _destination, false, false] call jMD_fnc_deleteAndSetWaypoints;
-
-// // } forEach EAST_POSITIONS;
-// } forEach _activePositions;
-
-
-// private _aoMarker = createMarker[format['%1', _trigger], position _trigger];
-// _aoMarker setMarkerBrush 'CROSS';
-// _aoMarker setMarkerShape 'RECTANGLE';
-// _aoMarker setMarkerSize _triggerArea;
-// _aoMarker setMarkerColor 'ColorOrange';
 _aoMarker = str _trigger;
 
 sectorTrigger = createTrigger['EmptyDetector', position _trigger];

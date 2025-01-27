@@ -1,5 +1,5 @@
 // params ['_spawnLocations', '_sectorName'];
-
+TARGET_VEHICLES = [];
 private _spawnLocations = _this select 0;
 private _sectorName = _this select 1;
 
@@ -39,6 +39,7 @@ for [{private _i = 0}, {_i < _totalTaskCount}, {_i = _i + 1 }] do {
 	private _childTasIdk = _missionName;
 
 	private _targetVehicle = createVehicle [_vehicleType, _vehicleSpawnPoint];
+	TARGET_VEHICLES pushBack _targetVehicle;
 	diag_log ['the position:', _vehicleSpawnPoint];
 
 	_description = [
