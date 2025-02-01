@@ -4,7 +4,7 @@ private _trigger = _this select 0;
 private _thisList = _this select 1;
 private _count = _this select 2; 
 private _namedSector = _this select 3;
-// get trigger name
+// diag_log _namedSector;
 private _triggerName = str _trigger;
 diag_log format ['*** the trigger name from trigger activation %1 ***',_triggerName];
 // test for named sector
@@ -28,6 +28,7 @@ private _description = [
 
 // kind of a hacky if statement. True evaluates to 1, false evaluates to 0. 
 private _sectorName = format['%1', [_trigger, _namedSector] select _useSectorName];
+private _isControlSector = 'control' in (toLower _sectorName); 
 // create task arguments
 private _state = 'AUTOASSIGNED';
 private _priority = -1;
@@ -57,13 +58,14 @@ if (_isTooFewLocations) then {
 _activePositions = [_trigger, _count, _nearbyLocations, _isTooFewLocations, _triggerAreaRadius, _parentTaskId, _useSectorName, _type] call jMD_fnc_sectorSpawn;
 
 // deligate mission assignment 
-[ _activePositions, _sectorName ]execVM 'functions\taskManagement\taskManager.sqf';
+[ _activePositions, _sectorName, _sectorName ]execVM 'functions\taskManagement\taskManager.sqf';
 
-if ((count waypoints group player) > 1) then {
-	{
-		deleteWaypoint [ group player, waypoints group player find _x ];
-	} forEach waypoints group player;
-};
+// don't know if this is needed
+// if ((count waypoints group player) > 1) then {
+// 	{
+// 		deleteWaypoint [ group player, waypoints group player find _x ];
+// 	} forEach waypoints group player;
+// };
 
 _aoMarker = str _trigger;
 

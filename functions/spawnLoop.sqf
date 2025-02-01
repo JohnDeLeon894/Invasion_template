@@ -34,11 +34,24 @@ SPAWN_LOOP_COUNT = SPAWN_LOOP_COUNT + 1;
 	// [_x, 1000, 60] spawn lambs_wp_fnc_taskHunt;
 	// [_x, _spawnPoint, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
 
-	[_x, _spawnPoint, _areaRadius, 'garrison'] call jMD_fnc_setOrders;
+	[_x, SECTOR_POS, _areaRadius, 'garrison'] call jMD_fnc_setOrders;
 
 	_x enableDynamicSimulation true;
 
 } forEach ENEMY_GROUPS;
+
+{
+	private _group = createGroup east;
+	private _position = markerPos _x;
+	private _areaRadius = 200;
+
+	[_group, RED_UNIT_SIZE, RED_UNITS_ARRAY, _position] call  jMD_fnc_spawnGroups;
+
+	[_group, SECTOR_POS, _areaRadius, 'patrol'] call jMD_fnc_setOrders;
+
+	_group enableDynamicSimulation true;
+	
+} forEach RED_BASES;
 
 {
 	// Current result is saved in variable _x
