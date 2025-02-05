@@ -36,6 +36,7 @@ ally_1 = group player;
 ally_2 = createGroup [west, false];
 ally_3 = createGroup [west, false];
 ally_4 = createGroup [west, false];
+// ally_5 = createGroup [west, false];
 backup_alpha = createGroup [west, false];
 backup_bravo = createGroup [west, false];
 backup_charlie = createGroup [west, false];

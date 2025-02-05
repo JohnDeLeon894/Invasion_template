@@ -7,7 +7,7 @@ private _mapGrid = mapGridPosition _pos;
 
 private _response = format['This is %1, orders received. Patrolling around %2', _groupLeader, _mapGrid];
 
-[_group, _pos, _radius, 'patrol']call jMD_fnc_setOrders;
+[_group, _pos, _radius, 'attack']call jMD_fnc_setOrders;
 
 _group setVariable ['currentOrders', _orders];
 [_group, _marker, _orders, _pos, _response] execVM _path;

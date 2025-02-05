@@ -4,7 +4,7 @@ private _sectorName = _this select 1;
 
 private _missionList = ['patrol', 'assault', 'destroy', 'fetch'];
 // private _chosenMission = _missionList call BIS_fnc_selectRandom;
-private _chosenMission = 'destroy';
+private _chosenMission = 'assault';
 
 switch (_chosenMission) do {
 	case 'patrol': {

@@ -30,5 +30,5 @@ hint _song;
 playMusic _song;
 
 _delay = _delay + (random 90);
-
-[]execVM 'function\songLoop.sqf';
+sleep _delay; 
+[]execVM 'functions\songLoop.sqf';

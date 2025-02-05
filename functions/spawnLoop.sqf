@@ -16,24 +16,13 @@ SPAWN_LOOP_COUNT = SPAWN_LOOP_COUNT + 1;
 
 {
 	// Current result is saved in variable _x
+	if ((count units east) > 100) then { continue;};
 	private _count = {alive _x} count units _x;
 	private _spawnPoint = EAST_SPAWN;
 	private _areaRadius = 200;
 
 	diag_log 'calling spawn groups from spawnLoop 1';
 	private _results =  [_x, (RED_UNIT_SIZE - _count), RED_UNITS_ARRAY, _spawnPoint] call  jMD_fnc_spawnGroups;
-	// private _waypoints = [_x, 200, _location, true, true] call jMD_fnc_deleteAndSetWaypoints;
-		/*
-	0: Group performing action, either unit <OBJECT> or group <GROUP>
-	1: Range of tracking, default is 500 meters <NUMBER>
-	2: Delay of cycle, default 15 seconds <NUMBER>
-	3: Area the AI Camps in, default [] <ARRAY>
-	4: Center Position, if no position or Empty Array is given it uses the Group as Center and updates the position every Cycle, default [] <ARRAY>
-	5: Only Players, default true <BOOL>
-	*/
-	// [_x, 1000, 60] spawn lambs_wp_fnc_taskHunt;
-	// [_x, _spawnPoint, 200, [], false, true, -1, true] call lambs_wp_fnc_taskGarrison;
-
 	[_x, _spawnPoint, _areaRadius, 'garrison'] call jMD_fnc_setOrders;
 
 	_x enableDynamicSimulation true;
@@ -42,6 +31,7 @@ SPAWN_LOOP_COUNT = SPAWN_LOOP_COUNT + 1;
 
 {
 	// Current result is saved in variable _x
+	if ((count units west) > 100) then { continue;};
 	scopeName 'unitSpawn';
 	private _groupSize = BLU_UNIT_SIZE; // desired size of each group
 	private _count = {alive _x}count units _x;

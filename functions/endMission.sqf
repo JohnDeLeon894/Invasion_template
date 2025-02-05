@@ -5,12 +5,14 @@ currentDate = date;
 diag_log format['the Trigger Name: %1', _trigger];
 diag_log format[" *** end mission triggered : %1 : %2 ***", currentDate, RED_TRIGGERS] ;
 saveVar 'currentDate';
-saveVar 'ALL_TRIGGERS';
-saveVar 'RED_TRIGGERS';
+// only mission on this cycle
+// saveVar 'ALL_TRIGGERS';
+// saveVar 'RED_TRIGGERS';
 
-hint format['%1', RED_TRIGGERS];
+// hint format['%1', RED_TRIGGERS];
 
-waitUntil{player distance WEST_SPAWN < 300};
+// don't wait till back at spawn
+// waitUntil{player distance WEST_SPAWN < 300}; 
 sleep 10;
 
 if ( count RED_TRIGGERS > 0 && false ) then {

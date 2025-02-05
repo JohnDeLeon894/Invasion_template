@@ -83,6 +83,7 @@ Arguments:
 
 private _orders = toLower _orders;
 
+diag_log format ['orders passed to setGroupOrders: %1', _orders];
 switch (_orders) do {
 	case 'patrol': { [_group, _pos, _radius] call _setPatrol; };
 	case 'garrison': { [_group, _pos, _radius] call _setGarrison; };
