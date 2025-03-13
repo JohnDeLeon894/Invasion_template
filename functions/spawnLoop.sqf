@@ -11,8 +11,18 @@ if (!continueLoop) exitWith {
 // ONE_LOOP = true;
 SPAWN_LOOP_COUNT = (SPAWN_LOOP_COUNT + 1);
 // 'westSpawn' setMarkerPos position mobileSpawn;
-
+private _unitsTotalCount = count allUnits;
 //declare groups to count
+
+if (_unitsTotalCount > 120) exitWith {
+	diag_log "---------------- skipping spawner this cycle -------------------";
+	sleep 600; //1200 = 20 min
+	diag_log 'Spawn Timer End';
+	// saveGame;
+	// ONE_LOOP = false;
+	diag_log 'starting spawn loop again';
+	[] spawn jMD_fnc_spawnLoop;
+};
 
 {
 	// Current result is saved in variable _x
