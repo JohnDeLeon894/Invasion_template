@@ -66,6 +66,10 @@ ARTY = [
 	m4
 ];
 
+GROUND_TRANSPORTS = [
+	'Rhino_1'
+];
+
 // variable for counting stuff
 GROUP_COUNT = 0;
 continueLoop = true;

@@ -9,7 +9,7 @@ if (!continueLoop) exitWith {
 // };
 
 // ONE_LOOP = true;
-SPAWN_LOOP_COUNT = SPAWN_LOOP_COUNT + 1;
+SPAWN_LOOP_COUNT = (SPAWN_LOOP_COUNT + 1);
 // 'westSpawn' setMarkerPos position mobileSpawn;
 
 //declare groups to count
@@ -155,8 +155,8 @@ diag_log 'deleting the dead';
 
 // check to see if all support assets are still alive
 
-[] call jMD_fnc_choppaCheck;
-
+// [] call jMD_fnc_choppaCheck;
+[] execVM 'functions\transport\transportCheck.sqf';
 // if asset is damaged and away from base...
 	// if crew is alive, repair asset and order to return to base waypoint
 	// if crew is dead, spawn new crew and order them to asset and to bring it back to base. 
