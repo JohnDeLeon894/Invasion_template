@@ -91,9 +91,10 @@ WEST_VEHICLE_SPAWN = markerPos ['westVehicleSpawn', false];
 EAST_VEHICLE_SPAWN = markerPos ['eastVehicleSpawn', false];
 CHOPPA_SPAWN = markerPos ['CHOPPA_SPAWN', false];
 
+
 [] execVM "functions\Sectors\findSectors.sqf";
 
-[] execVM "functions\Sectors\createControlSector.sqf";
+// [] execVM "functions\Sectors\createControlSector.sqf";
 
 TRANSPORTS = [];
 
@@ -150,6 +151,22 @@ RED_UNITS_ARRAY = BocoHaran_units + Isis_units;
 RED_VEHICLE_ARRAY = Isis_Vehicles;
 
 RED_TANK_ARRAY = Isis_Tanks;
+
+/**
+BLU_UNITS_ARRAY = WW2USArmy;
+
+BLU_GUARD_ARRAY = WW2USArmy;
+
+BLU_VEHICLE_ARRAY = WW2USArmyVehicles;
+
+BLU_TANK_ARRAY = ww2USArmyArmor;
+
+RED_UNITS_ARRAY = ww2StormTroopers;
+
+RED_VEHICLE_ARRAY = ww2StormTroopersVehicles;
+
+RED_TANK_ARRAY = ww2StormTroopersTanks;
+ */
 
 COMMON_DONE = true;
 

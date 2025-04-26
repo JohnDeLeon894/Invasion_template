@@ -13,17 +13,18 @@ REGION_TRIGGERS = [REGION_TRIGGERS, []] select _isNil_regionTriggers;
 
 if (_isNil_allTriggers) then {
 	diag_log 'ALL_TRIGGERS is null, rescanning triggers';
+	player createDiarySubject ['TriggersFound', 'Triggers Found'];
+	player createDiaryRecord ['TriggersFound', ['Variable was not passed', 'Variable was not passed']];
+
 	// ALL_TRIGGERS = [];
 	// GREEN_TRIGGERS = [];
 	// RED_TRIGGERS = [];
 	{
-		private _trigger = _x;
-		private _triggerName = format ['%1',_x];
-		player createDiarySubject ['TriggersFound', 'Triggers Found'];
-		player createDiaryRecord ['TriggersFound', ['Variable was not passed', 'Variable was not passed']];
+		private _trigger = (_x select 1);
+		private _triggerName = (_x select 0);
 		if ('sector' in _triggerName) then {
 			private _title = _triggerName;
-			private _entry = format ['Found trigger %1. Distance from player %2', _trigger, player distance _x];
+			private _entry = format ['Found trigger %1. Distance from player %2', _triggerName, player distance _trigger];
 			player createDiaryRecord ['TriggersFound', [_title, _entry]];
 			private _triggerMark = createMarker[str _triggerName, position _trigger];
 			private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
@@ -31,23 +32,24 @@ if (_isNil_allTriggers) then {
 			_triggerMark setMarkerShape 'RECTANGLE';
 			_triggerMark setMarkerSize _triggerArea;
 			_triggerMark setMarkerColor 'ColorRed';
-			ALL_TRIGGERS pushBack _triggerName;
-			RED_TRIGGERS pushBack _triggerName;
+			ALL_TRIGGERS pushBack _trigger;
+			RED_TRIGGERS pushBack _trigger;
 		};
 		if ('region' in _triggerName) then {
 			private _title = _triggerName;
-			private _entry = format ['Found trigger %1. Distance from player %2', _trigger, player distance _x];
+			private _entry = format ['Found trigger %1. Distance from player %2', _trigger, player distance _trigger];
 			player createDiaryRecord ['TriggersFound', [_title, _entry]];
-			private _triggerMark = createMarker[str _triggerName, position _trigger];
+			private _triggerMark = createMarker[_triggerName, position _trigger];
 			private _triggerArea = [triggerArea _trigger select 0, triggerArea _trigger select 1];
 			_triggerMark setMarkerBrush 'CROSS';
 			_triggerMark setMarkerShape 'RECTANGLE';
 			_triggerMark setMarkerSize _triggerArea;
 			_triggerMark setMarkerColor 'ColorRed';
-			ALL_TRIGGERS pushBack _triggerName;
-			RED_TRIGGERS pushBack _triggerName;
+			ALL_TRIGGERS pushBack _trigger;
+			RED_TRIGGERS pushBack _trigger;
 		};
-	} forEach allMissionObjects 'EmptyDetector';
+	// } forEach allMissionObjects 'EmptyDetector';
+	} forEach GENERATED_SECTORS;
 } else {
 	diag_log 'Saved triggers list detected';
 	player createDiarySubject ['TriggersFound', 'Triggers Found'];

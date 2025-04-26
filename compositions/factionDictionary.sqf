@@ -222,6 +222,65 @@ redWolfPMC = [
 	"O_RedWolf_Contractor_TL_2025_01"
 ];
 
+ww2StormTroopers = [
+	'SPE_sturmtrooper_SquadLead',
+	'SPE_sturmtrooper_mgunner',
+	'SPE_sturmtrooper_medic',
+	'SPE_sturmtrooper_Assist_SquadLead',
+	'SPE_sturmtrooper_stggunner',
+	'SPE_sturmtrooper_amgunner',
+	'SPE_sturmtrooper_LAT_rifleman',
+	'SPE_sturmtrooper_ober_grenadier',
+	'SPE_sturmtrooper_rifleman',
+	'SPE_sturmtrooper_SquadLead',
+	'SPE_sturmtrooper_mgunner',
+	'SPE_sturmtrooper_mgunner',
+	'SPE_sturmtrooper_sapper_gefr',
+	'SPE_sturmtrooper_stggunner',
+	'SPE_sturmtrooper_amgunner',
+	'SPE_sturmtrooper_sapper',
+	'SPE_sturmtrooper_sapper',
+	'SPE_sturmtrooper_amgunner',
+	'SPE_sturmtrooper_Flamethrower_Operator',
+	'SPE_sturmtrooper_AT_grenadier',
+	'SPE_sturmtrooper_AT_grenadier',
+	'SPE_sturmtrooper_SquadLead',
+	'SPE_sturmtrooper_AT_grenadier',
+	'SPE_sturmtrooper_AT_grenadier',
+	'SPE_sturmtrooper_Assist_SquadLead',
+	'SPE_sturmtrooper_LAT_rifleman',
+	'SPE_sturmtrooper_LAT_rifleman',
+	'SPE_sturmtrooper_LAT_rifleman',
+	'SPE_sturmtrooper_ober_grenadier',
+	'SPE_sturmtrooper_LAT_rifleman',
+	'SPE_sturmtrooper_untersturmfuhrer',
+	'SPE_sturmtrooper_rifleman',
+	'SPE_sturmtrooper_medic',
+	'SPE_sturmtrooper_radioman',
+	'SPE_sturmtrooper_sapper_gefr',
+	'SPE_sturmtrooper_Flamethrower_Operator',
+	'SPE_sturmtrooper_SquadLead',
+	'SPE_sturmtrooper_mgunner',
+	'SPE_sturmtrooper_medic',
+	'SPE_sturmtrooper_Assist_SquadLead',
+	'SPE_sturmtrooper_stggunner',
+	'SPE_sturmtrooper_amgunner',
+	'SPE_sturmtrooper_LAT_rifleman',
+	'SPE_sturmtrooper_ober_grenadier',
+	'SPE_sturmtrooper_rifleman',
+	'SPE_sturmtrooper_SquadLead',
+	'SPE_sturmtrooper_mgunner',
+	'SPE_sturmtrooper_ober_rifleman',
+	'SPE_sturmtrooper_amgunner',
+	'SPE_ST_AT_Soldier_SquadLead',
+	'SPE_ST_AT_Soldier',
+	'SPE_ST_AT_Soldier',
+	'SPE_ST_AT_Soldier_Assistant',
+	'SPE_ST_AT_Soldier_Assistant',
+	'SPE_sturmtrooper_sniper',
+	'SPE_sturmtrooper_sniper'
+];
+
 //******************************* enemy vehicle units **********************************************/
 
 Isis_Vehicles = [
@@ -392,6 +451,12 @@ CSAT_Vehicles = [
 	'CUP_O_UAZ_MG_CSAT'
 ];
 
+ww2StormTroopersVehicles = [
+	'SPE_GER_R200_MG34',
+	'SPE_OpelBlitz',
+	'SPE_OpelBlitz_Open'
+];
+
 //******************************* enemy tank units **********************************************/
 Isis_Tanks = [
 	'LOP_ISTS_OPF_BTR60',
@@ -490,6 +555,11 @@ CSAT_Tanks = [
 	'CUP_O_BTR80A_CSAT',
 	'O_APC_Wheeled_02_rcws_F',
 	'O_APC_Wheeled_02_rcws_v2_F'
+];
+
+ww2StormTroopersTanks = [
+	'SPE_PzKpfwVI_H1',
+	'SPE_PzKpfwIII_J'
 ];
 
 
@@ -790,6 +860,78 @@ desertLiberationForces = [
 	'B_BALF2025_Soldier_SS77_01',
 	'B_BALF2025_Soldier_UAV_Operator_01'
 ];
+
+WW2USArmy = [
+	'SPE_US_Assist_SquadLead',
+	'SPE_US_Grenadier',
+	'SPE_US_Grenadier',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Sniper',
+	'SPE_US_Sniper',
+	'SPE_US_SquadLead',
+	'SPE_US_Assist_SquadLead',
+	'SPE_US_Sniper',
+	'SPE_US_Medic',
+	'SPE_US_Autorifleman',
+	'SPE_US_Rifleman_AmmoBearer',
+	'SPE_US_Grenadier',
+	'SPE_US_Grenadier',
+	'SPE_US_Assist_Autorifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_SquadLead',
+	'SPE_US_Assist_SquadLead',
+	'SPE_US_AT_Soldier',
+	'SPE_US_AT_Soldier',
+	'SPE_US_AT_Soldier',
+	'SPE_US_Autorifleman',
+	'SPE_US_Assist_Autorifleman',
+	'SPE_US_Grenadier',
+	'SPE_US_Grenadier',
+	'SPE_US_Rifleman_AmmoBearer',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_SquadLead',
+	'SPE_US_Autorifleman',
+	'SPE_US_Assist_Autorifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman_AmmoBearer',
+	'SPE_US_SquadLead',
+	'SPE_US_Assist_SquadLead',
+	'SPE_US_Sniper',
+	'SPE_US_Medic',
+	'SPE_US_Autorifleman',
+	'SPE_US_Rifleman_AmmoBearer',
+	'SPE_US_Grenadier',
+	'SPE_US_Grenadier',
+	'SPE_US_Assist_Autorifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_Rifleman',
+	'SPE_US_HBT44_SquadLead',
+	'SPE_US_HBT44_HMGunner',
+	'SPE_US_HBT44_Rifleman',
+	'SPE_US_HBT44_Assist_SquadLead',
+	'SPE_US_HBT44_HMGunner',
+	'SPE_US_HBT44_AT_Soldier',
+	'SPE_US_HBT44_Rifleman',
+	'SPE_US_HBT44_Rifleman',
+	'SPE_US_HBT44_AHMGunner',
+	'SPE_US_HBT44_AHMGunner',
+	'SPE_US_HBT44_Rifleman',
+	'SPE_US_HBT44_SquadLead',
+	'SPE_US_HBT44_Flamethrower_Operator',
+	'SPE_US_HBT44_Rifleman',
+	'SPE_US_HBT44_Assist_SquadLead',
+	'SPE_US_HBT44_Flamethrower_Operator',
+	'SPE_US_HBT44_Rifleman',
+	'SPE_US_HBT44_Engineer',
+	'SPE_US_HBT44_Engineer'
+];
 //******************************* bluefor vehicle units **********************************************/
 
 usArmy_cars = [
@@ -867,6 +1009,15 @@ marsocRaidersVehicles = [
 	'rhsusf_m1240a1_m2_usmc_wd',
 	'rhsusf_m1240a1_m240_usmc_wd'
 ];
+
+WW2USArmyVehicles = [
+	'SPE_CCKW_353_Open',
+	'SPE_CCKW_353',
+	'SPE_US_G503_MB_M2',
+	'SPE_US_G503_MB_M2_PATROL',
+	'SPE_US_M3_Halftrack',
+	'SPE_US_M3_Halftrack_Unarmed_Open'
+];
 //******************************* bluefor tank units **********************************************/
 
 usArmy_armor = [
@@ -913,4 +1064,16 @@ marsocRaidersTanks = [
 
 desertLiberation_armor = [
 	'CFP_B_UGARMY_BMP_2_01'
+];
+
+ww2USArmyArmor = [
+	'SPE_M4A0_75_Early',
+	'SPE_M10',
+	'SPE_M18_Hellcat',
+	'SPE_M4A0_composite',
+	'SPE_M4A0_75',
+	'SPE_M4A0_105',
+	'SPE_M4A1_75_erla',
+	'SPE_M4A1_75',
+	'SPE_M4A1_76'
 ];

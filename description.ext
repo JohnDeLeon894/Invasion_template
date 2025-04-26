@@ -65,6 +65,10 @@ class cfgFunctions{
         preInit = 1;
         file = "compositions\factionDictionary.sqf";
       };
+	  class sectorGenerator {
+		preInit = 1;
+		file = "functions\Sectors\sectorGenerator.sqf";
+	  };
     };
   };
 };
