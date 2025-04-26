@@ -2,12 +2,12 @@ hint 'activated!';
 private ['_player', '_closestTrigger', '_nextClosest', '_selectedTrigger'];
 _player = player;
 // _closestTrigger = call compile (ALL_TRIGGERS select 0);
-_closestTrigger = call compile (RED_TRIGGERS select 0);
-_nextClosest = call compile (RED_TRIGGERS select 0);
-_lastClosest = call compile (RED_TRIGGERS select 0);
+_closestTrigger = (RED_TRIGGERS select 0);
+_nextClosest = (RED_TRIGGERS select 0);
+_lastClosest = (RED_TRIGGERS select 0);
 
 {
-	private _currentTrigger = call compile _x;
+	private _currentTrigger = _x;
 	private _distanceA = player distance _currentTrigger;
 	private _distanceB = player distance _closestTrigger;
 	private _distanceC = player distance _nextClosest;
@@ -31,10 +31,10 @@ _selectedTrigger = _triggerList call BIS_fnc_selectRandom;
 SECTOR_POS = position _selectedTrigger;
 // _selectedTrigger = _triggerList select 0;
 private _subject = player createDiarySubject ['triggerPicker', 'trigger picker'];
-private _triggerListText = format['%1', _triggerList];
+private _triggerListText = format['%1', str _triggerList];
 player createDiaryRecord ['triggerPicker', ['the trigger array', _triggerListText]];
-player createDiaryRecord ['triggerPicker', ['the trigger chosen', format['%1',_selectedTrigger]]];
-player createDiaryRecord ['triggerPicker', ['the red triggers', format['%1',RED_TRIGGERS]]];
+player createDiaryRecord ['triggerPicker', ['the trigger chosen', format['%1',str _selectedTrigger]]];
+player createDiaryRecord ['triggerPicker', ['the red triggers', format['%1',str RED_TRIGGERS]]];
 
 private _copyStatements = triggerStatements _selectedTrigger;
 private _copyActivation = _copyStatements select 1;

@@ -91,9 +91,10 @@ WEST_VEHICLE_SPAWN = markerPos ['westVehicleSpawn', false];
 EAST_VEHICLE_SPAWN = markerPos ['eastVehicleSpawn', false];
 CHOPPA_SPAWN = markerPos ['CHOPPA_SPAWN', false];
 
+
 [] execVM "functions\Sectors\findSectors.sqf";
 
-[] execVM "functions\Sectors\createControlSector.sqf";
+// [] execVM "functions\Sectors\createControlSector.sqf";
 
 TRANSPORTS = [];
 

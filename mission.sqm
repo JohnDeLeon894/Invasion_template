@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={708.87048,43.213913,384.54236};
-		dir[]={0.9295665,-0.28860611,0.22940083};
-		up[]={0.2802017,0.95744735,0.069148764};
-		aside[]={0.2395957,5.0509698e-08,-0.97087884};
+		dir[]={0.92956096,-0.2886042,0.22939937};
+		up[]={0.28019804,0.95744842,0.069147967};
+		aside[]={0.23959446,0,-0.970873};
 	};
 };
 binarizationWanted=0;
@@ -238,7 +238,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=56;
+		items=52;
 		class Item0
 		{
 			dataType="Marker";
@@ -1600,10 +1600,10 @@ class Mission
 		class Item39
 		{
 			dataType="Trigger";
-			position[]={1000.139,54.63213,997.43903};
+			position[]={2965.3335,47.029938,1213.2379};
 			class Attributes
 			{
-				name="sector_1";
+				name="legacy_1";
 				condition="false";
 				onActivation="call{private _numberToSpawn = ((random 6) + 4);" \n "ON_MISSION = true;[thisTrigger, thisList, _numberToSpawn] execVM ""triggerActivation.sqf"";}";
 				sizeA=1000;
@@ -1617,27 +1617,10 @@ class Mission
 		class Item40
 		{
 			dataType="Trigger";
-			position[]={1116.009,38.757912,1527.1379};
+			position[]={2769.0669,51.739208,1362.572};
 			class Attributes
 			{
-				name="sector_2";
-				condition="false";
-				onActivation="call{private _numberToSpawn = ((random 6) + 4);" \n "ON_MISSION = true;[thisTrigger, thisList, _numberToSpawn, ""Shapur zone 1""] execVM ""triggerActivation.sqf"";}";
-				sizeA=150;
-				sizeB=150;
-				activationBy="WEST";
-				isRectangle=1;
-			};
-			id=64;
-			type="EmptyDetectorAreaR250";
-		};
-		class Item41
-		{
-			dataType="Trigger";
-			position[]={1585.817,42.86364,1131.094};
-			class Attributes
-			{
-				name="sector_3";
+				name="legacy_3";
 				condition="false";
 				onActivation="call{private _numberToSpawn = ((random 6) + 4);" \n "ON_MISSION = true;[thisTrigger, thisList, _numberToSpawn, ""Shapur zone 2""] execVM ""triggerActivation.sqf"";}";
 				sizeA=150;
@@ -1647,61 +1630,8 @@ class Mission
 			};
 			id=65;
 			type="EmptyDetectorAreaR250";
-			atlOffset=3.8146973e-06;
 		};
-		class Item42
-		{
-			dataType="Trigger";
-			position[]={1584.061,46.606102,1698.376};
-			class Attributes
-			{
-				name="sector_4";
-				condition="false";
-				onActivation="call{private _numberToSpawn = ((random 6) + 4);" \n "ON_MISSION = true;[thisTrigger, thisList, _numberToSpawn, ""Shapur zone 3""] execVM ""triggerActivation.sqf"";}";
-				sizeA=150;
-				sizeB=150;
-				activationBy="WEST";
-				isRectangle=1;
-			};
-			id=66;
-			type="EmptyDetectorAreaR250";
-		};
-		class Item43
-		{
-			dataType="Trigger";
-			position[]={1180.114,38.100697,488.29099};
-			class Attributes
-			{
-				name="sector_5";
-				condition="false";
-				onActivation="call{private _numberToSpawn = ((random 6) + 4);" \n "ON_MISSION = true;[thisTrigger, thisList, _numberToSpawn, ""Oil Storage Facility""] execVM ""triggerActivation.sqf"";}";
-				sizeA=150;
-				sizeB=150;
-				activationBy="WEST";
-				isRectangle=1;
-			};
-			id=67;
-			type="EmptyDetectorAreaR250";
-		};
-		class Item44
-		{
-			dataType="Trigger";
-			position[]={1526.746,43.756969,1392.2111};
-			class Attributes
-			{
-				name="sector_6";
-				condition="false";
-				onActivation="call{private _numberToSpawn = ((random 6) + 4);" \n "ON_MISSION = true;[thisTrigger, thisList, _numberToSpawn, ""Shapur Proper""] execVM ""triggerActivation.sqf"";}";
-				sizeA=150;
-				sizeB=150;
-				activationBy="WEST";
-				isRectangle=1;
-			};
-			id=68;
-			type="EmptyDetectorAreaR250";
-			atlOffset=8.0108643e-05;
-		};
-		class Item45
+		class Item41
 		{
 			dataType="Marker";
 			position[]={1344.088,40.410999,850.20801};
@@ -1710,7 +1640,7 @@ class Mission
 			id=69;
 			atlOffset=-0.00026321411;
 		};
-		class Item46
+		class Item42
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1745,7 +1675,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item47
+		class Item43
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1779,7 +1709,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item48
+		class Item44
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1796,7 +1726,7 @@ class Mission
 			type="CFP_O_NKARMY_Ural_Refuel_01";
 			atlOffset=-1.1444092e-05;
 		};
-		class Item49
+		class Item45
 		{
 			dataType="Marker";
 			position[]={3386.7913,43.910557,-1096.863};
@@ -1805,7 +1735,7 @@ class Mission
 			id=75;
 			atlOffset=-3.8146973e-06;
 		};
-		class Item50
+		class Item46
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1845,7 +1775,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item51
+		class Item47
 		{
 			dataType="Group";
 			side="West";
@@ -1965,7 +1895,7 @@ class Mission
 			};
 			id=84;
 		};
-		class Item52
+		class Item48
 		{
 			dataType="Group";
 			side="West";
@@ -2043,7 +1973,7 @@ class Mission
 			};
 			id=85;
 		};
-		class Item53
+		class Item49
 		{
 			dataType="Object";
 			class PositionInfo
@@ -2061,7 +1991,7 @@ class Mission
 			id=86;
 			type="rhsusf_M1220_M2_usarmy_wd";
 		};
-		class Item54
+		class Item50
 		{
 			dataType="Marker";
 			position[]={-330.14914,45.242161,370.26685};
@@ -2069,7 +1999,7 @@ class Mission
 			type="Empty";
 			id=89;
 		};
-		class Item55
+		class Item51
 		{
 			dataType="Marker";
 			position[]={667.36499,35.380001,404.901};

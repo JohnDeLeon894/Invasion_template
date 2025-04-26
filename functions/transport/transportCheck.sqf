@@ -64,7 +64,7 @@ private _vehicleCheck = {
 	_transportArray pushBack _newName;
 	missionNamespace setVariable [_newName, _newVehicle];
 	_newVehicle setVehicleVarName _newName;
-	[_newVehicle] execVM
+	[_newVehicle] execVM 'functions\transport\transport_infil_action.sqf';
 };
 
 {
