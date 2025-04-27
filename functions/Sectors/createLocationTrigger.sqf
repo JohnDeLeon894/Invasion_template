@@ -7,6 +7,6 @@
  _trigger setTriggerStatements ['false', _sectorTriggerActivation, ''];
  _trigger setTriggerArea [_sectorSize, _sectorSize, 0, true];
 
- parsingNamespace setVariable [_triggerName, _trigger];
+_trigger setVehicleVarName _triggerName;
 
  GENERATED_SECTORS pushBack [_triggerName, _trigger];

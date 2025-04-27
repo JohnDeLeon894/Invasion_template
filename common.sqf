@@ -91,8 +91,10 @@ WEST_VEHICLE_SPAWN = markerPos ['westVehicleSpawn', false];
 EAST_VEHICLE_SPAWN = markerPos ['eastVehicleSpawn', false];
 CHOPPA_SPAWN = markerPos ['CHOPPA_SPAWN', false];
 
-
+FIND_SECTORS_DONE = false;
 [] execVM "functions\Sectors\findSectors.sqf";
+
+waitUntil{FIND_SECTORS_DONE};
 
 // [] execVM "functions\Sectors\createControlSector.sqf";
 
@@ -106,6 +108,7 @@ TRANSPORTS = [];
 	};
  
 } forEach (entities 'Helicopter') ;
+// } forEach (entities 'car') ;
 
 
 CAS = [
@@ -137,7 +140,8 @@ LOCATION_TYPES = [
 
 
 
-// global variable for units array
+// global variable for units arrayIntersect
+
 BLU_UNITS_ARRAY = usArmy;
 
 BLU_GUARD_ARRAY = usArmy;
@@ -152,21 +156,6 @@ RED_VEHICLE_ARRAY = Isis_Vehicles;
 
 RED_TANK_ARRAY = Isis_Tanks;
 
-/**
-BLU_UNITS_ARRAY = WW2USArmy;
-
-BLU_GUARD_ARRAY = WW2USArmy;
-
-BLU_VEHICLE_ARRAY = WW2USArmyVehicles;
-
-BLU_TANK_ARRAY = ww2USArmyArmor;
-
-RED_UNITS_ARRAY = ww2StormTroopers;
-
-RED_VEHICLE_ARRAY = ww2StormTroopersVehicles;
-
-RED_TANK_ARRAY = ww2StormTroopersTanks;
- */
 
 COMMON_DONE = true;
 

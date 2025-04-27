@@ -110,8 +110,8 @@ private _locationWorker = {
 				_locationMarker setMarkerColor _markerColor; 
 				_locationMarker setMarkerText _locationName;
 				diag_log "******** params sending to createLocationTrigger ********";
-				diag_log [_sectorCenterPos, _markerName, sectorSize, _locationName];
-				[_locationPosition, _markerName, sectorSize, _locationName] execVM "functions\Sectors\createLocationTrigger.sqf";
+				diag_log [_locationPosition, _markerName, _locationSize, _locationName];
+				[_locationPosition, _markerName, _locationSize, _locationName] execVM "functions\Sectors\createLocationTrigger.sqf";
 
 				loopCounter = loopCounter + 1; 
 				// private _locationMarker = createMarker[_markerName, _sectorCenterPos];
