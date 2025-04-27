@@ -60,10 +60,10 @@ BACKUP_GROUPS = [
 	backup_charlie
 ];
 ARTY = [
-	m1,
-	m2,
-	m3,
-	m4
+	// m1,
+	// m2,
+	// m3,
+	// m4
 ];
 
 GROUND_TRANSPORTS = [
@@ -76,7 +76,7 @@ continueLoop = true;
 doOnce = 0;
 SPAWN_LOOP_COUNT = 0;
 ONE_LOOP = false;
-BLU_UNIT_SIZE = 8;
+BLU_UNIT_SIZE = 6;
 RED_UNIT_SIZE = 6;
 CHOPPA_COUNT = 0;
 
@@ -91,8 +91,10 @@ WEST_VEHICLE_SPAWN = markerPos ['westVehicleSpawn', false];
 EAST_VEHICLE_SPAWN = markerPos ['eastVehicleSpawn', false];
 CHOPPA_SPAWN = markerPos ['CHOPPA_SPAWN', false];
 
-
+FIND_SECTORS_DONE = false;
 [] execVM "functions\Sectors\findSectors.sqf";
+
+waitUntil{FIND_SECTORS_DONE};
 
 // [] execVM "functions\Sectors\createControlSector.sqf";
 
@@ -106,11 +108,12 @@ TRANSPORTS = [];
 	};
  
 } forEach (entities 'Helicopter') ;
+// } forEach (entities 'car') ;
 
 
-CAS = [
-	Buzzard_01
-];
+// CAS = [
+// 	Buzzard_01
+// ];
 
 LOCATION_TYPES = [
     'Airport',
@@ -137,36 +140,21 @@ LOCATION_TYPES = [
 
 
 
-// global variable for units array
-BLU_UNITS_ARRAY = usArmy;
+// global variable for units arrayIntersect
 
-BLU_GUARD_ARRAY = usArmy;
+BLU_UNITS_ARRAY = capstonePMC_Units;
 
-BLU_VEHICLE_ARRAY = usArmy_cars;
+BLU_GUARD_ARRAY = localFigthers;
 
-BLU_TANK_ARRAY = usArmy_armor;
+BLU_VEHICLE_ARRAY = localFighterVehicles;
 
-RED_UNITS_ARRAY = BocoHaran_units + Isis_units;
+BLU_TANK_ARRAY = blueSyndikat_vehicles + localFighterVehicles;
 
-RED_VEHICLE_ARRAY = Isis_Vehicles;
+RED_UNITS_ARRAY = lowLevelMilitia + hiredSoldiers;
 
-RED_TANK_ARRAY = Isis_Tanks;
+RED_VEHICLE_ARRAY = hiredSoldierVehicles;
 
-/**
-BLU_UNITS_ARRAY = WW2USArmy;
-
-BLU_GUARD_ARRAY = WW2USArmy;
-
-BLU_VEHICLE_ARRAY = WW2USArmyVehicles;
-
-BLU_TANK_ARRAY = ww2USArmyArmor;
-
-RED_UNITS_ARRAY = ww2StormTroopers;
-
-RED_VEHICLE_ARRAY = ww2StormTroopersVehicles;
-
-RED_TANK_ARRAY = ww2StormTroopersTanks;
- */
+RED_TANK_ARRAY = hiredSoldierTanks + hiredEliteTanks;
 
 COMMON_DONE = true;
 

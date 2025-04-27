@@ -11,6 +11,8 @@ RED_TRIGGERS = [RED_TRIGGERS, []] select _isNil_redTriggers;
 CONTROL_TRIGGERS = [CONTROL_TRIGGERS, []] select _isNil_controlTriggers;
 REGION_TRIGGERS = [REGION_TRIGGERS, []] select _isNil_regionTriggers;
 
+SECTOR_HASH = createHashMapFromArray GENERATED_SECTORS;
+
 if (_isNil_allTriggers) then {
 	diag_log 'ALL_TRIGGERS is null, rescanning triggers';
 	player createDiarySubject ['TriggersFound', 'Triggers Found'];
@@ -20,8 +22,12 @@ if (_isNil_allTriggers) then {
 	// GREEN_TRIGGERS = [];
 	// RED_TRIGGERS = [];
 	{
-		private _trigger = (_x select 1);
-		private _triggerName = (_x select 0);
+		private _trigger = _x;
+		private _triggerName = str _x;
+		
+		diag_log "******** trigger and trigger name ********";
+		diag_log [_triggerName, _trigger];
+
 		if ('sector' in _triggerName) then {
 			private _title = _triggerName;
 			private _entry = format ['Found trigger %1. Distance from player %2', _triggerName, player distance _trigger];
@@ -48,8 +54,8 @@ if (_isNil_allTriggers) then {
 			ALL_TRIGGERS pushBack _trigger;
 			RED_TRIGGERS pushBack _trigger;
 		};
-	// } forEach allMissionObjects 'EmptyDetector';
-	} forEach GENERATED_SECTORS;
+	} forEach allMissionObjects 'EmptyDetector';
+	// } forEach GENERATED_SECTORS;
 } else {
 	diag_log 'Saved triggers list detected';
 	player createDiarySubject ['TriggersFound', 'Triggers Found'];
@@ -78,3 +84,5 @@ if (_isNil_allTriggers) then {
 		diag_log format ['Trigger %1 set to %2', _x, _triggerColor];
 	} forEach ALL_TRIGGERS;
 };
+
+FIND_SECTORS_DONE = true;
