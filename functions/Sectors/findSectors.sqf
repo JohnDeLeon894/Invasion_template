@@ -11,8 +11,39 @@ RED_TRIGGERS = [RED_TRIGGERS, []] select _isNil_redTriggers;
 CONTROL_TRIGGERS = [CONTROL_TRIGGERS, []] select _isNil_controlTriggers;
 REGION_TRIGGERS = [REGION_TRIGGERS, []] select _isNil_regionTriggers;
 
-SECTOR_HASH = createHashMapFromArray GENERATED_SECTORS;
+// SECTOR_HASH = createHashMapFromArray GENERATED_SECTORS;
 
+if (_isNil_allTriggers) then {
+	diag_log 'ALL_TRIGGERS is null, re-scanning triggers';
+	TRIGGER_HASHES apply {
+		private _triggerName = _x;
+		private _triggerHash = _y;
+		private _triggerPos = _triggerHash get "Position";
+		private _triggerSize = _triggerHash get "Size";
+		private _triggerArea = [_triggerSize, _triggerSize];
+		private _title = _triggerName;
+		private _entry = format ['Found trigger %1. Distance from player %2', _triggerName, player distance _triggerPos];
+		private _triggerMark = createMarker[str _triggerName, _triggerPos];
+
+		player createDiaryRecord ['TriggersFound', [_title, _entry]];
+
+		_triggerMark setMarkerBrush 'CROSS';
+		_triggerMark setMarkerShape 'RECTANGLE';
+		_triggerMark setMarkerSize _triggerArea;
+		_triggerMark setMarkerColor 'ColorRed';
+		ALL_TRIGGERS pushBack _triggerName;
+		RED_TRIGGERS pushBack _triggerName;
+	};
+
+} else {
+	hint "derp";
+};
+
+
+
+
+
+/*
 if (_isNil_allTriggers) then {
 	diag_log 'ALL_TRIGGERS is null, rescanning triggers';
 	player createDiarySubject ['TriggersFound', 'Triggers Found'];
@@ -84,5 +115,5 @@ if (_isNil_allTriggers) then {
 		diag_log format ['Trigger %1 set to %2', _x, _triggerColor];
 	} forEach ALL_TRIGGERS;
 };
-
+*/
 FIND_SECTORS_DONE = true;
