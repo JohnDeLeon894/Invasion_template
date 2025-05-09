@@ -14,6 +14,7 @@ saveVar 'ALL_BASES';
 saveVar 'RED_BASES';
 saveVar 'GREEN_BASES';
 saveVar 'KNOWN_BASES';
+saveVar 'TRIGGER_HASHES';
 
 // hint format['%1', RED_TRIGGERS];
 
