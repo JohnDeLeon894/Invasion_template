@@ -9,10 +9,19 @@ private _areaRadius = _this select 4;
 private _numberOfGroupsToSpawn = floor  (3 + random 3);
 private _locationCount = count _nearbyLocations;
 private _resultsArray = [];
+private _locationsArray = [];
 hint format ['trigger: %1', _trigger];
 
 private _spawnedCount = 0;
 private _groups = [];
+
+private _validPlaces = selectBestPlaces [(position _trigger), (sectorSize / 2), "(2*houses) - (10 * sea) ", 1, 50];
+private _validPlacesCount = { 
+	if ((_x select 1) > 0.8) then {
+		_locationsArray pushBack (_x select 0);
+	};
+} forEach _validPlaces;
+
 
 // populate bases  
 [_trigger] execVM 'functions\spawners\baseSpawner.sqf';
@@ -28,8 +37,8 @@ while {_spawnedCount < _numberOfGroupsToSpawn} do {
 	};
 
 	// select a single location from {_nearbyLocations}
-	_selectedLocation = _nearbyLocations call BIS_fnc_selectRandom;
-	_nearbyLocations deleteAt (_nearbyLocations find _selectedLocation);
+	_selectedLocation = _locationsArray call BIS_fnc_selectRandom;
+	_locationsArray deleteAt (_locationsArray find _selectedLocation);
 	
 	// name the mission 
 	_missionName = ['Combat Patrol'] call missionNamer;
@@ -40,14 +49,18 @@ while {_spawnedCount < _numberOfGroupsToSpawn} do {
 	_groupName = format ['enemyGroup_%1', group_count];
 	_eastGroup = createGroup [east, false];
 	_eastGroup setGroupId [_groupName];
-	
-	// weird positioning stuff
-	if (_usePosition) then {
-			_position = position _selectedLocation;
-	} else {
-			_position = locationPosition _selectedLocation;
-	};
+
+	_position = _selectedLocation;
+
 	diag_log 'calling spawn groups from sectorSpawn 3';
+
+	if (WEST_SPAWN distance _position < 200) exitWith {
+		diag_log "position too close, skipping";
+		diag_log (WEST_SPAWN distance _position) ;
+		continue;
+	};
+
+	diag_log "Found a position far enough away!";
 
 	_resultsArray pushBack _position;
 

@@ -60,10 +60,10 @@ BACKUP_GROUPS = [
 	backup_charlie
 ];
 ARTY = [
-	m1,
-	m2,
-	m3,
-	m4
+	m_1,
+	m_2,
+	m_3,
+	m_4
 ];
 
 GROUND_TRANSPORTS = [

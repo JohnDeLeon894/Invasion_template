@@ -66,8 +66,9 @@ class cfgFunctions{
         file = "compositions\factionDictionary.sqf";
       };
 	  class sectorGenerator {
-		preInit = 1;
+		// preInit = 1;
 		file = "functions\Sectors\sectorGenerator.sqf";
+		description = "[]call jMD_fnc_sectorGenerator";
 	  };
     };
   };

@@ -6,12 +6,44 @@ _closestTrigger = (RED_TRIGGERS select 0);
 _nextClosest = (RED_TRIGGERS select 0);
 _lastClosest = (RED_TRIGGERS select 0);
 
-{
-	private _currentTrigger = _x;
-	private _distanceA = player distance _currentTrigger;
-	private _distanceB = player distance _closestTrigger;
-	private _distanceC = player distance _nextClosest;
-	private _distanceD = player distance _lastClosest;
+TRIGGER_HASHES apply {
+	// _x = key 
+	// _y = value 
+	private _triggerName = _x;
+	private _triggerData = _y;
+
+	if (!(_triggerName in RED_TRIGGERS)) exitWith {
+		diag_log '*** trigger not in red list ***';
+		diag_log ['yeeting ', _triggerName, ' from red list'];
+		RED_TRIGGERS deleteAt (RED_TRIGGERS find _triggerName);
+	};
+
+	private _triggerPos = _y get "Position";
+
+	if ((WEST_SPAWN distance _triggerPos) < 300) exitWith {
+		diag_log '*** trigger too close ***';
+		diag_log ['yeeting ', _triggerName, ' from red list'];
+		RED_TRIGGERS deleteAt (RED_TRIGGERS find _triggerName);
+	};
+
+	// get previous trigger hashes for comparison
+	private _closestTriggerHash = TRIGGER_HASHES getOrDefault [_closestTrigger,"NameNotFound"]; 
+	private _nextClosestHash = TRIGGER_HASHES getOrDefault [_nextClosest, "NameNotFound"];
+	private _lastClosestHash = TRIGGER_HASHES getOrDefault [_lastClosest, "NameNotFound"];
+
+	// get previous trigger positions
+	
+	private _closestTriggerPosition = _closestTriggerHash getOrDefault ["Position", [9999,9999]];
+	private _nextClosestPosition = _nextClosestHash getOrDefault ["Position", [9999,9999]];
+	private _lastClosestPosition = _lastClosestHash getOrDefault ["Position", [9999,9999]];
+
+	// get distances 
+	private _distanceA = WEST_SPAWN distance _triggerPos;
+	private _distanceB = WEST_SPAWN distance _closestTriggerPosition;
+	private _distanceC = WEST_SPAWN distance _nextClosestPosition;
+	private _distanceD = WEST_SPAWN distance _lastClosestPosition;
+
+	// sort distances logic 
 	if (_distanceA < _distanceB) then {
 		_closestTrigger = _currentTrigger;
 	} else {
@@ -23,26 +55,21 @@ _lastClosest = (RED_TRIGGERS select 0);
 			};
 		};
 	};
-	diag_log [_closestTrigger, _nextClosest, _lastClosest];
-} forEach RED_TRIGGERS;
-// _closestTrigger = ALL_TRIGGERS call BIS_fnc_selectRandom;
+};
+
 private _triggerList = [_closestTrigger, _nextClosest, _lastClosest];
-_selectedTrigger = _triggerList call BIS_fnc_selectRandom;
-SECTOR_POS = position _selectedTrigger;
-// _selectedTrigger = _triggerList select 0;
-private _subject = player createDiarySubject ['triggerPicker', 'trigger picker'];
-private _triggerListText = format['%1', str _triggerList];
-player createDiaryRecord ['triggerPicker', ['the trigger array', _triggerListText]];
-player createDiaryRecord ['triggerPicker', ['the trigger chosen', format['%1',str _selectedTrigger]]];
-player createDiaryRecord ['triggerPicker', ['the red triggers', format['%1',str RED_TRIGGERS]]];
+private _selectedTriggerName = _triggerList call BIS_fnc_selectRandom;
+private _triggerData = TRIGGER_HASHES get _selectedTriggerName;
 
-private _copyStatements = triggerStatements _selectedTrigger;
-private _copyActivation = _copyStatements select 1;
-private _copyDeactivation = _copyStatements select 2;
-player createDiaryRecord ['triggerPicker', ['the trigger statements', format['%1', _copyStatements]]];
+try {
+	_triggerData call ["CreateTrigger"];
+}
+catch {
+	private _hintString = format["create trigger failed for %1", _selectedTriggerName];
+	hint _hintString;
+	diag_log _hintString;
+	diag_log _exception;
+};
 
-_selectedTrigger setTriggerStatements ['true', _copyActivation, _copyDeactivation];
-
-RED_TRIGGERS deleteAt (RED_TRIGGERS find str _selectedTrigger);
-sector = _selectedTrigger;
-_selectedTrigger
+RED_TRIGGERS deleteAt (RED_TRIGGERS find _selectedTriggerName);
+_selectedTriggerName

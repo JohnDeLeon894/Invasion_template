@@ -3,12 +3,12 @@
 private _trigger = _this select 0;
 private _thisList = _this select 1;
 private _count = _this select 2; 
-private _namedSector = _this select 3;
-// diag_log _namedSector;
+private _locationName = _this select 3;
+// diag_log _locationName;
 private _triggerName = str _trigger;
 diag_log format ['*** the trigger name from trigger activation %1 ***',_triggerName];
 // test for named sector
-private _useSectorName = !isNil '_namedSector';
+private _useSectorName = !isNil '_locationName';
 diag_log ['Use Sector Name?', _useSectorName];
 
 // test for control sector. Special chain of task for this sector.
@@ -17,17 +17,17 @@ diag_log ['Use Sector Name?', _useSectorName];
 private _owner = WEST;
 
 // define Parent Task ID. TODO: make mission type define the ID.
-private _parentTaskId = format['Clear %1', _namedSector]; 
+private _parentTaskId = format['Clear %1', _locationName]; 
 
 // define the parent task description. TODO: make mission type define the description. 
 private _description = [
-	format['Enemies detected in %1', [_trigger, _namedSector] select _useSectorName], 
-	[format['Clear %1', _trigger], format['Assault %1', _namedSector]] select _useSectorName, 
+	format['Enemies detected in %1', [_trigger, _locationName] select _useSectorName], 
+	[format['Clear %1', _trigger], format['Assault %1', _locationName]] select _useSectorName, 
 	position _trigger
 ];
 
 // kind of a hacky if statement. True evaluates to 1, false evaluates to 0. 
-private _sectorName = format['%1', [_trigger, _namedSector] select _useSectorName];
+private _sectorName = format['%1', [_trigger, _locationName] select _useSectorName];
 private _isControlSector = 'control' in (toLower _sectorName); 
 // create task arguments
 private _state = 'AUTOASSIGNED';
@@ -58,7 +58,7 @@ if (_isTooFewLocations) then {
 _activePositions = [_trigger, _count, _nearbyLocations, _isTooFewLocations, _triggerAreaRadius, _parentTaskId, _useSectorName, _type] call jMD_fnc_sectorSpawn;
 
 // deligate mission assignment 
-[ _activePositions, _sectorName, _sectorName ]execVM 'functions\taskManagement\taskManager.sqf';
+[ _activePositions, _sectorName, _locationName ]execVM 'functions\taskManagement\taskManager.sqf';
 
 // don't know if this is needed
 // if ((count waypoints group player) > 1) then {
